@@ -1,4 +1,21 @@
 
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
+import Footer from '../components/Footer';
+import { getProperties } from '../services/api';
+
+function HomePage() {
+  const navigate = useNavigate();
+  const { darkMode } = useTheme();
+  const [destinations, setDestinations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const heroImages = [
+  "https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1600"
+];
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
