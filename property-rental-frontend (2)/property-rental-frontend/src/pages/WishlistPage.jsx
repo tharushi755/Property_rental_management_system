@@ -1,7 +1,8 @@
-import React from 'react';
+﻿import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useWishlist } from '../context/WishlistContext';
 import { useTheme } from '../context/ThemeContext';
+import { HeartIcon, MapPinIcon, TrashIcon, StarIcon } from '../components/Icons';
 
 function WishlistPage() {
   const navigate = useNavigate();
@@ -24,8 +25,8 @@ function WishlistPage() {
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* Header */}
         <div style={{ marginBottom: '32px' }}>
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '36px', color: textColor, marginBottom: '8px' }}>
-            ❤️ My Wishlist
+          <h1 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '36px', color: textColor, marginBottom: '8px' }}>
+            <HeartIcon size={28} filled color="#C4622D" style={{marginRight:10, verticalAlign:'middle'}}/> My Wishlist
           </h1>
           <p style={{ color: textMuted }}>
             {uniqueWishlist.length} {uniqueWishlist.length === 1 ? 'property' : 'properties'} saved
@@ -41,7 +42,7 @@ function WishlistPage() {
             borderRadius: '20px',
             border: `1px solid ${borderColor}`
           }}>
-            <div style={{ fontSize: '64px', marginBottom: '16px' }}>❤️</div>
+            <div style={{ marginBottom: '16px' }}><HeartIcon size={64} filled color="#C4622D"/></div>
             <h2 style={{ color: textColor, marginBottom: '8px' }}>Your wishlist is empty</h2>
             <p style={{ color: textMuted, marginBottom: '24px' }}>
               Save your favorite properties by clicking the heart icon
@@ -122,7 +123,7 @@ function WishlistPage() {
                       {property.title}
                     </h3>
                     <div style={{ fontSize: '13px', color: textMuted, marginBottom: '12px' }}>
-                      📍 {property.location}
+                      <MapPinIcon size={13} style={{marginRight:4, verticalAlign:'middle'}}/>{property.location}
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
                       <div>
@@ -130,7 +131,7 @@ function WishlistPage() {
                         <span style={{ fontSize: '12px', color: textMuted }}> /night</span>
                       </div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                        <span>⭐</span>
+                        <StarIcon size={13} filled color="#FFB800"/>
                         <span style={{ fontWeight: 500 }}>{property.rating}</span>
                         <span style={{ fontSize: '12px', color: textMuted }}>({property.reviews})</span>
                       </div>
@@ -166,7 +167,7 @@ function WishlistPage() {
                       e.currentTarget.style.color = '#C62828';
                     }}
                   >
-                    🗑️ Remove from Wishlist
+                    <TrashIcon size={14} style={{marginRight:6, verticalAlign:'middle'}}/> Remove from Wishlist
                   </button>
                 </div>
               </div>

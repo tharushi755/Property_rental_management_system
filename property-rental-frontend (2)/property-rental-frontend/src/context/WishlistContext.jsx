@@ -21,7 +21,7 @@ export function WishlistProvider({ children }) {
   const addToWishlist = (property) => {
     if (!wishlist.find(item => item.id === property.id)) {
       setWishlist([...wishlist, property]);
-      alert(`❤️ ${property.title} added to wishlist!`);
+      alert(`${property.title} added to wishlist!`);
     }
   };
 

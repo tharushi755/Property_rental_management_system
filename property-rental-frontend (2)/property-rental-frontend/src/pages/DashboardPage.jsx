@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { getUserBookings, cancelBooking } from '../services/api';
+import { CalendarIcon, HomeIcon, DollarIcon, BeachIcon, UsersIcon } from '../components/Icons';
 
 function DashboardPage({ user }) {
   const navigate = useNavigate();
@@ -82,8 +83,8 @@ function DashboardPage({ user }) {
           marginBottom: '32px',
           color: 'white'
         }}>
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '32px', marginBottom: '8px' }}>
-            Welcome back, {user?.name || user?.email?.split('@')[0]}! 👋
+          <h1 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '32px', marginBottom: '8px' }}>
+            Welcome back, {user?.name || user?.email?.split('@')[0]}!
           </h1>
           <p style={{ opacity: 0.9 }}>Here's what's happening with your bookings.</p>
         </div>
@@ -96,32 +97,32 @@ function DashboardPage({ user }) {
           marginBottom: '40px'
         }}>
           <div style={{ background: cardBg, borderRadius: '16px', padding: '24px', border: `1px solid ${borderColor}`, textAlign: 'center' }}>
-            <div style={{ fontSize: '36px', marginBottom: '8px' }}>📅</div>
+            <div style={{ marginBottom: '8px', color: '#C4622D' }}><CalendarIcon size={36}/></div>
             <div style={{ fontSize: '32px', fontWeight: 700, color: '#C4622D' }}>{totalBookings}</div>
             <div style={{ color: textMuted }}>Total Bookings</div>
           </div>
-          
+
           <div style={{ background: cardBg, borderRadius: '16px', padding: '24px', border: `1px solid ${borderColor}`, textAlign: 'center' }}>
-            <div style={{ fontSize: '36px', marginBottom: '8px' }}>🏠</div>
+            <div style={{ marginBottom: '8px', color: '#C4622D' }}><HomeIcon size={36}/></div>
             <div style={{ fontSize: '32px', fontWeight: 700, color: '#C4622D' }}>{upcomingStays}</div>
             <div style={{ color: textMuted }}>Upcoming Stays</div>
           </div>
-          
+
           <div style={{ background: cardBg, borderRadius: '16px', padding: '24px', border: `1px solid ${borderColor}`, textAlign: 'center' }}>
-            <div style={{ fontSize: '36px', marginBottom: '8px' }}>💰</div>
+            <div style={{ marginBottom: '8px', color: '#C4622D' }}><DollarIcon size={36}/></div>
             <div style={{ fontSize: '32px', fontWeight: 700, color: '#C4622D' }}>${totalSpent}</div>
             <div style={{ color: textMuted }}>Total Spent</div>
           </div>
         </div>
 
         {/* My Bookings Section */}
-        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '24px', color: textColor, marginBottom: '20px' }}>
+        <h2 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '24px', color: textColor, marginBottom: '20px' }}>
           My Bookings
         </h2>
 
         {bookings.length === 0 ? (
           <div style={{ background: cardBg, borderRadius: '16px', padding: '60px', textAlign: 'center', border: `1px solid ${borderColor}` }}>
-            <div style={{ fontSize: '48px', marginBottom: '16px' }}>🏝️</div>
+            <div style={{ marginBottom: '16px', color: '#C4622D' }}><BeachIcon size={48}/></div>
             <h3 style={{ color: textColor, marginBottom: '8px' }}>No bookings yet</h3>
             <p style={{ color: textMuted, marginBottom: '24px' }}>Start exploring properties to make your first booking!</p>
             <button 
@@ -150,7 +151,7 @@ function DashboardPage({ user }) {
                     {booking.property?.title || 'Property'}
                   </h3>
                   <p style={{ fontSize: '13px', color: textMuted }}>
-                    📅 {formatDate(booking.checkIn)} → {formatDate(booking.checkOut)} · 👥 {booking.guests} {parseInt(booking.guests) === 1 ? 'guest' : 'guests'}
+                    <CalendarIcon size={12} style={{marginRight:4}}/>{formatDate(booking.checkIn)} → {formatDate(booking.checkOut)} · <UsersIcon size={12} style={{margin:'0 4px'}}/>{booking.guests} {parseInt(booking.guests) === 1 ? 'guest' : 'guests'}
                   </p>
                 </div>
                 <div style={{ textAlign: 'right' }}>

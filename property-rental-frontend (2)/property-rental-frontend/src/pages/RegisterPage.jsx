@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../services/api';
+import { LuggageIcon, HomeIcon } from '../components/Icons';
 
 function RegisterPage({ onLogin }) {
   const [formData, setFormData] = useState({
@@ -72,7 +73,7 @@ function RegisterPage({ onLogin }) {
         border: '1px solid #E8D5B7'
       }}>
         <h2 style={{
-          fontFamily: "'Playfair Display', serif",
+          fontFamily: "'Montserrat', sans-serif",
           fontSize: '28px',
           fontWeight: 700,
           marginBottom: '6px'
@@ -106,7 +107,7 @@ function RegisterPage({ onLogin }) {
                 background: formData.role === 'GUEST' ? '#FEF5EF' : 'white'
               }}
             >
-              <div style={{ fontSize: '24px', marginBottom: '4px' }}>🧳</div>
+              <div style={{ marginBottom: '4px', color: formData.role === 'GUEST' ? '#C4622D' : '#999' }}><LuggageIcon size={24}/></div>
               <div style={{ fontSize: '13px', fontWeight: 500 }}>Guest</div>
             </div>
             <div
@@ -120,7 +121,7 @@ function RegisterPage({ onLogin }) {
                 background: formData.role === 'OWNER' ? '#FEF5EF' : 'white'
               }}
             >
-              <div style={{ fontSize: '24px', marginBottom: '4px' }}>🏡</div>
+              <div style={{ marginBottom: '4px', color: formData.role === 'OWNER' ? '#C4622D' : '#999' }}><HomeIcon size={24}/></div>
               <div style={{ fontSize: '13px', fontWeight: 500 }}>Property Owner</div>
             </div>
           </div>

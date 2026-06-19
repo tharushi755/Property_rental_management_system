@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { getAllPropertiesAdmin, approveProperty, deleteProperty, createProperty, updateProperty } from '../../services/api';
+import { EditIcon, PlusIcon, SaveIcon, SparkleIcon, MapPinIcon, CheckIcon, TrashIcon } from '../../components/Icons';
 
 const EMPTY_PROPERTY = {
   title: '',
@@ -117,7 +118,7 @@ function AdminProperties() {
     <div style={{ padding: '32px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
         <div>
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '32px', marginBottom: '8px' }}>Property Management</h1>
+          <h1 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '32px', marginBottom: '8px' }}>Property Management</h1>
           <p style={{ color: '#9A8F84' }}>Review, approve, and manage all properties</p>
         </div>
         <div style={{ display: 'flex', gap: '10px' }}>
@@ -150,7 +151,7 @@ function AdminProperties() {
       {/* Create Property Form */}
       {showForm && (
         <div style={{ background: 'white', borderRadius: '16px', padding: '24px', marginBottom: '24px', border: '1px solid #E8D5B7' }}>
-          <h3 style={{ marginBottom: '16px', color: '#1A1612' }}>{editingId ? '✏️ Update Property' : '➕ Create New Property'}</h3>
+          <h3 style={{ marginBottom: '16px', color: '#1A1612', display:'flex', alignItems:'center', gap:'8px' }}>{editingId ? <><EditIcon size={16}/> Update Property</> : <><PlusIcon size={16}/> Create New Property</>}</h3>
           <form onSubmit={savePropertyHandler} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             
             {/* Title */}
@@ -280,7 +281,7 @@ function AdminProperties() {
             {/* Buttons */}
             <div style={{ gridColumn: '1 / -1', display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '8px' }}>
               <button type="button" onClick={cancelFormHandler} style={{ padding: '12px 24px', background: '#9A8F84', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500 }}>Cancel</button>
-              <button type="submit" style={{ padding: '12px 24px', background: '#2E7D32', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500 }}>{editingId ? '💾 Save Changes' : '✨ Create Property'}</button>
+              <button type="submit" style={{ padding: '12px 24px', background: '#2E7D32', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500, display:'flex', alignItems:'center', gap:'6px' }}>{editingId ? <><SaveIcon size={14}/> Save Changes</> : <><SparkleIcon size={14}/> Create Property</>}</button>
             </div>
           </form>
         </div>
@@ -292,13 +293,13 @@ function AdminProperties() {
           <div key={property.id} style={{ background: 'white', borderRadius: '16px', border: '1px solid #E8D5B7', padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
             <div style={{ flex: 2 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '18px' }}>{property.title}</h3>
+                <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '18px' }}>{property.title}</h3>
                 <span style={{ padding: '4px 10px', borderRadius: '20px', fontSize: '11px', fontWeight: 600, background: property.status === 'APPROVED' ? '#E8F5E9' : '#FFF8E1', color: property.status === 'APPROVED' ? '#2E7D32' : '#ED6C02' }}>
                   {property.status}
                 </span>
               </div>
               <div style={{ fontSize: '14px', color: '#666', marginBottom: '8px' }}>
-                {property.type} · ${property.price}/night · 📍 {property.location}
+                {property.type} · ${property.price}/night · <MapPinIcon size={12} style={{marginRight:3, verticalAlign:'middle'}}/>{property.location}
               </div>
               <div style={{ fontSize: '13px', color: '#9A8F84' }}>
                 Owner: {property.owner?.name || 'Unknown'} · {property.reviews || 0} reviews
@@ -306,10 +307,10 @@ function AdminProperties() {
             </div>
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
               {property.status === 'PENDING' && (
-                <button onClick={() => approvePropertyHandler(property.id)} style={{ padding: '8px 16px', background: '#2E7D32', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>✓ Approve</button>
+                <button onClick={() => approvePropertyHandler(property.id)} style={{ padding: '8px 16px', background: '#2E7D32', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', display:'inline-flex', alignItems:'center', gap:'5px' }}><CheckIcon size={13}/> Approve</button>
               )}
-              <button onClick={() => startEditHandler(property)} style={{ padding: '8px 16px', background: '#C4622D', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>✏️ Update</button>
-              <button onClick={() => deletePropertyHandler(property.id)} style={{ padding: '8px 16px', background: '#df1212', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>🗑️ Delete</button>
+              <button onClick={() => startEditHandler(property)} style={{ padding: '8px 16px', background: '#C4622D', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', display:'inline-flex', alignItems:'center', gap:'5px' }}><EditIcon size={13}/> Update</button>
+              <button onClick={() => deletePropertyHandler(property.id)} style={{ padding: '8px 16px', background: '#df1212', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', display:'inline-flex', alignItems:'center', gap:'5px' }}><TrashIcon size={13}/> Delete</button>
             </div>
           </div>
         ))}

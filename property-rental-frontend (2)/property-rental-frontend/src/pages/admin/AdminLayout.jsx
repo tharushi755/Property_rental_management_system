@@ -1,6 +1,7 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
+import { BarChartIcon, UsersIcon, HomeIcon, CalendarIcon } from '../../components/Icons';
 
 function AdminLayout() {
   const location = useLocation();
@@ -12,16 +13,16 @@ function AdminLayout() {
   const activeColor = 'white';
 
   const navItems = [
-    { path: '/admin', name: 'Dashboard', icon: '📊' },
-    { path: '/admin/users', name: 'Users', icon: '👥' },
-    { path: '/admin/properties', name: 'Properties', icon: '🏠' },
-    { path: '/admin/bookings', name: 'Bookings', icon: '📅' },
+    { path: '/admin', name: 'Dashboard', icon: <BarChartIcon size={15}/> },
+    { path: '/admin/users', name: 'Users', icon: <UsersIcon size={15}/> },
+    { path: '/admin/properties', name: 'Properties', icon: <HomeIcon size={15}/> },
+    { path: '/admin/bookings', name: 'Bookings', icon: <CalendarIcon size={15}/> },
   ];
 
   return (
     <div style={{ background: bgColor, minHeight: '100vh' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '80px 32px 40px' }}>
-        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '32px', color: textColor, marginBottom: '8px' }}>
+        <h1 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '32px', color: textColor, marginBottom: '8px' }}>
           Admin Panel
         </h1>
         <p style={{ color: '#9A8F84', marginBottom: '32px' }}>

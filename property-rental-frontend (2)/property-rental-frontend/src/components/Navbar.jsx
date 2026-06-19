@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { useWishlist } from '../context/WishlistContext';
@@ -211,7 +211,7 @@ function Navbar({ user, onLogout }) {
 
         {/* Logo */}
         <Link to="/" style={{
-          fontFamily: "'Playfair Display', serif",
+          fontFamily: "'Montserrat', sans-serif",
           fontSize: '23px',
           fontWeight: 700,
           textDecoration: 'none',
@@ -436,13 +436,13 @@ function Navbar({ user, onLogout }) {
                 </div>
 
                 {[
-                  { label: 'Dashboard', icon: '▤', to: '/dashboard' },
-                  { label: 'Wishlist', icon: '♡', to: '/wishlist' },
+                  { label: 'Dashboard', icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>, to: '/dashboard' },
+                  { label: 'Wishlist', icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>, to: '/wishlist' },
                   ...(user?.role === 'OWNER' || user?.role === 'ADMIN'
-                    ? [{ label: 'List Property', icon: '＋', to: '/add-property' }]
+                    ? [{ label: 'List Property', icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>, to: '/add-property' }]
                     : []),
                   ...(user?.role === 'ADMIN'
-                    ? [{ label: 'Admin Panel', icon: '⚡', to: '/admin' }]
+                    ? [{ label: 'Admin Panel', icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>, to: '/admin' }]
                     : []),
                 ].map(item => (
                   <Link

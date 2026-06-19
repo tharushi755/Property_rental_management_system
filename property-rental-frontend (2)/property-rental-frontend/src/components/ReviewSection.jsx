@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import api from '../services/api';
+import { EditIcon, StarIcon } from './Icons';
 
 function ReviewSection({ propertyId, user }) {
   const [reviews, setReviews] = useState([]);
@@ -67,7 +68,7 @@ function ReviewSection({ propertyId, user }) {
       console.log('Review response:', response.data);
       
       if (response.data.success) {
-        alert('✅ Review submitted! Thank you for your feedback.');
+        alert('Review submitted! Thank you for your feedback.');
         setNewReview({ rating: 5, comment: '' });
         setShowForm(false);
         fetchReviews(); // Refresh reviews
@@ -97,14 +98,14 @@ function ReviewSection({ propertyId, user }) {
         gap: '16px'
       }}>
         <div>
-          <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px' }}>
+          <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '20px' }}>
             Guest Reviews
           </h3>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '4px' }}>
             <span style={{ fontSize: '28px', fontWeight: 700, color: '#C4622D' }}>
               {averageRating.toFixed(1)}
             </span>
-            <span style={{ fontSize: '20px' }}>⭐</span>
+            <StarIcon size={20} filled color="#FFB800"/>
             <span style={{ color: '#9A8F84' }}>
               · {reviews.length} {reviews.length === 1 ? 'review' : 'reviews'}
             </span>
@@ -123,7 +124,7 @@ function ReviewSection({ propertyId, user }) {
               fontWeight: 500
             }}
           >
-            ✍️ Write a Review
+            <EditIcon size={14} style={{marginRight:6, verticalAlign:'middle'}}/> Write a Review
           </button>
         ) : (
           <button

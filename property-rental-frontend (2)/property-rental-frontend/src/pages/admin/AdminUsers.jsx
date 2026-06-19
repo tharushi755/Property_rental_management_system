@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { getAllUsers, updateUserRole, deleteUser, toggleUserStatus } from '../../services/api';
 
 function AdminUsers() {
@@ -87,7 +87,7 @@ function AdminUsers() {
     <div style={{ padding: '32px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
         <div>
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '32px', marginBottom: '8px' }}>User Management</h1>
+          <h1 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '32px', marginBottom: '8px' }}>User Management</h1>
           <p style={{ color: '#9A8F84' }}>Manage platform users, roles, and permissions</p>
         </div>
         <input
