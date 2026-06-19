@@ -99,37 +99,13 @@ function AdminProperties() {
       } else {
         await createProperty(newProperty);
         alert('Property created successfully!');
-      }47/
+      }
       setShowForm(false);
       setEditingId(null);
       setNewProperty(EMPTY_PROPERTY);
       fetchProperties();
     } catch (err) {
       alert(editingId ? 'Failed to update property' : 'Failed to create property');
-    }
-  };
-  const createPropertyHandler = async (e) => {
-    e.preventDefault();
-    try {
-      await createProperty(newProperty);
-      alert('Property created successfully!');
-      setShowForm(false);
-      setNewProperty({
-        title: '',
-        type: 'Villa',
-        location: '',
-        price: 100,
-        guests: 4,
-        beds: 2,
-        baths: 2,
-        description: '',
-        imageUrl: '',
-        amenities: '',
-        owner: { id: 3 }
-      });
-      fetchProperties();
-    } catch (err) {
-      alert('Failed to create property');
     }
   };
 
@@ -155,7 +131,6 @@ function AdminProperties() {
                 setShowForm(true);
               }
             }}
-            onClick={() => setShowForm(!showForm)}
             style={{ padding: '10px 20px', background: '#2E7D32', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}
           >
             + Create New Property
@@ -175,7 +150,7 @@ function AdminProperties() {
       {/* Create Property Form */}
       {showForm && (
         <div style={{ background: 'white', borderRadius: '16px', padding: '24px', marginBottom: '24px', border: '1px solid #E8D5B7' }}>
-          <h3 style={{ marginBottom: '16px', color: '#1A1612' }}>{editingId ? 'Update Property' : '➕ Create New Property'}</h3>
+          <h3 style={{ marginBottom: '16px', color: '#1A1612' }}>{editingId ? '✏️ Update Property' : '➕ Create New Property'}</h3>
           <form onSubmit={savePropertyHandler} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             
             {/* Title */}
@@ -305,9 +280,7 @@ function AdminProperties() {
             {/* Buttons */}
             <div style={{ gridColumn: '1 / -1', display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '8px' }}>
               <button type="button" onClick={cancelFormHandler} style={{ padding: '12px 24px', background: '#9A8F84', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500 }}>Cancel</button>
-              <button type="submit" style={{ padding: '12px 24px', background: '#2E7D32', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500 }}>{editingId ? 'Save Changes' : '✨ Create Property'}</button>
-              <button type="button" onClick={() => setShowForm(false)} style={{ padding: '12px 24px', background: '#9A8F84', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500 }}>Cancel</button>
-              <button type="submit" style={{ padding: '12px 24px', background: '#2E7D32', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500 }}>✨ Create Property</button>
+              <button type="submit" style={{ padding: '12px 24px', background: '#2E7D32', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500 }}>{editingId ? '💾 Save Changes' : '✨ Create Property'}</button>
             </div>
           </form>
         </div>
@@ -335,8 +308,8 @@ function AdminProperties() {
               {property.status === 'PENDING' && (
                 <button onClick={() => approvePropertyHandler(property.id)} style={{ padding: '8px 16px', background: '#2E7D32', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>✓ Approve</button>
               )}
-              <button onClick={() => startEditHandler(property)} style={{ padding: '8px 16px', background: '#b14912', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>Update</button>
-              <button onClick={() => deletePropertyHandler(property.id)} style={{ padding: '8px 16px', background: '#eb2727', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>Delete</button>
+              <button onClick={() => startEditHandler(property)} style={{ padding: '8px 16px', background: '#C4622D', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>✏️ Update</button>
+              <button onClick={() => deletePropertyHandler(property.id)} style={{ padding: '8px 16px', background: '#df1212', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>🗑️ Delete</button>
             </div>
           </div>
         ))}

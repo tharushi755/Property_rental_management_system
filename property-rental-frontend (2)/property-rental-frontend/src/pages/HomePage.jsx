@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
@@ -12,10 +11,10 @@ function HomePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const heroImages = [
-  "https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=1600",
-  "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1600",
-  "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1600"
-];
+    "https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -38,18 +37,18 @@ function HomePage() {
       setLoading(true);
       const response = await getProperties(0, 100);
       const allProperties = response.data.content || [];
-
+      
       const destinationMap = new Map();
-
+      
       allProperties.forEach(property => {
         let city = property.location?.split(',')[0]?.trim();
-
+        
         if (city === 'North Malé Atoll') city = 'Maldives';
         if (city === 'Ubud') city = 'Bali';
         if (city === 'Zermatt') city = 'Swiss Alps';
         if (city === 'Aspen' || city === 'Breckenridge' || city === 'Vail' || city === 'Telluride') city = 'Colorado Rockies';
         if (city === 'Gatlinburg' || city === 'Pigeon Forge') city = 'Great Smoky Mountains';
-
+        
         if (!destinationMap.has(city)) {
           destinationMap.set(city, {
             name: city,
@@ -62,7 +61,7 @@ function HomePage() {
         }
         destinationMap.get(city).propertyCount++;
       });
-
+      
       if (allProperties.length > 0) {
         destinationMap.set('International', {
           name: 'International',
@@ -70,13 +69,12 @@ function HomePage() {
           location: 'Worldwide',
           propertyCount: allProperties.length,
           image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop',
-          tag: 'Global'
         });
       }
-
+      
       setDestinations(Array.from(destinationMap.values()));
       setError(null);
-
+      
     } catch (err) {
       console.error('Error loading destinations:', err);
       setError('Failed to load destinations. Make sure backend is running.');
@@ -110,8 +108,6 @@ function HomePage() {
       'Colorado Rockies': 'Mountain Views',
       'Great Smoky Mountains': 'Most Booked'
     };
-
-    return tags[city] || 'Destination';
   };
 
   const handleDestinationClick = (destination) => {
@@ -145,105 +141,93 @@ function HomePage() {
 
   return (
     <div style={{ background: bgColor, minHeight: '100vh' }}>
-      {/* Hero Section - FULL SCREEN (100vh) with Carousel */}
-      <div style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
-
-        {heroImages.map((img, i) => (
-          <div
-            key={i}
-            style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: `url(${img})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              opacity: i === currentSlide ? 1 : 0,
-              transition: 'opacity 1.2s ease-in-out',
-            }}
-          />
-        ))}
-
+      {/* Hero Section - FULL SCREEN (100vh) with Scroll Indicator */}
+      <div style={{
+          position: 'relative',
+          backgroundImage: `url(${heroImages[currentSlide]})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          color: 'white',
+          transition: 'background-image 1s ease-in-out',
+        }}>
         <div style={{
           position: 'absolute',
-          top: 0, left: 0, right: 0, bottom: 0,
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
           background: 'linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55))'
         }} />
-
-        <div style={{
-          position: 'relative', zIndex: 2, height: '100%',
-          display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center',
-          textAlign: 'center', color: 'white', padding: '0 20px'
-        }}>
-          <div style={{ maxWidth: '800px' }}>
-            <div style={{
-              display: 'inline-block',
-              background: 'rgba(196,98,45,0.9)',
-              borderRadius: '30px',
-              padding: '8px 24px',
-              fontSize: '13px',
-              marginBottom: '24px',
-              fontWeight: 500
-            }}>
-              ✦ WELCOME TO VILASTAY
-            </div>
-
-            <h1 style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: '56px',
-              marginBottom: '20px',
-              fontWeight: 700,
-              textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
-            }}>
-              Find Your Perfect <em style={{ fontStyle: 'italic', color: '#F0A875' }}>Escape</em>
-            </h1>
-
-            <p style={{ fontSize: '18px', maxWidth: '550px', margin: '0 auto' }}>
-              Explore {destinations.length} destinations with {totalProperties}+ properties
-            </p>
-          </div>
-
-          {/* Dot indicators */}
-          <div style={{
-            position: 'absolute', bottom: '90px', left: '50%',
-            transform: 'translateX(-50%)', display: 'flex', gap: '10px'
+        
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: '800px', padding: '0 20px' }}>
+          <div style={{ 
+            display: 'inline-block', 
+            background: 'rgba(196,98,45,0.9)', 
+            borderRadius: '30px', 
+            padding: '8px 24px',
+            fontSize: '13px',
+            marginBottom: '24px',
+            fontWeight: 500
           }}>
-            {heroImages.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentSlide(i)}
-                style={{
-                  width: i === currentSlide ? '28px' : '10px',
-                  height: '10px',
-                  borderRadius: '5px',
-                  background: i === currentSlide ? '#C4622D' : 'rgba(255,255,255,0.6)',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  padding: 0
-                }}
-              />
-            ))}
+            ✦ WELCOME TO VILASTAY
           </div>
+          
+          <h1 style={{ 
+            fontFamily: "'Playfair Display', serif", 
+            fontSize: '56px', 
+            marginBottom: '20px',
+            fontWeight: 700,
+            textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
+          }}>
+            Find Your Perfect <em style={{ fontStyle: 'italic', color: '#F0A875' }}>Escape</em>
+          </h1>
+          
+          <p style={{ fontSize: '18px', maxWidth: '550px', margin: '0 auto' }}>
+            Explore {destinations.length} destinations with {totalProperties}+ properties
+          </p>
         </div>
 
-        {/* Scroll Down Indicator */}
-        <div
+        {/* Scroll Down Indicator - Click to scroll to destinations */}
+        <div 
           onClick={() => {
             const section = document.getElementById('destinations-section');
-            if (section) section.scrollIntoView({ behavior: 'smooth' });
+            if (section) {
+              section.scrollIntoView({ behavior: 'smooth' });
+            }
           }}
           style={{
-            position: 'absolute', bottom: '30px', left: '50%',
-            transform: 'translateX(-50%)', cursor: 'pointer', zIndex: 2,
+            position: 'absolute',
+            bottom: '30px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            cursor: 'pointer',
+            zIndex: 2,
             animation: 'bounce 2s infinite'
           }}
         >
-          <div style={{ width: '30px', height: '50px', border: '2px solid white', borderRadius: '20px', position: 'relative' }}>
+          <div style={{
+            width: '30px',
+            height: '50px',
+            border: '2px solid white',
+            borderRadius: '20px',
+            position: 'relative'
+          }}>
             <div style={{
-              width: '4px', height: '10px', background: 'white', borderRadius: '2px',
-              position: 'absolute', top: '8px', left: '50%',
-              transform: 'translateX(-50%)', animation: 'scrollDown 2s infinite'
+              width: '4px',
+              height: '10px',
+              background: 'white',
+              borderRadius: '2px',
+              position: 'absolute',
+              top: '8px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              animation: 'scrollDown 2s infinite'
             }} />
           </div>
           <p style={{ fontSize: '12px', marginTop: '8px', opacity: 0.8 }}>Scroll</p>
@@ -278,8 +262,7 @@ function HomePage() {
                 cursor: 'pointer',
                 transition: 'transform 0.3s, box-shadow 0.3s',
                 background: cardBg,
-                boxShadow: darkMode ? '0 4px 12px rgba(0,0,0,0.3)' : '0 4px 12px rgba(0,0,0,0.1)',
-                position: 'relative'
+                boxShadow: darkMode ? '0 4px 12px rgba(0,0,0,0.3)' : '0 4px 12px rgba(0,0,0,0.1)'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-8px)';
@@ -296,7 +279,6 @@ function HomePage() {
                   position: 'absolute',
                   top: '16px',
                   right: '16px',
-                  background: '#C4622D',
                   color: 'white',
                   fontSize: '11px',
                   padding: '4px 12px',
