@@ -85,12 +85,17 @@ function Navbar({ user, onLogout }) {
         <Link to="/wishlist" style={linkStyle}>
           ❤️ Wishlist {wishlist.length > 0 && `(${wishlist.length})`}
         </Link>
-
+        
         {(user?.role === 'OWNER' || user?.role === 'ADMIN') && (
-          <Link to="/add-property" style={linkStyle}>
-            🏠 List Property
+          <Link to="/add-property" style={linkStyle}>🏠 List Property</Link>
+        )}
+
+        {isAdmin && (
+          <Link to="/admin" style={{ ...linkStyle, color: '#C4622D', fontWeight: 600 }}>
+            ⚡ Admin
           </Link>
         )}
+        
         <button
           onClick={toggleDarkMode}
           style={{
