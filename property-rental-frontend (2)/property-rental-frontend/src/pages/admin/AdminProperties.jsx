@@ -99,13 +99,37 @@ function AdminProperties() {
       } else {
         await createProperty(newProperty);
         alert('Property created successfully!');
-      }
+      }47/
       setShowForm(false);
       setEditingId(null);
       setNewProperty(EMPTY_PROPERTY);
       fetchProperties();
     } catch (err) {
       alert(editingId ? 'Failed to update property' : 'Failed to create property');
+    }
+  };
+  const createPropertyHandler = async (e) => {
+    e.preventDefault();
+    try {
+      await createProperty(newProperty);
+      alert('Property created successfully!');
+      setShowForm(false);
+      setNewProperty({
+        title: '',
+        type: 'Villa',
+        location: '',
+        price: 100,
+        guests: 4,
+        beds: 2,
+        baths: 2,
+        description: '',
+        imageUrl: '',
+        amenities: '',
+        owner: { id: 3 }
+      });
+      fetchProperties();
+    } catch (err) {
+      alert('Failed to create property');
     }
   };
 
@@ -131,6 +155,7 @@ function AdminProperties() {
                 setShowForm(true);
               }
             }}
+            onClick={() => setShowForm(!showForm)}
             style={{ padding: '10px 20px', background: '#2E7D32', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}
           >
             + Create New Property
@@ -281,6 +306,8 @@ function AdminProperties() {
             <div style={{ gridColumn: '1 / -1', display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '8px' }}>
               <button type="button" onClick={cancelFormHandler} style={{ padding: '12px 24px', background: '#9A8F84', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500 }}>Cancel</button>
               <button type="submit" style={{ padding: '12px 24px', background: '#2E7D32', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500 }}>{editingId ? 'Save Changes' : '✨ Create Property'}</button>
+              <button type="button" onClick={() => setShowForm(false)} style={{ padding: '12px 24px', background: '#9A8F84', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500 }}>Cancel</button>
+              <button type="submit" style={{ padding: '12px 24px', background: '#2E7D32', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500 }}>✨ Create Property</button>
             </div>
           </form>
         </div>

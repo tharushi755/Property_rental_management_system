@@ -37,6 +37,7 @@ const [currentSlide, setCurrentSlide] = useState(0);
       setLoading(true);
       const response = await getProperties(0, 100);
       const allProperties = response.data.content || [];
+      
       const destinationMap = new Map();
       
       allProperties.forEach(property => {
@@ -68,6 +69,7 @@ const [currentSlide, setCurrentSlide] = useState(0);
           location: 'Worldwide',
           propertyCount: allProperties.length,
           image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop',
+          tag: 'Global'
         });
       }
       
@@ -108,6 +110,7 @@ const [currentSlide, setCurrentSlide] = useState(0);
       'Great Smoky Mountains': 'Most Booked'
     };
     
+    return tags[city] || 'Destination';
   };
 
   const handleDestinationClick = (destination) => {
@@ -145,6 +148,7 @@ const [currentSlide, setCurrentSlide] = useState(0);
       <div style={{
         position: 'relative',
         backgroundImage: `url(${heroImages[currentSlide]})`,
+        backgroundImage: 'url("https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=1600")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',
@@ -155,6 +159,7 @@ const [currentSlide, setCurrentSlide] = useState(0);
         textAlign: 'center',
         color: 'white',
         transition: 'background-image 1s ease-in-out',
+        color: 'white'
       }}>
         <div style={{
           position: 'absolute',
@@ -279,6 +284,7 @@ const [currentSlide, setCurrentSlide] = useState(0);
                   position: 'absolute',
                   top: '16px',
                   right: '16px',
+                  background: '#C4622D',
                   color: 'white',
                   fontSize: '11px',
                   padding: '4px 12px',
