@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../services/api';
 
@@ -56,7 +56,7 @@ function LoginPage({ onLogin }) {
         border: '1px solid #E8D5B7'
       }}>
         <h2 style={{
-          fontFamily: "'Playfair Display', serif",
+          fontFamily: "'Montserrat', sans-serif",
           fontSize: '28px',
           fontWeight: 700,
           marginBottom: '6px'

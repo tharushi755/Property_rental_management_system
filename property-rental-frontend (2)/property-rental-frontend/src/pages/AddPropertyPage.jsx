@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { createProperty } from '../services/api';
+import { PartyIcon } from '../components/Icons';
 
 function AddPropertyPage() {
   const navigate = useNavigate();
@@ -85,7 +86,7 @@ function AddPropertyPage() {
     return (
       <div style={{ background: bgColor, minHeight: '100vh', padding: '80px 40px', textAlign: 'center' }}>
         <div style={{ background: cardBg, borderRadius: '20px', padding: '60px', maxWidth: '500px', margin: '0 auto' }}>
-          <div style={{ fontSize: '64px', marginBottom: '20px' }}>🎉</div>
+          <div style={{ marginBottom: '20px' }}><PartyIcon size={64} stroke="#C4622D"/></div>
           <h2 style={{ color: textColor }}>Property Submitted!</h2>
           <p style={{ marginTop: '10px', color: '#9A8F84' }}>Your property has been submitted for admin approval.</p>
           <button onClick={() => navigate('/')} style={{ marginTop: '20px', padding: '10px 24px', background: '#C4622D', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>Go Home</button>
@@ -97,7 +98,7 @@ function AddPropertyPage() {
   return (
     <div style={{ background: bgColor, minHeight: '100vh', padding: '80px 40px' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '32px', color: textColor, marginBottom: '8px' }}>
+        <h1 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '32px', color: textColor, marginBottom: '8px' }}>
           List Your Property
         </h1>
         <p style={{ color: '#9A8F84', marginBottom: '32px' }}>

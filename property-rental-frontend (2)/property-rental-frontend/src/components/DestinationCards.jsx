@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
@@ -66,7 +66,7 @@ function DestinationCards() {
     <div style={{ padding: '60px 32px', background: darkMode ? '#1a1a2e' : '#FAF8F4' }}>
       <div style={{ textAlign: 'center', marginBottom: '48px' }}>
         <h2 style={{ 
-          fontFamily: "'Playfair Display', serif", 
+          fontFamily: "'Montserrat', sans-serif", 
           fontSize: '38px', 
           color: textColor,
           marginBottom: '16px'

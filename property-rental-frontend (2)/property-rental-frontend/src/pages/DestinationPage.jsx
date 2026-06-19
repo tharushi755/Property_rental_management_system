@@ -3,6 +3,7 @@ import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { useWishlist } from '../context/WishlistContext';
 import { useTheme } from '../context/ThemeContext';
 import Footer from '../components/Footer';
+import { HeartIcon, MapPinIcon, StarIcon, BedIcon, BathIcon, UsersIcon } from '../components/Icons';
 import { getProperties } from '../services/api';
 
 function DestinationPage() {
@@ -142,12 +143,12 @@ function DestinationPage() {
                   <div style={{ position: 'relative', height: '240px' }}>
                     <img src={property.imageUrl || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop'} alt={property.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     <div style={{ position: 'absolute', top: '12px', left: '12px', background: '#C4622D', color: 'white', padding: '4px 14px', borderRadius: '20px', fontSize: '11px' }}>{property.type}</div>
-                    <div onClick={(e) => { e.stopPropagation(); isInWishlist(property.id) ? removeFromWishlist(property.id) : addToWishlist(property); }} style={{ position: 'absolute', top: '12px', right: '12px', background: 'white', width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>{isInWishlist(property.id) ? '❤️' : '♡'}</div>
+                    <div onClick={(e) => { e.stopPropagation(); isInWishlist(property.id) ? removeFromWishlist(property.id) : addToWishlist(property); }} style={{ position: 'absolute', top: '12px', right: '12px', background: 'white', width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}><HeartIcon size={18} filled={isInWishlist(property.id)} color={isInWishlist(property.id) ? '#e05252' : '#999'}/></div>
                   </div>
                   <div style={{ padding: '20px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span style={{ color: '#C4622D' }}>📍 {property.location?.split(',')[0] || property.location}</span><span>⭐ {property.rating} ({property.reviews})</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span style={{ color: '#C4622D', display:'flex', alignItems:'center', gap:'4px' }}><MapPinIcon size={13}/>{property.location?.split(',')[0] || property.location}</span><span style={{display:'flex',alignItems:'center',gap:'4px'}}><StarIcon size={13} filled/> {property.rating} ({property.reviews})</span></div>
                     <h3 style={{ fontSize: '18px', marginBottom: '8px', color: textColor }}>{property.title}</h3>
-                    <div style={{ marginBottom: '12px', color: textMuted }}>🛏️ {property.beds} beds • 🛁 {property.baths} baths • 👥 {property.guests} guests</div>
+                    <div style={{ marginBottom: '12px', color: textMuted, display:'flex', alignItems:'center', gap:'12px' }}><span style={{display:'flex',alignItems:'center',gap:'4px'}}><BedIcon size={13}/>{property.beds} beds</span><span style={{display:'flex',alignItems:'center',gap:'4px'}}><BathIcon size={13}/>{property.baths} baths</span><span style={{display:'flex',alignItems:'center',gap:'4px'}}><UsersIcon size={13}/>{property.guests} guests</span></div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: `1px solid ${borderColor}`, paddingTop: '14px' }}><span><span style={{ fontSize: '22px', fontWeight: 700, color: '#C4622D' }}>${property.price}</span> /night</span><button onClick={(e) => { e.stopPropagation(); handlePropertyClick(property); }} style={{ padding: '8px 20px', background: '#C4622D', color: 'white', border: 'none', borderRadius: '25px', cursor: 'pointer' }}>View Deal →</button></div>
                   </div>
                 </div>

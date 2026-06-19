@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { createBooking } from '../services/api';
+import { CreditCardIcon, CheckCircleIcon } from '../components/Icons';
 
 function CheckoutPage() {
   const navigate = useNavigate();
@@ -108,7 +109,7 @@ function CheckoutPage() {
       console.log('Booking response:', response.data);
       
       if (response.data.success) {
-        alert('✅ Booking confirmed! Check your dashboard.');
+        alert('Booking confirmed! Check your dashboard.');
         navigate('/dashboard');
       } else {
         setError(response.data.error || 'Booking failed');
@@ -142,7 +143,7 @@ function CheckoutPage() {
         ← Back
       </button>
 
-      <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '32px', marginBottom: '8px' }}>
+      <h1 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '32px', marginBottom: '8px' }}>
         Complete Your Booking
       </h1>
       <p style={{ color: '#9A8F84', marginBottom: '32px' }}>
@@ -230,7 +231,7 @@ function CheckoutPage() {
                   onChange={(e) => setPaymentMethod(e.target.value)}
                   style={{ cursor: 'pointer' }}
                 />
-                💳 Credit Card
+                <CreditCardIcon size={18}/> Credit Card
               </label>
               <label style={{ 
                 display: 'flex', 
@@ -347,7 +348,7 @@ function CheckoutPage() {
                 padding: '40px',
                 textAlign: 'center'
               }}>
-                <div style={{ fontSize: '48px', marginBottom: '16px' }}>💙</div>
+                <div style={{ marginBottom: '16px' }}><CheckCircleIcon size={48} stroke="#1565C0"/></div>
                 <p style={{ color: '#666' }}>
                   You will be redirected to PayPal to complete your payment.
                 </p>

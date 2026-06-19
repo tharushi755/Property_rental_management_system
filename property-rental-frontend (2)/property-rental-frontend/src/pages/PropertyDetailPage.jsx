@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReviewSection from '../components/ReviewSection';
 import { useTheme } from '../context/ThemeContext';
 import { useWishlist } from '../context/WishlistContext';
+import { HeartIcon, MapPinIcon, PoolIcon, SunriseIcon, WifiIcon, CarIcon, CheckCircleIcon, StarIcon } from '../components/Icons';
 import { getPropertyById } from '../services/api';
 
 function PropertyDetailPage({ user, onBooking }) {
@@ -178,7 +179,7 @@ function PropertyDetailPage({ user, onBooking }) {
             boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
           }}
         >
-          {isInWishlist(property.id) ? '❤️' : '♡'}
+          <HeartIcon size={18} filled={isInWishlist(property.id)} color={isInWishlist(property.id) ? '#e05252' : 'currentColor'}/>
         </button>
       </div>
 
@@ -198,16 +199,16 @@ function PropertyDetailPage({ user, onBooking }) {
             </span>
           </div>
           
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '38px', marginBottom: '12px' }}>
+          <h1 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '38px', marginBottom: '12px' }}>
             {property.title}
           </h1>
           
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px', flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: textMuted }}>
-              📍 {property.location}
+              <MapPinIcon size={15} style={{marginRight:6, verticalAlign:'middle'}}/>{property.location}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              ⭐ {property.rating || 4.5} · {property.reviews || 0} reviews
+              <StarIcon size={15} filled color="#FFB800"/> {property.rating || 4.5} · {property.reviews || 0} reviews
             </div>
           </div>
           
@@ -224,12 +225,12 @@ function PropertyDetailPage({ user, onBooking }) {
             <div><span style={{ fontSize: '18px', fontWeight: 600 }}>{property.baths || 2}</span><div style={{ fontSize: '12px', color: textMuted }}>Bathrooms</div></div>
           </div>
           
-          <h3 style={{ fontSize: '20px', marginBottom: '16px', fontFamily: "'Playfair Display', serif" }}>About this property</h3>
+          <h3 style={{ fontSize: '20px', marginBottom: '16px', fontFamily: "'Montserrat', sans-serif" }}>About this property</h3>
           <p style={{ lineHeight: 1.7, color: textMuted, marginBottom: '32px' }}>
             {property.description || 'Beautiful property with amazing amenities and great location.'}
           </p>
           
-          <h3 style={{ fontSize: '20px', marginBottom: '16px', fontFamily: "'Playfair Display', serif" }}>Amenities</h3>
+          <h3 style={{ fontSize: '20px', marginBottom: '16px', fontFamily: "'Montserrat', sans-serif" }}>Amenities</h3>
           <div style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', 
@@ -252,10 +253,10 @@ function PropertyDetailPage({ user, onBooking }) {
               ))
             ) : (
               <>
-                <div style={{ background: darkMode ? '#1a1a2e' : '#FAF8F4', padding: '10px 14px', borderRadius: '10px', fontSize: '13px' }}>🏊 Private pool</div>
-                <div style={{ background: darkMode ? '#1a1a2e' : '#FAF8F4', padding: '10px 14px', borderRadius: '10px', fontSize: '13px' }}>🌅 Sea view</div>
-                <div style={{ background: darkMode ? '#1a1a2e' : '#FAF8F4', padding: '10px 14px', borderRadius: '10px', fontSize: '13px' }}>🛜 Fast WiFi</div>
-                <div style={{ background: darkMode ? '#1a1a2e' : '#FAF8F4', padding: '10px 14px', borderRadius: '10px', fontSize: '13px' }}>🚗 Free parking</div>
+                <div style={{ background: darkMode ? '#1a1a2e' : '#FAF8F4', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><PoolIcon size={15} stroke="#C4622D"/> Private pool</div>
+                <div style={{ background: darkMode ? '#1a1a2e' : '#FAF8F4', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><SunriseIcon size={15} stroke="#C4622D"/> Sea view</div>
+                <div style={{ background: darkMode ? '#1a1a2e' : '#FAF8F4', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><WifiIcon size={15} stroke="#C4622D"/> Fast WiFi</div>
+                <div style={{ background: darkMode ? '#1a1a2e' : '#FAF8F4', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><CarIcon size={15} stroke="#C4622D"/> Free parking</div>
               </>
             )}
           </div>
@@ -281,7 +282,7 @@ function PropertyDetailPage({ user, onBooking }) {
             </div>
             
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '8px', marginBottom: '24px' }}>
-              <span>⭐ {property.rating || 4.5}</span>
+              <span style={{display:'flex',alignItems:'center',gap:'4px'}}><StarIcon size={14} filled color="#FFB800"/> {property.rating || 4.5}</span>
               <span style={{ color: textMuted }}>· {property.reviews || 0} reviews</span>
             </div>
             
@@ -394,7 +395,7 @@ function PropertyDetailPage({ user, onBooking }) {
           borderRadius: '12px',
           animation: 'slideIn 0.3s ease'
         }}>
-          ✅ Booking confirmed! Check your dashboard.
+          <CheckCircleIcon size={16} stroke="#2E7D32" style={{marginRight:6, verticalAlign:'middle'}}/> Booking confirmed! Check your dashboard.
         </div>
       )}
     </div>

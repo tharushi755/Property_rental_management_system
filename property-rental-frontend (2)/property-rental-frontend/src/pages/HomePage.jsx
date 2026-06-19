@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import Footer from '../components/Footer';
@@ -175,11 +175,11 @@ function HomePage() {
             marginBottom: '24px',
             fontWeight: 500
           }}>
-            ✦ WELCOME TO VILASTAY
+            ◆ WELCOME TO VILASTAY
           </div>
           
           <h1 style={{ 
-            fontFamily: "'Playfair Display', serif", 
+            fontFamily: "'Montserrat', sans-serif", 
             fontSize: '56px', 
             marginBottom: '20px',
             fontWeight: 700,
@@ -245,7 +245,7 @@ function HomePage() {
       {/* Destination Cards Section */}
       <div id="destinations-section" style={{ padding: '60px 32px', background: bgColor }}>
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '38px', color: textColor, marginBottom: '16px' }}>
+          <h2 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '38px', color: textColor, marginBottom: '16px' }}>
             Where Will You Go?
           </h2>
           <p style={{ color: textMuted, fontSize: '16px' }}>

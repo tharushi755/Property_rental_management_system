@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { getAllBookingsAdmin, cancelBooking } from '../../services/api';
 
 function AdminBookings() {
@@ -49,7 +49,7 @@ function AdminBookings() {
     <div style={{ padding: '32px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
         <div>
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '32px', marginBottom: '8px' }}>Booking Management</h1>
+          <h1 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '32px', marginBottom: '8px' }}>Booking Management</h1>
           <p style={{ color: '#9A8F84' }}>Total Revenue: <strong style={{ color: '#C4622D' }}>${totalRevenue.toLocaleString()}</strong></p>
         </div>
         <div style={{ display: 'flex', gap: '10px' }}>
