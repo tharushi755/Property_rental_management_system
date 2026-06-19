@@ -193,44 +193,52 @@ function HomePage() {
           </p>
         </div>
 
-        {/* Scroll Down Indicator - Click to scroll to destinations */}
-        <div 
+        {/* Scroll indicator */}
+        <div
           onClick={() => {
             const section = document.getElementById('destinations-section');
-            if (section) {
-              section.scrollIntoView({ behavior: 'smooth' });
-            }
+            if (section) section.scrollIntoView({ behavior: 'smooth' });
           }}
           style={{
             position: 'absolute',
-            bottom: '30px',
+            bottom: '28px',
             left: '50%',
             transform: 'translateX(-50%)',
             cursor: 'pointer',
             zIndex: 2,
-            animation: 'bounce 2s infinite'
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '6px',
+            opacity: 0.75,
           }}
         >
           <div style={{
-            width: '30px',
-            height: '50px',
-            border: '2px solid white',
-            borderRadius: '20px',
-            position: 'relative'
+            width: '20px',
+            height: '32px',
+            border: '1.5px solid rgba(255,255,255,0.8)',
+            borderRadius: '12px',
+            position: 'relative',
           }}>
             <div style={{
-              width: '4px',
-              height: '10px',
+              width: '3px',
+              height: '6px',
               background: 'white',
               borderRadius: '2px',
               position: 'absolute',
-              top: '8px',
+              top: '5px',
               left: '50%',
               transform: 'translateX(-50%)',
-              animation: 'scrollDown 2s infinite'
+              animation: 'scrollDot 1.8s ease-in-out infinite',
             }} />
           </div>
-          <p style={{ fontSize: '12px', marginTop: '8px', opacity: 0.8 }}>Scroll</p>
+          <style>{`
+            @keyframes scrollDot {
+              0%   { opacity: 1; top: 5px; }
+              80%  { opacity: 0; top: 16px; }
+              100% { opacity: 0; top: 5px; }
+            }
+          `}</style>
         </div>
       </div>
 
