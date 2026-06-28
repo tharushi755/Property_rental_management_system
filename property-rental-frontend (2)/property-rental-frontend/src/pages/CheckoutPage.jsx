@@ -27,8 +27,8 @@ function CheckoutPage() {
   const serviceFee  = 25;
   const total       = subtotal + cleaningFee + serviceFee;
 
-  const bgColor    = darkMode ? '#1a1a2e' : '#FAF8F4';
-  const cardBg     = darkMode ? '#16213e' : 'white';
+  const bgColor    = darkMode ? '#0f0f23' : '#FAF8F4';
+  const cardBg     = darkMode ? '#1a1a2e' : 'white';
   const textColor  = darkMode ? '#fff' : '#1A1612';
   const textMuted  = darkMode ? '#aaa' : '#9A8F84';
   const borderColor = darkMode ? '#2c3e50' : '#E8D5B7';

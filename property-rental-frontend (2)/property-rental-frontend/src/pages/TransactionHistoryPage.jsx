@@ -12,8 +12,8 @@ function TransactionHistoryPage() {
   const [filter, setFilter] = useState('ALL');
   const [expanded, setExpanded] = useState(null);
 
-  const bgColor    = darkMode ? '#1a1a2e' : '#FAF8F4';
-  const cardBg     = darkMode ? '#16213e' : 'white';
+  const bgColor    = darkMode ? '#0f0f23' : '#FAF8F4';
+  const cardBg     = darkMode ? '#1a1a2e' : 'white';
   const textColor  = darkMode ? '#fff' : '#1A1612';
   const textMuted  = darkMode ? '#aaa' : '#9A8F84';
   const borderColor = darkMode ? '#2c3e50' : '#E8D5B7';
@@ -73,7 +73,7 @@ function TransactionHistoryPage() {
           {['ALL', 'SUCCESS', 'REFUNDED', 'FAILED'].map(f => (
             <button key={f} onClick={() => setFilter(f)} style={{
               padding: '8px 18px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '13px', fontWeight: 500,
-              background: filter === f ? '#C4622D' : (darkMode ? '#16213e' : 'white'),
+              background: filter === f ? '#C4622D' : (darkMode ? '#1a1a2e' : 'white'),
               color: filter === f ? 'white' : textMuted,
               border: `1px solid ${filter === f ? '#C4622D' : borderColor}`
             }}>
