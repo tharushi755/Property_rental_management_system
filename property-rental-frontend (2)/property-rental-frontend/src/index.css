@@ -3,7 +3,7 @@
 
 /* Theme variables */
 :root {
-  --bg: #FAF8F4;
+  --bg: #F8F9FA;
   --bg-card: #ffffff;
   --text: #1A1612;
   --text-muted: #9A8F84;
@@ -11,8 +11,8 @@
 }
 
 html.dark-mode {
-  --bg: #0f0f23;
-  --bg-card: #1a1a2e;
+  --bg: #0f172a;
+  --bg-card: #1e293b;
   --text: #ffffff;
   --text-muted: #aaaaaa;
   --border: #2c3e50;

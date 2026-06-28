@@ -10,7 +10,7 @@
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  background-color: #FAF8F4;
+  background-color: #F8F9FA;
   color: #1A1612;
   overflow-x: hidden;
 }
@@ -314,7 +314,7 @@ button:active {
 
 .bg-primary { background-color: #C4622D; }
 .bg-secondary { background-color: #8B5E3C; }
-.bg-light { background-color: #FAF8F4; }
+.bg-light { background-color: #F8F9FA; }
 .bg-white { background-color: #ffffff; }
 .bg-dark { background-color: #1A1612; }
 

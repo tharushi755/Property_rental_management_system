@@ -152,7 +152,7 @@ function ReviewSection({ propertyId, user }) {
       {/* Review Form */}
       {showForm && (
         <div style={{
-          background: '#FAF8F4',
+          background: '#F8F9FA',
           padding: '24px',
           borderRadius: '16px',
           marginBottom: '24px'
