@@ -7,7 +7,7 @@ function AdminLayout() {
   const location = useLocation();
   const { darkMode } = useTheme();
 
-  const bgColor = darkMode ? '#0f172a' : '#F8F9FA';
+  const bgColor = darkMode ? '#0f172a' : '#ffffff';
   const textColor = darkMode ? '#ffffff' : '#1A1612';
   const activeBg = darkMode ? '#2c3e50' : '#C4622D';
   const activeColor = 'white';

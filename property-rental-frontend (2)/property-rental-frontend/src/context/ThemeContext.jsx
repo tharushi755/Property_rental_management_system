@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const ThemeContext = createContext();
 
-const LIGHT_BG = '#F8F9FA';
+const LIGHT_BG = '#ffffff';
 const DARK_BG  = '#0f172a';
 
 export function ThemeProvider({ children }) {

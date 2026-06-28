@@ -63,7 +63,7 @@ function DestinationCards() {
   const cardBg = darkMode ? '#1e293b' : 'white';
 
   return (
-    <div style={{ padding: '60px 32px', background: darkMode ? '#0f172a' : '#F8F9FA' }}>
+    <div style={{ padding: '60px 32px', background: darkMode ? '#0f172a' : '#ffffff' }}>
       <div style={{ textAlign: 'center', marginBottom: '48px' }}>
         <h2 style={{ 
           fontFamily: "'Montserrat', sans-serif", 
