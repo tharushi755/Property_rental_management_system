@@ -121,7 +121,7 @@ function AdminUsers() {
                   <select
                     value={user.role || 'GUEST'}
                     onChange={(e) => updateRole(user.id, e.target.value)}
-                    style={{ padding: '6px 12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: 'white', cursor: 'pointer' }}
+                    style={{ padding: '6px 12px' }}
                     disabled={user.role === 'ADMIN' && user.email === 'admin@vilastay.com'}
                   >
                     <option value="GUEST">Guest</option>

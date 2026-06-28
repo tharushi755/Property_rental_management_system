@@ -111,7 +111,7 @@ function DestinationPage() {
 
           <div style={{ background: 'white', borderRadius: '60px', padding: '8px', display: 'flex', gap: '8px', maxWidth: '650px', margin: '40px auto 0', flexWrap: 'wrap', boxShadow: '0 8px 25px rgba(0,0,0,0.2)' }}>
             <input type="text" placeholder={`Search in ${destination?.name}...`} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ flex: 2, minWidth: '200px', border: 'none', outline: 'none', padding: '14px 20px', borderRadius: '50px', fontSize: '15px', color: '#333' }} />
-            <select value={selectedType} onChange={(e) => { setSelectedType(e.target.value); setCurrentPage(0); }} style={{ border: 'none', outline: 'none', padding: '14px 20px', background: '#f5f0e8', borderRadius: '50px', cursor: 'pointer', fontSize: '14px', color: '#333' }}>
+            <select value={selectedType} onChange={(e) => { setSelectedType(e.target.value); setCurrentPage(0); }} style={{ border: 'none', borderRadius: '50px', padding: '14px 40px 14px 20px', fontSize: '14px', background: darkMode ? '#1e293b' : '#f5f0e8', color: darkMode ? '#ffffff' : '#333' }}>
               <option value="">All Types</option>
               <option>Villa</option><option>Cabin</option><option>Cabana</option><option>Hotel</option><option>Chalet</option><option>Lodge</option><option>Suite</option><option>Bungalow</option><option>Condo</option><option>Cottage</option>
             </select>
