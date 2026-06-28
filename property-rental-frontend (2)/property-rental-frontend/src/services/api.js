@@ -41,6 +41,8 @@ export const getPaymentByTransactionId = (txnId) => api.get(`/payments/${txnId}`
 
 export const getAllPaymentsAdmin = () => api.get('/payments/admin/all');
 
+export const refundPayment = (transactionId) => api.put(`/payments/${transactionId}/refund`);
+
 // ========== USER APIs ==========
 export const getUserProfile = (id) => api.get(`/users/${id}`);
 

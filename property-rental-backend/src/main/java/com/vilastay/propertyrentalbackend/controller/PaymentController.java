@@ -44,6 +44,25 @@ public class PaymentController {
             long nights  = ChronoUnit.DAYS.between(checkIn, checkOut);
             int subtotal = (int) (property.getPrice() * nights);
             int total    = subtotal + 40 + 25;
+            String txnId = "TXN-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+
+            // Simulate card declined: card last 4 digits "0000"
+            if ("0000".equals(cardLast4)) {
+                Payment failed = new Payment();
+                failed.setTransactionId(txnId);
+                failed.setAmount(total);
+                failed.setStatus("FAILED");
+                failed.setPaymentMethod(paymentMethod);
+                failed.setCardLast4(cardLast4);
+                failed.setCardholderName(cardholderName);
+                failed.setPropertyTitle(property.getTitle());
+                failed.setPropertyLocation(property.getLocation());
+                failed.setUser(user);
+                paymentRepository.save(failed);
+                response.put("success", false);
+                response.put("error", "Card declined. Insufficient funds or card blocked.");
+                return response;
+            }
 
             // Create booking
             Booking booking = new Booking();
@@ -59,7 +78,6 @@ public class PaymentController {
             Booking savedBooking = bookingRepository.save(booking);
 
             // Create payment
-            String txnId = "TXN-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
             Payment payment = new Payment();
             payment.setTransactionId(txnId);
             payment.setAmount(total);
@@ -87,6 +105,38 @@ public class PaymentController {
             response.put("paymentMethod", paymentMethod);
             response.put("cardLast4", cardLast4);
 
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("error", e.getMessage());
+        }
+        return response;
+    }
+
+    @PutMapping("/{transactionId}/refund")
+    public Map<String, Object> refundPayment(@PathVariable String transactionId) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            Payment payment = paymentRepository.findByTransactionId(transactionId)
+                .orElseThrow(() -> new RuntimeException("Transaction not found"));
+
+            if (!"SUCCESS".equals(payment.getStatus())) {
+                response.put("success", false);
+                response.put("error", "Only successful payments can be refunded");
+                return response;
+            }
+
+            payment.setStatus("REFUNDED");
+            paymentRepository.save(payment);
+
+            if (payment.getBooking() != null) {
+                Booking booking = payment.getBooking();
+                booking.setStatus("CANCELLED");
+                bookingRepository.save(booking);
+            }
+
+            response.put("success", true);
+            response.put("message", "Payment refunded and booking cancelled");
+            response.put("transactionId", transactionId);
         } catch (Exception e) {
             response.put("success", false);
             response.put("error", e.getMessage());
@@ -171,6 +221,8 @@ public class PaymentController {
             map.put("amount", p.getAmount());
             map.put("status", p.getStatus());
             map.put("paymentMethod", p.getPaymentMethod());
+            map.put("cardLast4", p.getCardLast4());
+            map.put("cardholderName", p.getCardholderName());
             map.put("propertyTitle", p.getPropertyTitle());
             map.put("createdAt", p.getCreatedAt().toString());
             map.put("userName", p.getUser() != null ? p.getUser().getName() : "Unknown");
