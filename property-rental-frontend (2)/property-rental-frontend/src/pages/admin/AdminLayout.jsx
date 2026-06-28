@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
-import { BarChartIcon, UsersIcon, HomeIcon, CalendarIcon } from '../../components/Icons';
+import { BarChartIcon, UsersIcon, HomeIcon, CalendarIcon, CreditCardIcon } from '../../components/Icons';
 
 function AdminLayout() {
   const location = useLocation();
@@ -17,6 +17,7 @@ function AdminLayout() {
     { path: '/admin/users', name: 'Users', icon: <UsersIcon size={15}/> },
     { path: '/admin/properties', name: 'Properties', icon: <HomeIcon size={15}/> },
     { path: '/admin/bookings', name: 'Bookings', icon: <CalendarIcon size={15}/> },
+    { path: '/admin/payments', name: 'Payments', icon: <CreditCardIcon size={15}/> },
   ];
 
   return (
@@ -26,7 +27,7 @@ function AdminLayout() {
           Admin Panel
         </h1>
         <p style={{ color: '#9A8F84', marginBottom: '32px' }}>
-          Manage users, properties, and bookings
+          Manage users, properties, bookings and payments
         </p>
 
         {/* Navigation Tabs */}
