@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../context/ThemeContext';
-import { getAllPaymentsAdmin } from '../../services/api';
+import { getAllPaymentsAdmin, refundPayment } from '../../services/api';
 
 const statusColor = { SUCCESS: '#2E7D32', FAILED: '#C62828', REFUNDED: '#C4622D' };
 const statusBg    = { SUCCESS: '#E8F5E9', FAILED: '#FFEBEE', REFUNDED: '#FEF5EF' };
@@ -19,6 +19,21 @@ function AdminPayments() {
   const inputBg   = darkMode ? '#0f172a' : '#ffffff';
 
   useEffect(() => { fetchPayments(); }, []);
+
+  const handleRefund = async (transactionId) => {
+    if (!window.confirm(`Refund transaction ${transactionId} and cancel the booking?`)) return;
+    try {
+      const res = await refundPayment(transactionId);
+      if (res.data.success) {
+        alert('Payment refunded and booking cancelled successfully.');
+        fetchPayments();
+      } else {
+        alert(res.data.error || 'Refund failed');
+      }
+    } catch {
+      alert('Refund failed. Please try again.');
+    }
+  };
 
   const fetchPayments = async () => {
     setLoading(true);
@@ -100,7 +115,7 @@ function AdminPayments() {
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ borderBottom: `1px solid ${border}`, background: darkMode ? '#0f172a' : '#fafafa' }}>
-              {['Transaction ID', 'Property', 'Guest', 'Method', 'Amount', 'Date', 'Status'].map(h => (
+              {['Transaction ID', 'Property', 'Guest', 'Method', 'Amount', 'Date', 'Status', 'Actions'].map(h => (
                 <th key={h} style={{ padding: '14px 16px', textAlign: 'left', fontSize: '12px', fontWeight: 600, color: textMuted, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{h}</th>
               ))}
             </tr>
@@ -134,6 +149,18 @@ function AdminPayments() {
                   <span style={{ padding: '3px 12px', borderRadius: '20px', fontSize: '11px', fontWeight: 600, background: statusBg[p.status] || '#F5F5F5', color: statusColor[p.status] || '#666' }}>
                     {p.status}
                   </span>
+                </td>
+                <td style={{ padding: '14px 16px' }}>
+                  {p.status === 'SUCCESS' && (
+                    <button
+                      onClick={() => handleRefund(p.transactionId)}
+                      style={{ padding: '5px 14px', background: 'transparent', border: '1px solid #C4622D', color: '#C4622D', borderRadius: '8px', cursor: 'pointer', fontSize: '12px', fontWeight: 600 }}
+                    >
+                      Refund
+                    </button>
+                  )}
+                  {p.status === 'REFUNDED' && <span style={{ fontSize: '12px', color: textMuted }}>Refunded</span>}
+                  {p.status === 'FAILED' && <span style={{ fontSize: '12px', color: '#C62828' }}>Declined</span>}
                 </td>
               </tr>
             ))}
