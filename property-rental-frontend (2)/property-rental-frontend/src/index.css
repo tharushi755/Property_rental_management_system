@@ -3,6 +3,7 @@
 
 /* Theme variables */
 :root {
+  color-scheme: light dark;
   --bg: #ffffff;
   --bg-card: #ffffff;
   --text: #1A1612;
