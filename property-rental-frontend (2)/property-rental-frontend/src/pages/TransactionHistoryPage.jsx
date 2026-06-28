@@ -12,8 +12,8 @@ function TransactionHistoryPage() {
   const [filter, setFilter] = useState('ALL');
   const [expanded, setExpanded] = useState(null);
 
-  const bgColor    = darkMode ? '#0f0f23' : '#FAF8F4';
-  const cardBg     = darkMode ? '#1a1a2e' : 'white';
+  const bgColor    = darkMode ? '#0f172a' : '#F8F9FA';
+  const cardBg     = darkMode ? '#1e293b' : 'white';
   const textColor  = darkMode ? '#fff' : '#1A1612';
   const textMuted  = darkMode ? '#aaa' : '#9A8F84';
   const borderColor = darkMode ? '#2c3e50' : '#E8D5B7';
@@ -73,7 +73,7 @@ function TransactionHistoryPage() {
           {['ALL', 'SUCCESS', 'REFUNDED', 'FAILED'].map(f => (
             <button key={f} onClick={() => setFilter(f)} style={{
               padding: '8px 18px', borderRadius: '30px', border: 'none', cursor: 'pointer', fontSize: '13px', fontWeight: 500,
-              background: filter === f ? '#C4622D' : (darkMode ? '#1a1a2e' : 'white'),
+              background: filter === f ? '#C4622D' : (darkMode ? '#1e293b' : 'white'),
               color: filter === f ? 'white' : textMuted,
               border: `1px solid ${filter === f ? '#C4622D' : borderColor}`
             }}>
@@ -104,7 +104,7 @@ function TransactionHistoryPage() {
                   style={{ padding: '20px 24px', display: 'flex', alignItems: 'center', gap: '16px', cursor: 'pointer' }}
                 >
                   {/* Icon */}
-                  <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: statusBg[txn.status] || '#FAF8F4', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: statusBg[txn.status] || '#F8F9FA', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <CreditCardIcon size={20} stroke={statusColor[txn.status] || '#9A8F84'}/>
                   </div>
 

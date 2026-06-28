@@ -101,7 +101,7 @@ function AdminUsers() {
 
       <div style={{ background: 'white', borderRadius: '16px', border: '1px solid #E8D5B7', overflow: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
-          <thead style={{ background: '#FAF8F4', borderBottom: '1px solid #E8D5B7' }}>
+          <thead style={{ background: '#F8F9FA', borderBottom: '1px solid #E8D5B7' }}>
             <tr>
               <th style={{ padding: '16px', textAlign: 'left' }}>User</th>
               <th style={{ padding: '16px', textAlign: 'left' }}>Role</th>

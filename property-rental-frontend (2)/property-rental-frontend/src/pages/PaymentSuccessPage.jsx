@@ -8,8 +8,8 @@ function PaymentSuccessPage() {
   const navigate = useNavigate();
   const { darkMode } = useTheme();
 
-  const bgColor    = darkMode ? '#0f0f23' : '#FAF8F4';
-  const cardBg     = darkMode ? '#1a1a2e' : 'white';
+  const bgColor    = darkMode ? '#0f172a' : '#F8F9FA';
+  const cardBg     = darkMode ? '#1e293b' : 'white';
   const textColor  = darkMode ? '#fff' : '#1A1612';
   const textMuted  = darkMode ? '#aaa' : '#9A8F84';
   const borderColor = darkMode ? '#2c3e50' : '#E8D5B7';
@@ -54,7 +54,7 @@ function PaymentSuccessPage() {
             </div>
 
             {/* Property */}
-            <div style={{ background: darkMode ? '#0a0a18' : '#FAF8F4', borderRadius: '12px', padding: '16px', marginBottom: '20px' }}>
+            <div style={{ background: darkMode ? '#0a0f1e' : '#F8F9FA', borderRadius: '12px', padding: '16px', marginBottom: '20px' }}>
               <div style={{ fontWeight: 700, color: textColor, fontSize: '16px', marginBottom: '6px' }}>{state.propertyTitle}</div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: textMuted, fontSize: '13px' }}>
                 <MapPinIcon size={13}/> {state.propertyLocation}
@@ -80,7 +80,7 @@ function PaymentSuccessPage() {
             </div>
 
             {/* Payment method */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px', background: darkMode ? '#0a0a18' : '#FAF8F4', borderRadius: '10px', marginBottom: '20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '12px', background: darkMode ? '#0a0f1e' : '#F8F9FA', borderRadius: '10px', marginBottom: '20px' }}>
               <CreditCardIcon size={16} stroke={textMuted}/>
               <span style={{ color: textMuted, fontSize: '13px' }}>
                 {state.paymentMethod === 'CARD'

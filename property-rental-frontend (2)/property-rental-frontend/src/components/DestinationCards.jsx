@@ -60,10 +60,10 @@ function DestinationCards() {
 
   const textColor = darkMode ? '#ffffff' : '#1A1612';
   const textMuted = darkMode ? '#aaa' : '#6B5B4F';
-  const cardBg = darkMode ? '#1a1a2e' : 'white';
+  const cardBg = darkMode ? '#1e293b' : 'white';
 
   return (
-    <div style={{ padding: '60px 32px', background: darkMode ? '#1a1a2e' : '#FAF8F4' }}>
+    <div style={{ padding: '60px 32px', background: darkMode ? '#1e293b' : '#F8F9FA' }}>
       <div style={{ textAlign: 'center', marginBottom: '48px' }}>
         <h2 style={{ 
           fontFamily: "'Montserrat', sans-serif", 
