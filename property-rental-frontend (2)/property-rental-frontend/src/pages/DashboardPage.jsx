@@ -115,6 +115,13 @@ function DashboardPage({ user }) {
           </div>
         </div>
 
+        {/* Quick links */}
+        <div style={{ display: 'flex', gap: '12px', marginBottom: '32px' }}>
+          <button onClick={() => navigate('/transactions')} style={{ padding: '10px 20px', background: cardBg, border: `1px solid ${borderColor}`, borderRadius: '30px', color: '#C4622D', cursor: 'pointer', fontWeight: 600, fontSize: '13px' }}>
+            View Transaction History →
+          </button>
+        </div>
+
         {/* My Bookings Section */}
         <h2 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '24px', color: textColor, marginBottom: '20px' }}>
           My Bookings
