@@ -10,7 +10,7 @@ function DashboardPage({ user }) {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const bgColor = darkMode ? '#0f172a' : '#F8F9FA';
+  const bgColor = darkMode ? '#0f172a' : '#ffffff';
   const cardBg = darkMode ? '#1e293b' : 'white';
   const textColor = darkMode ? '#ffffff' : '#1A1612';
   const textMuted = darkMode ? '#aaa' : '#9A8F84';

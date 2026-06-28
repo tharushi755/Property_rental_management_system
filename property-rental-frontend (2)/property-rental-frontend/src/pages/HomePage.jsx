@@ -18,7 +18,7 @@ function HomePage() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const bgColor = darkMode ? '#0f172a' : '#F8F9FA';
+  const bgColor = darkMode ? '#0f172a' : '#ffffff';
 
   useEffect(() => {
     loadDestinations();

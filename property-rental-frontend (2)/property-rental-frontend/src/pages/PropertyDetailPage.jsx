@@ -128,7 +128,7 @@ function PropertyDetailPage({ user, onBooking }) {
     );
   }
 
-  const bgColor = darkMode ? '#0f172a' : '#F8F9FA';
+  const bgColor = darkMode ? '#0f172a' : '#ffffff';
   const cardBg = darkMode ? '#1e293b' : 'white';
   const textColor = darkMode ? '#ffffff' : '#1A1612';
   const textMuted = darkMode ? '#aaa' : '#9A8F84';
@@ -240,7 +240,7 @@ function PropertyDetailPage({ user, onBooking }) {
             {amenitiesArray.length > 0 ? (
               amenitiesArray.map((amenity, index) => (
                 <div key={index} style={{ 
-                  background: darkMode ? '#1e293b' : '#F8F9FA', 
+                  background: darkMode ? '#1e293b' : '#ffffff', 
                   padding: '10px 14px', 
                   borderRadius: '10px',
                   fontSize: '13px',
@@ -253,10 +253,10 @@ function PropertyDetailPage({ user, onBooking }) {
               ))
             ) : (
               <>
-                <div style={{ background: darkMode ? '#1e293b' : '#F8F9FA', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><PoolIcon size={15} stroke="#C4622D"/> Private pool</div>
-                <div style={{ background: darkMode ? '#1e293b' : '#F8F9FA', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><SunriseIcon size={15} stroke="#C4622D"/> Sea view</div>
-                <div style={{ background: darkMode ? '#1e293b' : '#F8F9FA', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><WifiIcon size={15} stroke="#C4622D"/> Fast WiFi</div>
-                <div style={{ background: darkMode ? '#1e293b' : '#F8F9FA', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><CarIcon size={15} stroke="#C4622D"/> Free parking</div>
+                <div style={{ background: darkMode ? '#1e293b' : '#ffffff', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><PoolIcon size={15} stroke="#C4622D"/> Private pool</div>
+                <div style={{ background: darkMode ? '#1e293b' : '#ffffff', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><SunriseIcon size={15} stroke="#C4622D"/> Sea view</div>
+                <div style={{ background: darkMode ? '#1e293b' : '#ffffff', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><WifiIcon size={15} stroke="#C4622D"/> Fast WiFi</div>
+                <div style={{ background: darkMode ? '#1e293b' : '#ffffff', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><CarIcon size={15} stroke="#C4622D"/> Free parking</div>
               </>
             )}
           </div>

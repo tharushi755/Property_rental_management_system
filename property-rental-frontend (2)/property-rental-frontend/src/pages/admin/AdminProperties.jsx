@@ -163,7 +163,7 @@ function AdminProperties() {
                 value={newProperty.title} 
                 onChange={(e) => setNewProperty({...newProperty, title: e.target.value})} 
                 required 
-                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#F8F9FA', fontSize: '14px' }} 
+                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#ffffff', fontSize: '14px' }} 
               />
             </div>
             
@@ -173,7 +173,7 @@ function AdminProperties() {
               <select 
                 value={newProperty.type} 
                 onChange={(e) => setNewProperty({...newProperty, type: e.target.value})} 
-                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#F8F9FA', fontSize: '14px' }}
+                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#ffffff', fontSize: '14px' }}
               >
                 <option>Villa</option><option>Cabin</option><option>Cabana</option><option>Hotel</option>
                 <option>Chalet</option><option>Apartment</option><option>Suite</option><option>Bungalow</option>
@@ -189,7 +189,7 @@ function AdminProperties() {
                 value={newProperty.location} 
                 onChange={(e) => setNewProperty({...newProperty, location: e.target.value})} 
                 required 
-                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#F8F9FA', fontSize: '14px' }} 
+                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#ffffff', fontSize: '14px' }} 
               />
             </div>
             
@@ -202,7 +202,7 @@ function AdminProperties() {
                 value={newProperty.price} 
                 onChange={(e) => setNewProperty({...newProperty, price: parseInt(e.target.value)})} 
                 required 
-                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#F8F9FA', fontSize: '14px' }} 
+                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#ffffff', fontSize: '14px' }} 
               />
             </div>
             
@@ -213,7 +213,7 @@ function AdminProperties() {
                 placeholder="e.g., 6" 
                 value={newProperty.guests} 
                 onChange={(e) => setNewProperty({...newProperty, guests: parseInt(e.target.value)})} 
-                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#F8F9FA', fontSize: '14px' }} 
+                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#ffffff', fontSize: '14px' }} 
               />
             </div>
             
@@ -225,7 +225,7 @@ function AdminProperties() {
                 placeholder="e.g., 3" 
                 value={newProperty.beds} 
                 onChange={(e) => setNewProperty({...newProperty, beds: parseInt(e.target.value)})} 
-                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#F8F9FA', fontSize: '14px' }} 
+                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#ffffff', fontSize: '14px' }} 
               />
             </div>
             
@@ -236,7 +236,7 @@ function AdminProperties() {
                 placeholder="e.g., 2" 
                 value={newProperty.baths} 
                 onChange={(e) => setNewProperty({...newProperty, baths: parseInt(e.target.value)})} 
-                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#F8F9FA', fontSize: '14px' }} 
+                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#ffffff', fontSize: '14px' }} 
               />
             </div>
             
@@ -248,7 +248,7 @@ function AdminProperties() {
                 placeholder="https://images.unsplash.com/photo-..." 
                 value={newProperty.imageUrl} 
                 onChange={(e) => setNewProperty({...newProperty, imageUrl: e.target.value})} 
-                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#F8F9FA', fontSize: '14px' }} 
+                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#ffffff', fontSize: '14px' }} 
               />
               <p style={{ fontSize: '11px', color: '#9A8F84', marginTop: '4px' }}>Use Unsplash or Pexels image URLs for best results</p>
             </div>
@@ -261,7 +261,7 @@ function AdminProperties() {
                 placeholder="WiFi, Pool, Parking, Air conditioning, Kitchen, Hot tub" 
                 value={newProperty.amenities} 
                 onChange={(e) => setNewProperty({...newProperty, amenities: e.target.value})} 
-                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#F8F9FA', fontSize: '14px' }} 
+                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#ffffff', fontSize: '14px' }} 
               />
               <p style={{ fontSize: '11px', color: '#9A8F84', marginTop: '4px' }}>Separate amenities with commas</p>
             </div>
@@ -274,7 +274,7 @@ function AdminProperties() {
                 value={newProperty.description} 
                 onChange={(e) => setNewProperty({...newProperty, description: e.target.value})} 
                 rows="4" 
-                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#F8F9FA', fontSize: '14px', resize: 'vertical' }} 
+                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#ffffff', fontSize: '14px', resize: 'vertical' }} 
               />
             </div>
             

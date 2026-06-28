@@ -12,7 +12,7 @@ function TransactionHistoryPage() {
   const [filter, setFilter] = useState('ALL');
   const [expanded, setExpanded] = useState(null);
 
-  const bgColor    = darkMode ? '#0f172a' : '#F8F9FA';
+  const bgColor    = darkMode ? '#0f172a' : '#ffffff';
   const cardBg     = darkMode ? '#1e293b' : 'white';
   const textColor  = darkMode ? '#fff' : '#1A1612';
   const textMuted  = darkMode ? '#aaa' : '#9A8F84';
@@ -104,7 +104,7 @@ function TransactionHistoryPage() {
                   style={{ padding: '20px 24px', display: 'flex', alignItems: 'center', gap: '16px', cursor: 'pointer' }}
                 >
                   {/* Icon */}
-                  <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: statusBg[txn.status] || '#F8F9FA', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: statusBg[txn.status] || '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <CreditCardIcon size={20} stroke={statusColor[txn.status] || '#9A8F84'}/>
                   </div>
 

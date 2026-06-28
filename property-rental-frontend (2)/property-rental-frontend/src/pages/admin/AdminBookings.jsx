@@ -59,7 +59,7 @@ function AdminBookings() {
 
       <div style={{ background: 'white', borderRadius: '16px', border: '1px solid #E8D5B7', overflow: 'hidden' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead style={{ background: '#F8F9FA', borderBottom: '1px solid #E8D5B7' }}>
+          <thead style={{ background: '#ffffff', borderBottom: '1px solid #E8D5B7' }}>
             <tr>
               <th style={{ padding: '16px', textAlign: 'left' }}>Property</th>
               <th style={{ padding: '16px', textAlign: 'left' }}>Guest</th>
