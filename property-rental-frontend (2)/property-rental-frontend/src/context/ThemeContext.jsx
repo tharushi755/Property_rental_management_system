@@ -3,27 +3,21 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
+  const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('darkMode');
-    if (saved) {
-      setDarkMode(JSON.parse(saved));
-    }
-  }, []);
+    return saved ? JSON.parse(saved) : false;
+  });
 
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
     if (darkMode) {
-      document.body.style.backgroundColor = '#1a1a2e';
-      document.body.style.color = '#ffffff';
+      document.documentElement.classList.add('dark-mode');
     } else {
-      document.body.style.backgroundColor = '#FAF8F4';
-      document.body.style.color = '#1A1612';
+      document.documentElement.classList.remove('dark-mode');
     }
   }, [darkMode]);
 
-  const toggleDarkMode = () => setDarkMode(!darkMode);
+  const toggleDarkMode = () => setDarkMode(prev => !prev);
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>

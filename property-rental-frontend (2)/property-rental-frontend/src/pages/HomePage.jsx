@@ -18,7 +18,7 @@ function HomePage() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const bgColor = darkMode ? '#1a1a2e' : '#FAF8F4';
+  const bgColor = darkMode ? '#0f0f23' : '#FAF8F4';
 
   useEffect(() => {
     loadDestinations();
@@ -116,7 +116,7 @@ function HomePage() {
 
   const textColor = darkMode ? '#ffffff' : '#1A1612';
   const textMuted = darkMode ? '#aaa' : '#6B5B4F';
-  const cardBg = darkMode ? '#16213e' : 'white';
+  const cardBg = darkMode ? '#1a1a2e' : 'white';
 
   if (loading) {
     return (
