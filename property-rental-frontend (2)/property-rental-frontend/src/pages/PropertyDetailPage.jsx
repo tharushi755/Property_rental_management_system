@@ -322,7 +322,7 @@ function PropertyDetailPage({ user, onBooking }) {
               <select
                 value={guests}
                 onChange={(e) => setGuests(e.target.value)}
-                style={{ border: 'none', outline: 'none', width: '100%', background: 'transparent', color: textColor, cursor: 'pointer', padding: '2px 32px 2px 0', backgroundPosition: 'right 4px center' }}
+                style={{ border: 'none', outline: 'none', width: '100%', background: 'transparent', color: textColor, cursor: 'pointer', padding: '2px 0' }}
               >
                 <option value="1">1 guest</option>
                 <option value="2">2 guests</option>
