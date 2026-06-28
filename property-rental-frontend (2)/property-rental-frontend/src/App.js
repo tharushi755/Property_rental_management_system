@@ -16,6 +16,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminUsers from './pages/admin/AdminUsers';
 import AdminProperties from './pages/admin/AdminProperties';
 import AdminBookings from './pages/admin/AdminBookings';
+import AdminPayments from './pages/admin/AdminPayments';
 import AdminLayout from './pages/admin/AdminLayout';
 import AddPropertyPage from './pages/AddPropertyPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
@@ -93,6 +94,7 @@ function AppContent() {
               <Route path="users" element={<AdminUsers />} />
               <Route path="properties" element={<AdminProperties />} />
               <Route path="bookings" element={<AdminBookings />} />
+              <Route path="payments" element={<AdminPayments />} />
             </Route>
           </Routes>
         </div>
