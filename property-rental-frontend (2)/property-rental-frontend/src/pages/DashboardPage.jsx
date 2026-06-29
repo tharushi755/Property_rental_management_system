@@ -25,7 +25,7 @@ function DashboardPage({ user }) {
     }
   }, [user]);
 
-  const fetchBookings = async () => {
+  const fetchBookings = async () => {               
     setLoading(true);
     try {
       const response = await getUserBookings(user.id);
