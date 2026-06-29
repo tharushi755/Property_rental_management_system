@@ -85,28 +85,29 @@ function HomePage() {
 
   const getImageForCity = (city) => {
     const images = {
-      'Santorini': 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=400&h=250&fit=crop',
-      'Maldives': 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=400&h=250&fit=crop',
-      'Swiss Alps': 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400&h=250&fit=crop',
-      'Bali': 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop',
-      'Barcelona': 'https://images.unsplash.com/photo-1564501049412-61c2a30805a1?w=400&h=250&fit=crop',
-      'Lake Tahoe': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop',
-      'Colorado Rockies': 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=250&fit=crop',
-      'Great Smoky Mountains': 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=400&h=250&fit=crop'
+      'Kandy': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/701829228.jpg?k=4e391a56dfbebce81ee15758f8ae847746296cf08e01de65ee87fd2cfb92483b&o=',
+      'Galle': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/633855882.jpg?k=de18ae21309dc7e17e0e0dd459ab09ab16be60fe58be1af5a0a246a0238b4486&o=',
+      'Colombo': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/548877514.jpg?k=8626bff4822c5f73b96785a4616190d97b1f7780c1846973abe6c8f424393d67&o=',
+      'Jaffna': 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop',
+      'Anuradhapura': 'https://images.unsplash.com/photo-1564501049412-61c2a30805a1?w=400&h=250&fit=crop',
+      'Trincomalee': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop',
+      'Gampaha': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/351246493.jpg?k=31c2cedbe69ffb41853c9557754690814cbd56ff92d80c1a73a0e8b62d99a62c&o=',
+      'Negombo': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/855866441.jpg?k=81828b5e0a838644092b8030d330d02bf9b297524f78a8dcba0f86593efb1e8d&o='
     };
-    return images[city] || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop';
+    return images[city] || 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/633855882.jpg?k=de18ae21309dc7e17e0e0dd459ab09ab16be60fe58be1af5a0a246a0238b4486&o=';
+  
   };
 
   const getTagForCity = (city) => {
     const tags = {
-      'Santorini': 'Greek Island',
-      'Maldives': 'Paradise',
-      'Swiss Alps': 'Mountain',
-      'Bali': 'Tropical',
-      'Barcelona': 'City',
-      'Lake Tahoe': 'Popular',
-      'Colorado Rockies': 'Mountain Views',
-      'Great Smoky Mountains': 'Most Booked'
+      'Kandy': 'Peradeniya',
+      'Galle': 'Talpe',
+      'Colombo': 'Mount Lavinia',
+      'Jaffna': 'Mahiyanganaya',
+      'Anuradhapura': 'Sri Maha Bodhi',
+      'Trincomalee': 'Koneshwaram',
+      'Gampaha': 'Asgiriya',
+      'Negombo': 'Most Booked'
     };
   };
 
