@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { createProperty } from '../services/api';
 import { PartyIcon } from '../components/Icons';
+import ImageUpload  from "../components/ImageUpload";
 
 function AddPropertyPage() {
   const navigate = useNavigate();
@@ -137,6 +138,19 @@ function AddPropertyPage() {
                 <option>Villa</option><option>Cabin</option><option>Cabana</option><option>Hotel</option>
                 <option>Chalet</option><option>Apartment</option><option>Suite</option><option>Bungalow</option>
               </select>
+            </div>
+            <div style={{ marginBottom: '20px' }}>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 500, color: textColor }}>Property Image</label>
+              
+              <ImageUpload onUploadSuccess={(url) => setFormData({...formData, imageUrl: url})} />
+              
+              {formData.imageUrl && (
+                <img
+                  src={`http://localhost:8080${formData.imageUrl}`}
+                  alt="Preview"
+                  style={{ marginTop: '10px', width: '100%', maxHeight: '200px', objectFit: 'cover', borderRadius: '8px' }}
+                />
+              )}
             </div>
             <div>
               <label style={{ display: 'block', marginBottom: '8px', fontWeight: 500, color: textColor }}>Location *</label>
