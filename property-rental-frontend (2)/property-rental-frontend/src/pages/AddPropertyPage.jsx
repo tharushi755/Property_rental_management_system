@@ -25,8 +25,8 @@ function AddPropertyPage() {
     amenities: ''
   });
 
-  const bgColor = darkMode ? '#1a1a2e' : '#FAF8F4';
-  const cardBg = darkMode ? '#16213e' : 'white';
+  const bgColor = darkMode ? '#0f172a' : '#ffffff';
+  const cardBg = darkMode ? '#1e293b' : 'white';
   const textColor = darkMode ? '#ffffff' : '#1A1612';
   const borderColor = darkMode ? '#2c3e50' : '#E8D5B7';
 
