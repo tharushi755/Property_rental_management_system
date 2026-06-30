@@ -89,10 +89,11 @@ function HomePage() {
       'Galle': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/633855882.jpg?k=de18ae21309dc7e17e0e0dd459ab09ab16be60fe58be1af5a0a246a0238b4486&o=',
       'Colombo': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/548877514.jpg?k=8626bff4822c5f73b96785a4616190d97b1f7780c1846973abe6c8f424393d67&o=',
       'Jaffna': 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop',
-      'Anuradhapura': 'https://images.unsplash.com/photo-1564501049412-61c2a30805a1?w=400&h=250&fit=crop',
-      'Trincomalee': 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop',
+      'Anuradhapura': 'https://images.unsplash.com/photo-1653151106733-eadfaf201962?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'Trincomalee': 'https://images.unsplash.com/photo-1558446791-ac5fec3caddf?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       'Gampaha': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/351246493.jpg?k=31c2cedbe69ffb41853c9557754690814cbd56ff92d80c1a73a0e8b62d99a62c&o=',
-      'Negombo': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/855866441.jpg?k=81828b5e0a838644092b8030d330d02bf9b297524f78a8dcba0f86593efb1e8d&o='
+      'Negombo': 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/855866441.jpg?k=81828b5e0a838644092b8030d330d02bf9b297524f78a8dcba0f86593efb1e8d&o=',
+      'Nuwara Eliya':'https://images.unsplash.com/photo-1578517929167-db9ed31cd5c6?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     };
     return images[city] || 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/633855882.jpg?k=de18ae21309dc7e17e0e0dd459ab09ab16be60fe58be1af5a0a246a0238b4486&o=';
   

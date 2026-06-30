@@ -45,12 +45,12 @@ function DestinationCards() {
     },
     {
       id: 5,
-      name: 'International',
-      slug: 'international',
-      location: 'Worldwide',
+      name: 'All',
+      slug: 'Sri Lanka',
+      location: 'Sri Lanka',
       properties: 35,
-      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop',
-      tag: 'Global'
+      image: 'https://images.unsplash.com/photo-1623595289196-007a22dd8560?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      tag: 'Local'
     }
   ];
 
