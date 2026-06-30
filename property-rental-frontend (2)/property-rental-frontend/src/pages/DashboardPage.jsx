@@ -10,8 +10,8 @@ function DashboardPage({ user }) {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const bgColor = darkMode ? '#1a1a2e' : '#FAF8F4';
-  const cardBg = darkMode ? '#16213e' : 'white';
+  const bgColor = darkMode ? '#0f172a' : '#ffffff';
+  const cardBg = darkMode ? '#1e293b' : 'white';
   const textColor = darkMode ? '#ffffff' : '#1A1612';
   const textMuted = darkMode ? '#aaa' : '#9A8F84';
   const borderColor = darkMode ? '#2c3e50' : '#E8D5B7';
@@ -113,6 +113,13 @@ function DashboardPage({ user }) {
             <div style={{ fontSize: '32px', fontWeight: 700, color: '#C4622D' }}>${totalSpent}</div>
             <div style={{ color: textMuted }}>Total Spent</div>
           </div>
+        </div>
+
+        {/* Quick links */}
+        <div style={{ display: 'flex', gap: '12px', marginBottom: '32px' }}>
+          <button onClick={() => navigate('/transactions')} style={{ padding: '10px 20px', background: cardBg, border: `1px solid ${borderColor}`, borderRadius: '30px', color: '#C4622D', cursor: 'pointer', fontWeight: 600, fontSize: '13px' }}>
+            View Transaction History →
+          </button>
         </div>
 
         {/* My Bookings Section */}

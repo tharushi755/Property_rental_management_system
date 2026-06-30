@@ -101,7 +101,7 @@ function AdminUsers() {
 
       <div style={{ background: 'white', borderRadius: '16px', border: '1px solid #E8D5B7', overflow: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
-          <thead style={{ background: '#FAF8F4', borderBottom: '1px solid #E8D5B7' }}>
+          <thead style={{ background: '#ffffff', borderBottom: '1px solid #E8D5B7' }}>
             <tr>
               <th style={{ padding: '16px', textAlign: 'left' }}>User</th>
               <th style={{ padding: '16px', textAlign: 'left' }}>Role</th>
@@ -121,7 +121,7 @@ function AdminUsers() {
                   <select
                     value={user.role || 'GUEST'}
                     onChange={(e) => updateRole(user.id, e.target.value)}
-                    style={{ padding: '6px 12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: 'white', cursor: 'pointer' }}
+                    style={{ padding: '6px 12px' }}
                     disabled={user.role === 'ADMIN' && user.email === 'admin@vilastay.com'}
                   >
                     <option value="GUEST">Guest</option>
