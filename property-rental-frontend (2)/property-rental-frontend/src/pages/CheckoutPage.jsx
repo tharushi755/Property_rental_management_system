@@ -181,9 +181,9 @@ function CheckoutPage() {
 
               <div style={{ fontSize: '14px', color: textColor }}>
                 {[
-                  [`$${property.price} × ${nights} night${nights > 1 ? 's' : ''}`, `$${subtotal}`],
-                  ['Cleaning fee', `$${cleaningFee}`],
-                  ['Service fee', `$${serviceFee}`],
+                  [`Rs${property.price} × ${nights} night${nights > 1 ? 's' : ''}`, `Rs${subtotal}`],
+                  ['Cleaning fee', `Rs${cleaningFee}`],
+                  ['Service fee', `Rs${serviceFee}`],
                 ].map(([label, val]) => (
                   <div key={label} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
                     <span style={{ color: textMuted }}>{label}</span><span>{val}</span>
@@ -192,8 +192,8 @@ function CheckoutPage() {
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '16px', borderTop: `2px solid ${borderColor}`, fontWeight: 700, fontSize: '18px', color: textColor }}>
-                <span>Total (USD)</span>
-                <span style={{ color: '#C4622D' }}>${total}</span>
+                <span>Total (LKR)</span>
+                <span style={{ color: '#C4622D' }}>Rs{total}</span>
               </div>
 
               <div style={{ marginTop: '20px', padding: '12px', background: darkMode ? '#0f172a' : '#F0FDF4', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#2E7D32' }}>
@@ -210,11 +210,11 @@ function CheckoutPage() {
               <div style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}>
                 {[
                   { value: 'card', label: 'Credit / Debit Card', icon: <CreditCardIcon size={16}/> },
-                  { value: 'paypal', label: 'PayPal', icon: <span style={{ fontWeight: 700, fontSize: '13px', color: '#003087' }}>Pay</span> },
+                  { value: 'LankaPay', label: 'LankaPay', icon: <span style={{ fontWeight: 700, fontSize: '13px', color: '#003087' }}>Pay</span> },
                 ].map(({ value, label, icon }) => (
                   <label key={value} style={{
                     flex: 1, display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer',
-                    padding: '12px 16px', border: `2px solid ${paymentMethod === value ? '#C4622D' : borderColor}`,
+                    padding: '12px 16px', border: `2px solid Rs{paymentMethod === value ? '#C4622D' : borderColor}`,
                     borderRadius: '12px', background: paymentMethod === value ? (darkMode ? 'rgba(196,98,45,0.15)' : '#FEF5EF') : cardBg,
                     transition: 'all 0.2s'
                   }}>
@@ -255,7 +255,7 @@ function CheckoutPage() {
                         type="text" placeholder="1234 5678 9012 3456" maxLength="19"
                         value={cardDetails.number}
                         onChange={e => setCardDetails({ ...cardDetails, number: formatCardNumber(e.target.value) })}
-                        style={{ width: '100%', padding: '12px 14px', border: `1px solid ${borderColor}`, borderRadius: '10px', fontSize: '15px', background: bgColor, color: textColor, fontFamily: 'monospace', outline: 'none' }}
+                        style={{ width: '100%', padding: '12px 14px', border: `1px solid Rs{borderColor}`, borderRadius: '10px', fontSize: '15px', background: bgColor, color: textColor, fontFamily: 'monospace', outline: 'none' }}
                       />
                     </div>
                     <div>
@@ -264,7 +264,7 @@ function CheckoutPage() {
                         type="text" placeholder="John Doe"
                         value={cardDetails.name}
                         onChange={e => setCardDetails({ ...cardDetails, name: e.target.value.toUpperCase() })}
-                        style={{ width: '100%', padding: '12px 14px', border: `1px solid ${borderColor}`, borderRadius: '10px', fontSize: '14px', background: bgColor, color: textColor, outline: 'none' }}
+                        style={{ width: '100%', padding: '12px 14px', border: `1px solid Rs{borderColor}`, borderRadius: '10px', fontSize: '14px', background: bgColor, color: textColor, outline: 'none' }}
                       />
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
@@ -291,7 +291,7 @@ function CheckoutPage() {
                 </div>
               )}
 
-              {paymentMethod === 'paypal' && (
+              {paymentMethod === 'Lanka Pay' && (
                 <div style={{ textAlign: 'center', padding: '32px', background: darkMode ? '#0f172a' : '#F8FAFF', borderRadius: '12px', border: `1px solid ${borderColor}` }}>
                   <div style={{ fontSize: '32px', fontWeight: 800, color: '#003087', marginBottom: '8px' }}>
                     Pay<span style={{ color: '#009CDE' }}>Pal</span>
@@ -312,7 +312,7 @@ function CheckoutPage() {
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px'
               }}
             >
-              <LockIcon size={16}/> Pay ${total}
+              <LockIcon size={16}/> Pay Rs{total}
             </button>
 
             <p style={{ fontSize: '11px', color: textMuted, textAlign: 'center', marginTop: '12px' }}>
