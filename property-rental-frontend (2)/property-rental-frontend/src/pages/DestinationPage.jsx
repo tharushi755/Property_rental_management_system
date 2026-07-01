@@ -74,7 +74,7 @@ function DestinationPage() {
   const borderColor = darkMode ? '#2c3e50' : '#E8D5B7';
 
   const getCoverImage = () => {
-    if (isInternational) return 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=400&fit=crop';
+    if (isInternational) return 'https://images.unsplash.com/photo-1623595289196-007a22dd8560?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
     const dest = destination?.name?.toLowerCase() || '';
     if (dest.includes('tahoe')) return 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop';
     if (dest.includes('colorado')) return 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&h=400&fit=crop';
