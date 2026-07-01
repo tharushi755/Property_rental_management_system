@@ -1,9 +1,9 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReviewSection from '../components/ReviewSection';
 import { useTheme } from '../context/ThemeContext';
 import { useWishlist } from '../context/WishlistContext';
-import { HeartIcon, MapPinIcon, PoolIcon, SunriseIcon, WifiIcon, CarIcon, CheckCircleIcon, StarIcon, UsersIcon, BedIcon, BathIcon } from '../components/Icons';
+import { HeartIcon, MapPinIcon, PoolIcon, SunriseIcon, WifiIcon, CarIcon, CheckCircleIcon, StarIcon } from '../components/Icons';
 import { getPropertyById } from '../services/api';
 
 function PropertyDetailPage({ user, onBooking }) {
@@ -61,7 +61,7 @@ function PropertyDetailPage({ user, onBooking }) {
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       
       setNights(diffDays);
-      const newSubtotal = property.price * diffDays;
+      const newSubtotal = property.price * diffDays * guests;
       setSubtotal(newSubtotal);
       setTotal(newSubtotal + 40 + 25);
     }
@@ -70,7 +70,7 @@ function PropertyDetailPage({ user, onBooking }) {
   // Recalculate when guests change
   useEffect(() => {
     if (nights > 0 && property) {
-      const newSubtotal = property.price * nights;
+      const newSubtotal = property.price * nights*guests;
       setSubtotal(newSubtotal);
       setTotal(newSubtotal + 40 + 25);
     }
@@ -128,8 +128,8 @@ function PropertyDetailPage({ user, onBooking }) {
     );
   }
 
-  const bgColor = darkMode ? '#0f172a' : '#ffffff';
-  const cardBg = darkMode ? '#1e293b' : 'white';
+  const bgColor = darkMode ? '#1a1a2e' : '#FAF8F4';
+  const cardBg = darkMode ? '#16213e' : 'white';
   const textColor = darkMode ? '#ffffff' : '#1A1612';
   const textMuted = darkMode ? '#aaa' : '#9A8F84';
   const borderColor = darkMode ? '#2c3e50' : '#E8D5B7';
@@ -212,80 +212,53 @@ function PropertyDetailPage({ user, onBooking }) {
             </div>
           </div>
           
-          <div style={{
-            display: 'flex',
-            gap: '12px',
-            padding: '20px 0',
-            borderTop: `1px solid ${borderColor}`,
+          <div style={{ 
+            display: 'flex', 
+            gap: '24px', 
+            padding: '20px 0', 
+            borderTop: `1px solid ${borderColor}`, 
             borderBottom: `1px solid ${borderColor}`,
-            marginBottom: '28px'
+            marginBottom: '24px'
           }}>
-            {[
-              { icon: <UsersIcon size={18} stroke="#C4622D"/>, value: property.guests || 4, label: 'Guests' },
-              { icon: <BedIcon size={18} stroke="#C4622D"/>, value: property.beds || 2, label: 'Bedrooms' },
-              { icon: <BathIcon size={18} stroke="#C4622D"/>, value: property.baths || 2, label: 'Bathrooms' },
-            ].map(({ icon, value, label }) => (
-              <div key={label} style={{
-                flex: 1,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '16px 12px',
-                background: darkMode ? '#1e293b' : '#FEF5EF',
-                borderRadius: '14px',
-                border: `1px solid ${darkMode ? '#2c3e50' : '#F5DFD0'}`
-              }}>
-                {icon}
-                <span style={{ fontSize: '20px', fontWeight: 700 }}>{value}</span>
-                <span style={{ fontSize: '11px', color: textMuted, fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{label}</span>
-              </div>
-            ))}
+            <div><span style={{ fontSize: '18px', fontWeight: 600 }}>{property.guests || 4}</span><div style={{ fontSize: '12px', color: textMuted }}>Guests</div></div>
+            <div><span style={{ fontSize: '18px', fontWeight: 600 }}>{property.beds || 2}</span><div style={{ fontSize: '12px', color: textMuted }}>Bedrooms</div></div>
+            <div><span style={{ fontSize: '18px', fontWeight: 600 }}>{property.baths || 2}</span><div style={{ fontSize: '12px', color: textMuted }}>Bathrooms</div></div>
           </div>
           
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
-            <div style={{ width: '4px', height: '22px', background: '#C4622D', borderRadius: '4px' }}/>
-            <h3 style={{ fontSize: '19px', fontFamily: "'Montserrat', sans-serif", fontWeight: 700 }}>About this property</h3>
-          </div>
-          <p style={{ lineHeight: 1.8, color: textMuted, marginBottom: '32px', fontSize: '15px', paddingLeft: '14px' }}>
+          <h3 style={{ fontSize: '20px', marginBottom: '16px', fontFamily: "'Montserrat', sans-serif" }}>About this property</h3>
+          <p style={{ lineHeight: 1.7, color: textMuted, marginBottom: '32px' }}>
             {property.description || 'Beautiful property with amazing amenities and great location.'}
           </p>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-            <div style={{ width: '4px', height: '22px', background: '#C4622D', borderRadius: '4px' }}/>
-            <h3 style={{ fontSize: '19px', fontFamily: "'Montserrat', sans-serif", fontWeight: 700 }}>Amenities</h3>
-          </div>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
-            gap: '10px',
+          
+          <h3 style={{ fontSize: '20px', marginBottom: '16px', fontFamily: "'Montserrat', sans-serif" }}>Amenities</h3>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', 
+            gap: '12px',
             marginBottom: '40px'
           }}>
-            {(amenitiesArray.length > 0 ? amenitiesArray : ['Private pool', 'Sea view', 'Fast WiFi', 'Free parking']).map((amenity, index) => {
-              const lower = amenity.toLowerCase();
-              let icon = <CheckCircleIcon size={15} stroke="#C4622D"/>;
-              if (lower.includes('pool')) icon = <PoolIcon size={15} stroke="#C4622D"/>;
-              else if (lower.includes('wifi') || lower.includes('wi-fi')) icon = <WifiIcon size={15} stroke="#C4622D"/>;
-              else if (lower.includes('park') || lower.includes('car')) icon = <CarIcon size={15} stroke="#C4622D"/>;
-              else if (lower.includes('view') || lower.includes('sea') || lower.includes('beach')) icon = <SunriseIcon size={15} stroke="#C4622D"/>;
-              return (
-                <div key={index} style={{
-                  background: darkMode ? '#1e293b' : '#ffffff',
-                  border: `1px solid ${darkMode ? '#2c3e50' : '#E8D5B7'}`,
-                  padding: '12px 14px',
-                  borderRadius: '12px',
+            {amenitiesArray.length > 0 ? (
+              amenitiesArray.map((amenity, index) => (
+                <div key={index} style={{ 
+                  background: darkMode ? '#1a1a2e' : '#FAF8F4', 
+                  padding: '10px 14px', 
+                  borderRadius: '10px',
                   fontSize: '13px',
-                  fontWeight: 500,
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  color: textColor
+                  gap: '8px'
                 }}>
-                  {icon}
                   {amenity}
                 </div>
-              );
-            })}
+              ))
+            ) : (
+              <>
+                <div style={{ background: darkMode ? '#1a1a2e' : '#FAF8F4', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><PoolIcon size={15} stroke="#C4622D"/> Private pool</div>
+                <div style={{ background: darkMode ? '#1a1a2e' : '#FAF8F4', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><SunriseIcon size={15} stroke="#C4622D"/> Sea view</div>
+                <div style={{ background: darkMode ? '#1a1a2e' : '#FAF8F4', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><WifiIcon size={15} stroke="#C4622D"/> Fast WiFi</div>
+                <div style={{ background: darkMode ? '#1a1a2e' : '#FAF8F4', padding: '10px 14px', borderRadius: '10px', fontSize: '13px', display:'flex', alignItems:'center', gap:'8px' }}><CarIcon size={15} stroke="#C4622D"/> Free parking</div>
+              </>
+            )}
           </div>
 
           {/* Reviews Section */}
@@ -304,7 +277,7 @@ function PropertyDetailPage({ user, onBooking }) {
             boxShadow: darkMode ? '0 4px 20px rgba(0,0,0,0.3)' : '0 4px 20px rgba(0,0,0,0.08)'
           }}>
             <div>
-              <span style={{ fontSize: '28px', fontWeight: 700, color: '#C4622D' }}>${property.price}</span>
+              <span style={{ fontSize: '28px', fontWeight: 700, color: '#C4622D' }}>Rs{property.price}</span>
               <span style={{ color: textMuted }}> / night</span>
             </div>
             
@@ -329,7 +302,7 @@ function PropertyDetailPage({ user, onBooking }) {
                   type="date" 
                   value={checkIn} 
                   onChange={(e) => setCheckIn(e.target.value)} 
-                  style={{ border: `1px solid ${borderColor}`, borderRadius: '12px', outline: 'none', width: '100%', background: cardBg, color: textColor, cursor: 'pointer', padding: '10px 12px' }} 
+                  style={{ border: 'none', outline: 'none', width: '100%', background: 'transparent', color: textColor, cursor: 'pointer' }} 
                 />
               </div>
               <div style={{ background: cardBg, padding: '14px' }}>
@@ -338,7 +311,7 @@ function PropertyDetailPage({ user, onBooking }) {
                   type="date" 
                   value={checkOut} 
                   onChange={(e) => setCheckOut(e.target.value)} 
-                  style={{ border: `1px solid ${borderColor}`, borderRadius: '12px', outline: 'none', width: '100%', background: cardBg, color: textColor, cursor: 'pointer', padding: '10px 12px' }} 
+                  style={{ border: 'none', outline: 'none', width: '100%', background: 'transparent', color: textColor, cursor: 'pointer' }} 
                 />
               </div>
             </div>
@@ -346,10 +319,10 @@ function PropertyDetailPage({ user, onBooking }) {
             {/* Guests Selection */}
             <div style={{ border: `1px solid ${borderColor}`, borderRadius: '12px', padding: '14px', marginBottom: '24px' }}>
               <div style={{ fontSize: '10px', fontWeight: 600, color: textMuted, marginBottom: '4px' }}>GUESTS</div>
-              <select
-                value={guests}
-                onChange={(e) => setGuests(e.target.value)}
-                style={{ border: `1px solid ${borderColor}`, borderRadius: '12px', outline: 'none', width: '100%', background: cardBg, color: textColor, cursor: 'pointer', padding: '10px 12px' }}
+              <select 
+                value={guests} 
+                onChange={(e) => setGuests(e.target.value)} 
+                style={{ border: 'none', outline: 'none', width: '100%', background: 'transparent', color: textColor, cursor: 'pointer' }}
               >
                 <option value="1">1 guest</option>
                 <option value="2">2 guests</option>
@@ -365,20 +338,20 @@ function PropertyDetailPage({ user, onBooking }) {
             {/* Price Breakdown - NOW UPDATES DYNAMICALLY */}
             <div style={{ marginBottom: '24px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', fontSize: '14px' }}>
-                <span>${property.price} × {nights} {nights === 1 ? 'night' : 'nights'}</span>
-                <span>${subtotal}</span>
+                <span>Rs{property.price} × {nights} {nights ===1? 'night' : 'nights'} x{guests} guests  </span>
+                <span>Rs{subtotal}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', fontSize: '14px' }}>
                 <span>Cleaning fee</span>
-                <span>${cleaningFee}</span>
+                <span>Rs{cleaningFee}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', fontSize: '14px' }}>
                 <span>Service fee</span>
-                <span>${serviceFee}</span>
+                <span>Rs{serviceFee}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '12px', borderTop: `1px solid ${borderColor}`, fontWeight: 700, fontSize: '16px' }}>
                 <span>Total</span>
-                <span style={{ color: '#C4622D' }}>${total}</span>
+                <span style={{ color: '#C4622D' }}>Rs{total}</span>
               </div>
             </div>
             

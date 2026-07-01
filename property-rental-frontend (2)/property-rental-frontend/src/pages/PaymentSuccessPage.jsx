@@ -95,7 +95,7 @@ function PaymentSuccessPage() {
             {/* Amount */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '16px', borderTop: `2px solid ${borderColor}` }}>
               <span style={{ fontWeight: 700, fontSize: '16px', color: textColor }}>Total Paid</span>
-              <span style={{ fontWeight: 800, fontSize: '24px', color: '#C4622D' }}>${state.amount} <span style={{ fontSize: '14px', fontWeight: 500, color: textMuted }}>USD</span></span>
+              <span style={{ fontWeight: 800, fontSize: '24px', color: '#C4622D' }}>Rs{state.amount} <span style={{ fontSize: '14px', fontWeight: 500, color: textMuted }}>LKR</span></span>
             </div>
           </div>
         </div>

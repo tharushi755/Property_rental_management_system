@@ -110,7 +110,7 @@ function DashboardPage({ user }) {
 
           <div style={{ background: cardBg, borderRadius: '16px', padding: '24px', border: `1px solid ${borderColor}`, textAlign: 'center' }}>
             <div style={{ marginBottom: '8px', color: '#C4622D' }}><DollarIcon size={36}/></div>
-            <div style={{ fontSize: '32px', fontWeight: 700, color: '#C4622D' }}>${totalSpent}</div>
+            <div style={{ fontSize: '32px', fontWeight: 700, color: '#C4622D' }}>Rs{totalSpent}</div>
             <div style={{ color: textMuted }}>Total Spent</div>
           </div>
         </div>
@@ -162,7 +162,7 @@ function DashboardPage({ user }) {
                   </p>
                 </div>
                 <div style={{ textAlign: 'right' }}>
-                  <p style={{ fontSize: '20px', fontWeight: 700, color: '#C4622D' }}>${booking.totalPrice}</p>
+                  <p style={{ fontSize: '20px', fontWeight: 700, color: '#C4622D' }}>Rs{booking.totalPrice}</p>
                   <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginTop: '8px' }}>
                     <span style={{ 
                       padding: '4px 12px', 

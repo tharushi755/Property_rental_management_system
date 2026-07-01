@@ -56,7 +56,7 @@ function TransactionHistoryPage() {
         {/* Stats */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '32px' }}>
           {[
-            { label: 'Total Spent', value: `$${totalSpent}`, icon: <DollarIcon size={22}/>, color: '#C4622D' },
+            { label: 'Total Spent', value: `Rs ${totalSpent}`, icon: <DollarIcon size={22}/>, color: '#C4622D' },
             { label: 'Bookings Paid', value: totalCount, icon: <CheckCircleIcon size={22}/>, color: '#2E7D32' },
             { label: 'Refunds', value: refundCount, icon: <ReceiptIcon size={22}/>, color: '#9A8F84' },
           ].map(({ label, value, icon, color }) => (
@@ -122,7 +122,7 @@ function TransactionHistoryPage() {
                   {/* Amount + status */}
                   <div style={{ textAlign: 'right', flexShrink: 0 }}>
                     <div style={{ fontWeight: 700, fontSize: '17px', color: txn.status === 'REFUNDED' ? '#C4622D' : textColor }}>
-                      {txn.status === 'REFUNDED' ? '+' : '-'}${txn.amount}
+                      {txn.status === 'REFUNDED' ? '+' : '-'}Rs{txn.amount}
                     </div>
                     <span style={{ fontSize: '11px', fontWeight: 600, padding: '2px 10px', borderRadius: '20px', background: statusBg[txn.status], color: statusColor[txn.status] }}>
                       {txn.status}
