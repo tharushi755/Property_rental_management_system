@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { getAllPropertiesAdmin, approveProperty, deleteProperty, createProperty, updateProperty } from '../../services/api';
+import { useTheme } from '../../context/ThemeContext';
 import { EditIcon, PlusIcon, SaveIcon, SparkleIcon, MapPinIcon, CheckIcon, TrashIcon } from '../../components/Icons';
 
 const EMPTY_PROPERTY = {
@@ -17,6 +18,14 @@ const EMPTY_PROPERTY = {
 };
 
 function AdminProperties() {
+  const { darkMode } = useTheme();
+  const pageBg = darkMode ? '#0f172a' : '#ffffff';
+  const cardBg = darkMode ? '#1e293b' : '#ffffff';
+  const textColor = darkMode ? '#ffffff' : '#1A1612';
+  const textMuted = darkMode ? '#cbd5e1' : '#9A8F84';
+  const borderColor = darkMode ? '#2c3e50' : '#E8D5B7';
+  const inputBg = darkMode ? '#0f172a' : '#ffffff';
+
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('All');
@@ -111,15 +120,15 @@ function AdminProperties() {
   };
 
   if (loading) {
-    return <div style={{ padding: '32px', textAlign: 'center' }}>Loading properties...</div>;
+    return <div style={{ padding: '32px', textAlign: 'center', background: pageBg, color: textColor }}>Loading properties...</div>;
   }
 
   return (
-    <div style={{ padding: '32px' }}>
+    <div style={{ padding: '32px', background: pageBg, color: textColor }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
         <div>
           <h1 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '32px', marginBottom: '8px' }}>Property Management</h1>
-          <p style={{ color: '#9A8F84' }}>Review, approve, and manage all properties</p>
+          <p style={{ color: textMuted }}>Review, approve, and manage all properties</p>
         </div>
         <div style={{ display: 'flex', gap: '10px' }}>
           <button
@@ -140,7 +149,7 @@ function AdminProperties() {
             <button
               key={option}
               onClick={() => setFilter(option)}
-              style={{ padding: '8px 20px', background: filter === option ? '#C4622D' : 'white', color: filter === option ? 'white' : '#1A1612', border: `1px solid ${filter === option ? '#C4622D' : '#E8D5B7'}`, borderRadius: '20px', cursor: 'pointer' }}
+              style={{ padding: '8px 20px', background: filter === option ? '#C4622D' : cardBg, color: filter === option ? 'white' : textColor, border: `1px solid ${filter === option ? '#C4622D' : borderColor}`, borderRadius: '20px', cursor: 'pointer' }}
             >
               {option}
             </button>
@@ -150,30 +159,30 @@ function AdminProperties() {
 
       {/* Create Property Form */}
       {showForm && (
-        <div style={{ background: 'white', borderRadius: '16px', padding: '24px', marginBottom: '24px', border: '1px solid #E8D5B7' }}>
+        <div style={{ background: cardBg, borderRadius: '16px', padding: '24px', marginBottom: '24px', border: `1px solid ${borderColor}` }}>
           <h3 style={{ marginBottom: '16px', color: '#1A1612', display:'flex', alignItems:'center', gap:'8px' }}>{editingId ? <><EditIcon size={16}/> Update Property</> : <><PlusIcon size={16}/> Create New Property</>}</h3>
           <form onSubmit={savePropertyHandler} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             
             {/* Title */}
             <div style={{ gridColumn: '1 / -1' }}>
-              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: '#1A1612' }}>Property Title *</label>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: textColor }}>Property Title *</label>
               <input 
                 type="text" 
                 placeholder="e.g., Luxury Beachfront Villa" 
                 value={newProperty.title} 
                 onChange={(e) => setNewProperty({...newProperty, title: e.target.value})} 
                 required 
-                style={{ width: '100%' }} 
+                style={{ width: '100%', padding: '12px', border: `1px solid ${borderColor}`, borderRadius: '8px', background: inputBg, color: textColor }} 
               />
             </div>
             
             {/* Type and Location */}
             <div>
-              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: '#1A1612' }}>Property Type *</label>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: textColor }}>Property Type *</label>
               <select 
                 value={newProperty.type} 
                 onChange={(e) => setNewProperty({...newProperty, type: e.target.value})} 
-                style={{ width: '100%' }}
+                style={{ width: '100%', padding: '12px', border: `1px solid ${borderColor}`, borderRadius: '8px', background: inputBg, color: textColor }}
               >
                 <option>Villa</option><option>Cabin</option><option>Cabana</option><option>Hotel</option>
                 <option>Chalet</option><option>Apartment</option><option>Suite</option><option>Bungalow</option>
@@ -182,105 +191,105 @@ function AdminProperties() {
             </div>
             
             <div>
-              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: '#1A1612' }}>Location *</label>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: textColor }}>Location *</label>
               <input 
                 type="text" 
                 placeholder="e.g., Santorini, Greece" 
                 value={newProperty.location} 
                 onChange={(e) => setNewProperty({...newProperty, location: e.target.value})} 
                 required 
-                style={{ width: '100%' }} 
+                style={{ width: '100%', padding: '12px', border: `1px solid ${borderColor}`, borderRadius: '8px', background: inputBg, color: textColor }} 
               />
             </div>
             
             {/* Price and Guests */}
             <div>
-              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: '#1A1612' }}>Price per Night ($) *</label>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: textColor }}>Price per Night ($) *</label>
               <input 
                 type="number" 
                 placeholder="e.g., 250" 
                 value={newProperty.price} 
                 onChange={(e) => setNewProperty({...newProperty, price: parseInt(e.target.value)})} 
                 required 
-                style={{ width: '100%' }} 
+                style={{ width: '100%', padding: '12px', border: `1px solid ${borderColor}`, borderRadius: '8px', background: inputBg, color: textColor }} 
               />
             </div>
             
             <div>
-              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: '#1A1612' }}>Max Guests *</label>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: textColor }}>Max Guests *</label>
               <input 
                 type="number" 
                 placeholder="e.g., 6" 
                 value={newProperty.guests} 
                 onChange={(e) => setNewProperty({...newProperty, guests: parseInt(e.target.value)})} 
-                style={{ width: '100%' }} 
+                style={{ width: '100%', padding: '12px', border: `1px solid ${borderColor}`, borderRadius: '8px', background: inputBg, color: textColor }} 
               />
             </div>
             
             {/* Beds and Baths */}
             <div>
-              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: '#1A1612' }}>Number of Beds</label>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: textColor }}>Number of Beds</label>
               <input 
                 type="number" 
                 placeholder="e.g., 3" 
                 value={newProperty.beds} 
                 onChange={(e) => setNewProperty({...newProperty, beds: parseInt(e.target.value)})} 
-                style={{ width: '100%' }} 
+                style={{ width: '100%', padding: '12px', border: `1px solid ${borderColor}`, borderRadius: '8px', background: inputBg, color: textColor }} 
               />
             </div>
             
             <div>
-              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: '#1A1612' }}>Number of Bathrooms</label>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: textColor }}>Number of Bathrooms</label>
               <input 
                 type="number" 
                 placeholder="e.g., 2" 
                 value={newProperty.baths} 
                 onChange={(e) => setNewProperty({...newProperty, baths: parseInt(e.target.value)})} 
-                style={{ width: '100%' }} 
+                style={{ width: '100%', padding: '12px', border: `1px solid ${borderColor}`, borderRadius: '8px', background: inputBg, color: textColor }} 
               />
             </div>
             
             {/* Image URL */}
             <div style={{ gridColumn: '1 / -1' }}>
-              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: '#1A1612' }}>Image URL</label>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: textColor }}>Image URL</label>
               <input 
                 type="text" 
                 placeholder="https://images.unsplash.com/photo-..." 
                 value={newProperty.imageUrl} 
                 onChange={(e) => setNewProperty({...newProperty, imageUrl: e.target.value})} 
-                style={{ width: '100%' }} 
+                style={{ width: '100%', padding: '12px', border: `1px solid ${borderColor}`, borderRadius: '8px', background: inputBg, color: textColor }} 
               />
-              <p style={{ fontSize: '11px', color: '#9A8F84', marginTop: '4px' }}>Use Unsplash or Pexels image URLs for best results</p>
+              <p style={{ fontSize: '11px', color: textMuted, marginTop: '4px' }}>Use Unsplash or Pexels image URLs for best results</p>
             </div>
             
             {/* Amenities */}
             <div style={{ gridColumn: '1 / -1' }}>
-              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: '#1A1612' }}>Amenities</label>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: textColor }}>Amenities</label>
               <input 
                 type="text" 
                 placeholder="WiFi, Pool, Parking, Air conditioning, Kitchen, Hot tub" 
                 value={newProperty.amenities} 
                 onChange={(e) => setNewProperty({...newProperty, amenities: e.target.value})} 
-                style={{ width: '100%' }} 
+                style={{ width: '100%', padding: '12px', border: `1px solid ${borderColor}`, borderRadius: '8px', background: inputBg, color: textColor }} 
               />
-              <p style={{ fontSize: '11px', color: '#9A8F84', marginTop: '4px' }}>Separate amenities with commas</p>
+              <p style={{ fontSize: '11px', color: textMuted, marginTop: '4px' }}>Separate amenities with commas</p>
             </div>
             
             {/* Description */}
             <div style={{ gridColumn: '1 / -1' }}>
-              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: '#1A1612' }}>Description</label>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: textColor }}>Description</label>
               <textarea 
                 placeholder="Describe the property, its unique features, nearby attractions, etc." 
                 value={newProperty.description} 
                 onChange={(e) => setNewProperty({...newProperty, description: e.target.value})} 
                 rows="4" 
-                style={{ width: '100%', padding: '12px', border: '1px solid #E8D5B7', borderRadius: '8px', background: '#ffffff', fontSize: '14px', resize: 'vertical' }} 
+                style={{ width: '100%', padding: '12px', border: `1px solid ${borderColor}`, borderRadius: '8px', background: inputBg, color: textColor, fontSize: '14px', resize: 'vertical' }} 
               />
             </div>
             
             {/* Buttons */}
             <div style={{ gridColumn: '1 / -1', display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '8px' }}>
-              <button type="button" onClick={cancelFormHandler} style={{ padding: '12px 24px', background: '#9A8F84', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500 }}>Cancel</button>
+              <button type="button" onClick={cancelFormHandler} style={{ padding: '12px 24px', background: borderColor, color: textColor, border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500 }}>Cancel</button>
               <button type="submit" style={{ padding: '12px 24px', background: '#2E7D32', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 500, display:'flex', alignItems:'center', gap:'6px' }}>{editingId ? <><SaveIcon size={14}/> Save Changes</> : <><SparkleIcon size={14}/> Create Property</>}</button>
             </div>
           </form>
@@ -290,18 +299,18 @@ function AdminProperties() {
       {/* Properties List */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         {filteredProperties.map(property => (
-          <div key={property.id} style={{ background: 'white', borderRadius: '16px', border: '1px solid #E8D5B7', padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
+          <div key={property.id} style={{ background: cardBg, borderRadius: '16px', border: `1px solid ${borderColor}`, padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
             <div style={{ flex: 2 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
                 <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '18px' }}>{property.title}</h3>
-                <span style={{ padding: '4px 10px', borderRadius: '20px', fontSize: '11px', fontWeight: 600, background: property.status === 'APPROVED' ? '#E8F5E9' : '#FFF8E1', color: property.status === 'APPROVED' ? '#2E7D32' : '#ED6C02' }}>
+                <span style={{ padding: '4px 10px', borderRadius: '20px', fontSize: '11px', fontWeight: 600, background: property.status === 'APPROVED' ? (darkMode ? '#164e1a' : '#E8F5E9') : (darkMode ? '#78350f' : '#FFF8E1'), color: property.status === 'APPROVED' ? (darkMode ? '#b7f5bc' : '#2E7D32') : (darkMode ? '#fcd37d' : '#ED6C02') }}>
                   {property.status}
                 </span>
               </div>
-              <div style={{ fontSize: '14px', color: '#666', marginBottom: '8px' }}>
+              <div style={{ fontSize: '14px', color: textMuted, marginBottom: '8px' }}>
                 {property.type} · ${property.price}/night · <MapPinIcon size={12} style={{marginRight:3, verticalAlign:'middle'}}/>{property.location}
               </div>
-              <div style={{ fontSize: '13px', color: '#9A8F84' }}>
+              <div style={{ fontSize: '13px', color: textMuted }}>
                 Owner: {property.owner?.name || 'Unknown'} · {property.reviews || 0} reviews
               </div>
             </div>

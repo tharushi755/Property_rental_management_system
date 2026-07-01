@@ -1,14 +1,22 @@
 ﻿import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import { EditIcon, StarIcon } from './Icons';
+import { useTheme } from '../context/ThemeContext';
 
 function ReviewSection({ propertyId, user }) {
+  const { darkMode } = useTheme();
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState({ rating: 5, comment: '' });
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+
+  const bgColor = darkMode ? '#0f172a' : '#ffffff';
+  const cardBg = darkMode ? '#1e293b' : '#ffffff';
+  const textColor = darkMode ? '#ffffff' : '#1A1612';
+  const textMuted = darkMode ? '#aaaaaa' : '#9A8F84';
+  const borderColor = darkMode ? '#2c3e50' : '#E8D5B7';
 
   // Fetch reviews from backend
   useEffect(() => {
@@ -84,11 +92,11 @@ function ReviewSection({ propertyId, user }) {
   };
 
   if (loading) {
-    return <div style={{ marginTop: '40px' }}>Loading reviews...</div>;
+    return <div style={{ marginTop: '40px', color: textColor }}>Loading reviews...</div>;
   }
 
   return (
-    <div style={{ marginTop: '40px' }}>
+    <div style={{ marginTop: '40px', color: textColor }}>
       <div style={{ 
         display: 'flex', 
         justifyContent: 'space-between', 
@@ -98,7 +106,7 @@ function ReviewSection({ propertyId, user }) {
         gap: '16px'
       }}>
         <div>
-          <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '20px' }}>
+          <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '20px', color: textColor }}>
             Guest Reviews
           </h3>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '4px' }}>
@@ -106,7 +114,7 @@ function ReviewSection({ propertyId, user }) {
               {averageRating.toFixed(1)}
             </span>
             <StarIcon size={20} filled color="#FFB800"/>
-            <span style={{ color: '#9A8F84' }}>
+            <span style={{ color: textMuted }}>
               · {reviews.length} {reviews.length === 1 ? 'review' : 'reviews'}
             </span>
           </div>
@@ -144,7 +152,7 @@ function ReviewSection({ propertyId, user }) {
       </div>
 
       {error && (
-        <div style={{ background: '#FFEBEE', color: '#C62828', padding: '10px', borderRadius: '8px', marginBottom: '16px' }}>
+        <div style={{ background: darkMode ? '#4f1a1a' : '#FFEBEE', color: darkMode ? '#ffd7d7' : '#C62828', padding: '10px', borderRadius: '8px', marginBottom: '16px' }}>
           {error}
         </div>
       )}
@@ -152,13 +160,14 @@ function ReviewSection({ propertyId, user }) {
       {/* Review Form */}
       {showForm && (
         <div style={{
-          background: '#ffffff',
+          background: cardBg,
+          border: `1px solid ${borderColor}`,
           padding: '24px',
           borderRadius: '16px',
           marginBottom: '24px'
         }}>
           <div style={{ marginBottom: '20px' }}>
-            <label style={{ display: 'block', marginBottom: '10px', fontWeight: 600 }}>Your Rating</label>
+            <label style={{ display: 'block', marginBottom: '10px', fontWeight: 600, color: textColor }}>Your Rating</label>
             <div style={{ display: 'flex', gap: '12px' }}>
               {[1, 2, 3, 4, 5].map(star => (
                 <span
@@ -179,7 +188,7 @@ function ReviewSection({ propertyId, user }) {
             </div>
           </div>
           <div style={{ marginBottom: '20px' }}>
-            <label style={{ display: 'block', marginBottom: '10px', fontWeight: 600 }}>Your Comment</label>
+            <label style={{ display: 'block', marginBottom: '10px', fontWeight: 600, color: textColor }}>Your Comment</label>
             <textarea
               value={newReview.comment}
               onChange={(e) => setNewReview({ ...newReview, comment: e.target.value })}
@@ -188,11 +197,13 @@ function ReviewSection({ propertyId, user }) {
               style={{
                 width: '100%',
                 padding: '12px',
-                border: '1px solid #E8D5B7',
+                border: `1px solid ${borderColor}`,
                 borderRadius: '10px',
                 fontFamily: 'inherit',
                 resize: 'vertical',
-                fontSize: '14px'
+                fontSize: '14px',
+                background: cardBg,
+                color: textColor
               }}
             />
           </div>
@@ -225,8 +236,8 @@ function ReviewSection({ propertyId, user }) {
         ) : (
           reviews.map(review => (
             <div key={review.id} style={{
-              background: 'white',
-              border: '1px solid #E8D5B7',
+              background: cardBg,
+              border: `1px solid ${borderColor}`,
               borderRadius: '14px',
               padding: '20px',
               transition: 'box-shadow 0.2s'
@@ -248,8 +259,8 @@ function ReviewSection({ propertyId, user }) {
                     {review.user?.name ? review.user.name[0].toUpperCase() : review.user?.email?.[0]?.toUpperCase() || 'U'}
                   </div>
                   <div>
-                    <div style={{ fontWeight: 600 }}>{review.user?.name || review.user?.email?.split('@')[0] || 'Anonymous'}</div>
-                    <div style={{ fontSize: '11px', color: '#9A8F84' }}>
+                    <div style={{ fontWeight: 600, color: textColor }}>{review.user?.name || review.user?.email?.split('@')[0] || 'Anonymous'}</div>
+                    <div style={{ fontSize: '11px', color: textMuted }}>
                       {review.createdAt ? new Date(review.createdAt).toLocaleDateString() : 'Recently'}
                     </div>
                   </div>
@@ -260,7 +271,7 @@ function ReviewSection({ propertyId, user }) {
                   ))}
                 </div>
               </div>
-              <p style={{ color: '#666', lineHeight: 1.6, marginLeft: '52px' }}>{review.comment}</p>
+              <p style={{ color: textColor, lineHeight: 1.6, marginLeft: '52px' }}>{review.comment}</p>
             </div>
           ))
         )}

@@ -95,7 +95,7 @@ function WishlistPage() {
                 >
                   <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
                     <img
-                      src={property.image}
+                      src={property.imageUrl || property.image || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop'}
                       alt={property.title}
                       style={{
                         width: '100%',
