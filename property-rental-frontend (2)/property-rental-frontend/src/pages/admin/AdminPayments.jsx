@@ -2,19 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { getAllPaymentsAdmin, refundPayment } from '../../services/api';
 
-function getStatusColor(status, darkMode) {
-  if (status === 'SUCCESS') return darkMode ? '#a7f3d0' : '#2E7D32';
-  if (status === 'FAILED') return darkMode ? '#fecaca' : '#C62828';
-  if (status === 'REFUNDED') return darkMode ? '#fde68a' : '#C4622D';
-  return darkMode ? '#cbd5e1' : '#666';
-}
-
-function getStatusBg(status, darkMode) {
-  if (status === 'SUCCESS') return darkMode ? '#064e3b' : '#E8F5E9';
-  if (status === 'FAILED') return darkMode ? '#7f1d1d' : '#FFEBEE';
-  if (status === 'REFUNDED') return darkMode ? '#78350f' : '#FEF5EF';
-  return darkMode ? '#334155' : '#F5F5F5';
-}
+const statusColor = { SUCCESS: '#2E7D32', FAILED: '#C62828', REFUNDED: '#C4622D' };
+const statusBg    = { SUCCESS: '#E8F5E9', FAILED: '#FFEBEE', REFUNDED: '#FEF5EF' };
 
 function AdminPayments() {
   const { darkMode } = useTheme();
@@ -23,12 +12,11 @@ function AdminPayments() {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('ALL');
 
-  const bgColor = darkMode ? '#0f172a' : '#ffffff';
-  const cardBg = darkMode ? '#1e293b' : '#ffffff';
+  const cardBg    = darkMode ? '#1e293b' : '#ffffff';
   const textColor = darkMode ? '#ffffff' : '#1A1612';
-  const textMuted = darkMode ? '#aaa' : '#9A8F84';
-  const border = darkMode ? '#2c3e50' : '#E8D5B7';
-  const inputBg = darkMode ? '#0f172a' : '#ffffff';
+  const textMuted = darkMode ? '#aaa'    : '#9A8F84';
+  const border    = darkMode ? '#2c3e50' : '#E8D5B7';
+  const inputBg   = darkMode ? '#0f172a' : '#ffffff';
 
   useEffect(() => { fetchPayments(); }, []);
 
@@ -75,10 +63,10 @@ function AdminPayments() {
   const refundedCount  = payments.filter(p => p.status === 'REFUNDED').length;
   const failedCount    = payments.filter(p => p.status === 'FAILED').length;
 
-  if (loading) return <div style={{ padding: '40px', textAlign: 'center', color: textMuted, background: bgColor }}>Loading payments...</div>;
+  if (loading) return <div style={{ padding: '40px', textAlign: 'center', color: textMuted }}>Loading payments...</div>;
 
   return (
-    <div style={{ padding: '32px', background: bgColor, color: textColor }}>
+    <div>
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '28px', flexWrap: 'wrap', gap: '16px' }}>
         <div>
@@ -158,7 +146,7 @@ function AdminPayments() {
                   {p.createdAt ? fmt(p.createdAt) : '—'}
                 </td>
                 <td style={{ padding: '14px 16px' }}>
-                  <span style={{ padding: '3px 12px', borderRadius: '20px', fontSize: '11px', fontWeight: 600, background: getStatusBg(p.status, darkMode), color: getStatusColor(p.status, darkMode) }}>
+                  <span style={{ padding: '3px 12px', borderRadius: '20px', fontSize: '11px', fontWeight: 600, background: statusBg[p.status] || '#F5F5F5', color: statusColor[p.status] || '#666' }}>
                     {p.status}
                   </span>
                 </td>
@@ -172,7 +160,7 @@ function AdminPayments() {
                     </button>
                   )}
                   {p.status === 'REFUNDED' && <span style={{ fontSize: '12px', color: textMuted }}>Refunded</span>}
-                  {p.status === 'FAILED' && <span style={{ fontSize: '12px', color: darkMode ? '#fca5a5' : '#C62828' }}>Declined</span>}
+                  {p.status === 'FAILED' && <span style={{ fontSize: '12px', color: '#C62828' }}>Declined</span>}
                 </td>
               </tr>
             ))}

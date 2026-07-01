@@ -1,11 +1,8 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { getAdminStats, getAllUsers, getAllBookingsAdmin } from '../../services/api';
 import { UsersIcon, HomeIcon, CalendarIcon, DollarIcon } from '../../components/Icons';
-import { useTheme } from '../../context/ThemeContext';
 
 function AdminDashboard() {
-  const { darkMode } = useTheme();
-
   const [stats, setStats] = useState({
     totalUsers: 0,
     totalProperties: 0,
@@ -55,12 +52,6 @@ function AdminDashboard() {
     }
   };
 
-  const bgColor = darkMode ? '#0f172a' : '#ffffff';
-  const cardBg = darkMode ? '#1e293b' : '#ffffff';
-  const textColor = darkMode ? '#ffffff' : '#1A1612';
-  const textMuted = darkMode ? '#cbd5e1' : '#9A8F84';
-  const borderColor = darkMode ? '#2c3e50' : '#E8D5B7';
-
   const formatDate = (dateString) => {
     if (!dateString) return 'Unknown';
     const date = new Date(dateString);
@@ -95,11 +86,11 @@ function AdminDashboard() {
   }
 
   return (
-    <div style={{ padding: '32px', background: bgColor, minHeight: '100vh', color: textColor }}>
+    <div style={{ padding: '32px' }}>
       <h1 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '32px', marginBottom: '8px' }}>
         Admin Dashboard
       </h1>
-      <p style={{ color: textMuted, marginBottom: '32px' }}>
+      <p style={{ color: '#9A8F84', marginBottom: '32px' }}>
         Overview of platform activity and statistics
       </p>
 
@@ -110,53 +101,58 @@ function AdminDashboard() {
         gap: '20px',
         marginBottom: '40px'
       }}>
-        <div style={{ background: cardBg, borderRadius: '16px', padding: '24px', border: `1px solid ${borderColor}` }}>
+        <div style={{ background: 'white', borderRadius: '16px', padding: '24px', border: '1px solid #E8D5B7' }}>
           <div style={{ marginBottom: '8px', color: '#C4622D' }}><UsersIcon size={32}/></div>
           <div style={{ fontSize: '28px', fontWeight: 700, color: '#C4622D' }}>{stats.totalUsers || 0}</div>
-          <div style={{ fontSize: '13px', color: textMuted }}>Total Users</div>
+          <div style={{ fontSize: '13px', color: '#9A8F84' }}>Total Users</div>
           <div style={{ fontSize: '11px', color: '#2E7D32', marginTop: '8px' }}>{stats.activeUsers || 0} active</div>
         </div>
 
-        <div style={{ background: cardBg, borderRadius: '16px', padding: '24px', border: `1px solid ${borderColor}` }}>
+        <div style={{ background: 'white', borderRadius: '16px', padding: '24px', border: '1px solid #E8D5B7' }}>
           <div style={{ marginBottom: '8px', color: '#C4622D' }}><HomeIcon size={32}/></div>
           <div style={{ fontSize: '28px', fontWeight: 700, color: '#C4622D' }}>{stats.totalProperties || 0}</div>
-          <div style={{ fontSize: '13px', color: textMuted }}>Total Properties</div>
-          <div style={{ fontSize: '11px', color: darkMode ? '#fcd34d' : '#ED6C02', marginTop: '8px' }}>{stats.pendingProperties || 0} pending approval</div>
+          <div style={{ fontSize: '13px', color: '#9A8F84' }}>Total Properties</div>
+          <div style={{ fontSize: '11px', color: '#ED6C02', marginTop: '8px' }}>{stats.pendingProperties || 0} pending approval</div>
         </div>
 
-        <div style={{ background: cardBg, borderRadius: '16px', padding: '24px', border: `1px solid ${borderColor}` }}>
+        <div style={{ background: 'white', borderRadius: '16px', padding: '24px', border: '1px solid #E8D5B7' }}>
           <div style={{ marginBottom: '8px', color: '#C4622D' }}><CalendarIcon size={32}/></div>
           <div style={{ fontSize: '28px', fontWeight: 700, color: '#C4622D' }}>{stats.totalBookings || 0}</div>
-          <div style={{ fontSize: '13px', color: textMuted }}>Total Bookings</div>
-          <div style={{ fontSize: '11px', color: darkMode ? '#86efac' : '#2E7D32', marginTop: '8px' }}>+{stats.monthlyBookings || 0} this month</div>
+          <div style={{ fontSize: '13px', color: '#9A8F84' }}>Total Bookings</div>
+          <div style={{ fontSize: '11px', color: '#2E7D32', marginTop: '8px' }}>+{stats.monthlyBookings || 0} this month</div>
         </div>
 
-        <div style={{ background: cardBg, borderRadius: '16px', padding: '24px', border: `1px solid ${borderColor}` }}>
+        <div style={{ background: 'white', borderRadius: '16px', padding: '24px', border: '1px solid #E8D5B7' }}>
           <div style={{ marginBottom: '8px', color: '#C4622D' }}><DollarIcon size={32}/></div>
           <div style={{ fontSize: '28px', fontWeight: 700, color: '#C4622D' }}>${(stats.totalRevenue || 0).toLocaleString()}</div>
-          <div style={{ fontSize: '13px', color: textMuted }}>Total Revenue</div>
-          <div style={{ fontSize: '11px', color: darkMode ? '#86efac' : '#2E7D32', marginTop: '8px' }}>
-            +${(stats.monthlyRevenue || 0).toLocaleString()} this month
-          </div>
+          <div style={{ fontSize: '13px', color: '#9A8F84' }}>Total Revenue</div>
+          <div style={{ fontSize: '11px', color: '#2E7D32', marginTop: '8px' }}>+${(stats.monthlyRevenue || 0).toLocaleString()} this month</div>
+        </div>
+
+        <div style={{ fontSize: '11px', color: '#ED6C02', marginTop: '8px' }}>
+            {stats.pendingProperties} pending approval
+        </div>
+        <div style={{ fontSize: '11px', color: '#2E7D32', marginTop: '8px' }}>
+            +{stats.monthlyBookings} this month
         </div>
       </div>
 
       {/* Recent Activity - REAL DATA */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
         {/* Recent Users - FROM BACKEND */}
-        <div style={{ background: cardBg, borderRadius: '16px', padding: '24px', border: `1px solid ${borderColor}` }}>
-          <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '18px', marginBottom: '16px', color: textColor }}>Recent Users</h3>
+        <div style={{ background: 'white', borderRadius: '16px', padding: '24px', border: '1px solid #E8D5B7' }}>
+          <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '18px', marginBottom: '16px' }}>Recent Users</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {recentUsers.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '20px', color: textMuted }}>No users found</div>
+              <div style={{ textAlign: 'center', padding: '20px', color: '#9A8F84' }}>No users found</div>
             ) : (
               recentUsers.map((user, index) => (
-                <div key={user.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: `1px solid ${borderColor}` }}>
+                <div key={user.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: '1px solid #F0EAE0' }}>
                   <div>
-                    <div style={{ fontWeight: 500, color: textColor }}>{user.name || 'Unknown'}</div>
-                    <div style={{ fontSize: '12px', color: textMuted }}>{user.email}</div>
+                    <div style={{ fontWeight: 500 }}>{user.name || 'Unknown'}</div>
+                    <div style={{ fontSize: '12px', color: '#9A8F84' }}>{user.email}</div>
                   </div>
-                  <div style={{ fontSize: '11px', color: textMuted }}>{formatDate(user.createdAt)}</div>
+                  <div style={{ fontSize: '11px', color: '#9A8F84' }}>{formatDate(user.createdAt)}</div>
                 </div>
               ))
             )}
@@ -164,21 +160,21 @@ function AdminDashboard() {
         </div>
 
         {/* Recent Bookings - FROM BACKEND */}
-        <div style={{ background: cardBg, borderRadius: '16px', padding: '24px', border: `1px solid ${borderColor}` }}>
-          <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '18px', marginBottom: '16px', color: textColor }}>Recent Bookings</h3>
+        <div style={{ background: 'white', borderRadius: '16px', padding: '24px', border: '1px solid #E8D5B7' }}>
+          <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '18px', marginBottom: '16px' }}>Recent Bookings</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {recentBookings.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '20px', color: textMuted }}>No bookings yet</div>
+              <div style={{ textAlign: 'center', padding: '20px', color: '#9A8F84' }}>No bookings yet</div>
             ) : (
               recentBookings.map((booking) => (
-                <div key={booking.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: `1px solid ${borderColor}` }}>
+                <div key={booking.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: '1px solid #F0EAE0' }}>
                   <div>
-                    <div style={{ fontWeight: 500, color: textColor }}>{booking.property?.title || 'Unknown Property'}</div>
-                    <div style={{ fontSize: '12px', color: textMuted }}>{booking.user?.name || 'Unknown User'}</div>
+                    <div style={{ fontWeight: 500 }}>{booking.property?.title || 'Unknown Property'}</div>
+                    <div style={{ fontSize: '12px', color: '#9A8F84' }}>{booking.user?.name || 'Unknown User'}</div>
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontWeight: 600, color: '#C4622D' }}>${booking.totalPrice || 0}</div>
-                    <div style={{ fontSize: '11px', color: textMuted }}>{formatDate(booking.createdAt)}</div>
+                    <div style={{ fontSize: '11px', color: '#9A8F84' }}>{formatDate(booking.createdAt)}</div>
                   </div>
                 </div>
               ))

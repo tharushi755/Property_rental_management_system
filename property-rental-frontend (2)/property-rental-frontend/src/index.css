@@ -85,31 +85,3 @@ html.dark-mode option {
   background-color: #1e293b;
   color: #ffffff;
 }
-
-input[type="date"], textarea {
-  background-color: var(--bg-card);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-}
-
-input[type="date"] {
-  padding-right: 32px;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  opacity: 0.75;
-  filter: none;
-  color: inherit;
-}
-
-html.dark-mode input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1) brightness(1.2);
-}
-
-input[type="date"]:focus, textarea:focus, select:focus {
-  outline: none;
-  border-color: #C4622D;
-  box-shadow: 0 0 0 3px rgba(196, 98, 45, 0.15);
-}

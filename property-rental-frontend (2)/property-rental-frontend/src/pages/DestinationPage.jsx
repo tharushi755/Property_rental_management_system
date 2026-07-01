@@ -109,39 +109,9 @@ function DestinationPage() {
           <h1 style={{ fontSize: '48px', marginBottom: '16px' }}>{destination?.name}</h1>
           <p style={{ fontSize: '18px' }}>{totalElements} properties available</p>
 
-          <div style={{ background: '#ffffff', borderRadius: '60px', padding: '10px', display: 'flex', gap: '8px', maxWidth: '680px', margin: '40px auto 0', flexWrap: 'wrap', boxShadow: '0 18px 40px rgba(0,0,0,0.18)', alignItems: 'center', position: 'relative', zIndex: 3 }}>
-            <input
-              type="text"
-              placeholder={`Search in ${destination?.name}...`}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              style={{
-                flex: 2,
-                minWidth: '200px',
-                border: '1px solid #E8D5B7',
-                outline: 'none',
-                padding: '14px 24px',
-                borderRadius: '50px',
-                fontSize: '15px',
-                color: '#1A1612',
-                background: '#ffffff',
-                boxShadow: 'inset 0 1px 4px rgba(0,0,0,0.08)'
-              }}
-            />
-            <select
-              value={selectedType}
-              onChange={(e) => { setSelectedType(e.target.value); setCurrentPage(0); }}
-              style={{
-                border: '1px solid #E8D5B7',
-                borderRadius: '50px',
-                padding: '14px 30px',
-                fontSize: '14px',
-                background: '#F5F0E8',
-                color: '#1A1612',
-                outline: 'none',
-                minWidth: '160px'
-              }}
-            >
+          <div style={{ background: 'white', borderRadius: '60px', padding: '8px', display: 'flex', gap: '8px', maxWidth: '650px', margin: '40px auto 0', flexWrap: 'wrap', boxShadow: '0 8px 25px rgba(0,0,0,0.2)' }}>
+            <input type="text" placeholder={`Search in ${destination?.name}...`} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ flex: 2, minWidth: '200px', border: 'none', outline: 'none', padding: '14px 20px', borderRadius: '50px', fontSize: '15px', color: '#333' }} />
+            <select value={selectedType} onChange={(e) => { setSelectedType(e.target.value); setCurrentPage(0); }} style={{ border: 'none', borderRadius: '50px', padding: '14px 40px 14px 20px', fontSize: '14px', background: darkMode ? '#1e293b' : '#f5f0e8', color: darkMode ? '#ffffff' : '#333' }}>
               <option value="">All Types</option>
               <option>Villa</option><option>Cabin</option><option>Cabana</option><option>Hotel</option><option>Chalet</option><option>Lodge</option><option>Suite</option><option>Bungalow</option><option>Condo</option><option>Cottage</option>
             </select>

@@ -26,7 +26,7 @@ function AdminLayout() {
         <h1 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '32px', color: textColor, marginBottom: '8px' }}>
           Admin Panel
         </h1>
-        <p style={{ color: darkMode ? '#cbd5e1' : '#9A8F84', marginBottom: '32px' }}>
+        <p style={{ color: '#9A8F84', marginBottom: '32px' }}>
           Manage users, properties, bookings and payments
         </p>
 

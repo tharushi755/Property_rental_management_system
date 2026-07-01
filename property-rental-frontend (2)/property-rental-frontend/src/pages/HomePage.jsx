@@ -8,7 +8,6 @@ function HomePage() {
   const navigate = useNavigate();
   const { darkMode } = useTheme();
   const [destinations, setDestinations] = useState([]);
-  const [allProperties, setAllProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const heroImages = [
@@ -18,30 +17,8 @@ function HomePage() {
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
 
   const bgColor = darkMode ? '#0f172a' : '#ffffff';
-
-  const handleSearchSubmit = () => {
-    setSearchQuery(searchTerm.trim());
-    const section = document.getElementById('destinations-section');
-    if (section) section.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleSearchClear = () => {
-    setSearchTerm('');
-    setSearchQuery('');
-    const section = document.getElementById('destinations-section');
-    if (section) section.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleSearchKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      handleSearchSubmit();
-    }
-  };
 
   useEffect(() => {
     loadDestinations();
@@ -60,7 +37,6 @@ function HomePage() {
       setLoading(true);
       const response = await getProperties(0, 100);
       const allProperties = response.data.content || [];
-      setAllProperties(allProperties);
       
       const destinationMap = new Map();
       
@@ -80,15 +56,10 @@ function HomePage() {
             location: property.location,
             propertyCount: 0,
             image: getImageForCity(city),
-            tag: getTagForCity(city),
-            propertyTitles: []
+            tag: getTagForCity(city)
           });
         }
-        const destination = destinationMap.get(city);
-        destination.propertyCount++;
-        if (property.title) {
-          destination.propertyTitles.push(property.title);
-        }
+        destinationMap.get(city).propertyCount++;
       });
       
       if (allProperties.length > 0) {
@@ -98,7 +69,6 @@ function HomePage() {
           location: 'Worldwide',
           propertyCount: allProperties.length,
           image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop',
-          propertyTitles: allProperties.map(p => p.title || '')
         });
       }
       
@@ -169,22 +139,6 @@ function HomePage() {
     );
   }
 
-  const filteredDestinations = destinations.filter(dest => {
-    const normalizedSearch = searchQuery.trim().toLowerCase();
-    if (normalizedSearch.length === 0) {
-      return true;
-    }
-
-    const propertyTitleMatch = dest.propertyTitles?.some(title =>
-      title?.toLowerCase().includes(normalizedSearch)
-    );
-
-    return dest.name.toLowerCase().includes(normalizedSearch) ||
-      dest.location?.toLowerCase().includes(normalizedSearch) ||
-      dest.tag?.toLowerCase().includes(normalizedSearch) ||
-      propertyTitleMatch;
-  });
-
   const totalProperties = destinations.find(d => d.name === 'International')?.propertyCount || 0;
 
   return (
@@ -213,71 +167,32 @@ function HomePage() {
           background: 'linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55))'
         }} />
         
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: '900px', padding: '0 24px' }}>
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: '800px', padding: '0 20px' }}>
           <div style={{ 
             display: 'inline-block', 
             background: 'rgba(196,98,45,0.9)', 
             borderRadius: '30px', 
-            padding: '10px 28px',
-            fontSize: '12px',
+            padding: '8px 24px',
+            fontSize: '13px',
             marginBottom: '24px',
-            fontWeight: 600
+            fontWeight: 500
           }}>
             ◆ WELCOME TO VILASTAY
           </div>
           
           <h1 style={{ 
             fontFamily: "'Montserrat', sans-serif", 
-            fontSize: 'clamp(3rem, 6vw, 6rem)', 
-            lineHeight: 1.0,
+            fontSize: '56px', 
             marginBottom: '20px',
-            fontWeight: 800,
-            textShadow: '2px 2px 6px rgba(0,0,0,0.35)'
+            fontWeight: 700,
+            textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
           }}>
             Find Your Perfect <em style={{ fontStyle: 'italic', color: '#F0A875' }}>Escape</em>
           </h1>
           
-          <p style={{ fontSize: '11px', maxWidth: '620px', margin: '0 auto', lineHeight: 1.6 }}>
+          <p style={{ fontSize: '18px', maxWidth: '550px', margin: '0 auto' }}>
             Explore {destinations.length} destinations with {totalProperties}+ properties
           </p>
-          <div style={{ marginTop: '28px', display: 'flex', justifyContent: 'center' }}>
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onKeyDown={handleSearchKeyDown}
-              placeholder="Search by destination, town, city, or tag"
-              style={{
-                width: '100%',
-                maxWidth: '620px',
-                borderRadius: '999px',
-                border: '1px solid rgba(255,255,255,0.85)',
-                background: 'rgba(255,255,255,0.95)',
-                color: '#1A1612',
-                padding: '18px 26px',
-                fontSize: '15px',
-                outline: 'none',
-                boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
-              }}
-            />
-          </div>
-          <div style={{ marginTop: '16px', display: 'flex', justifyContent: 'center' }}>
-            <button
-              onClick={handleSearchSubmit}
-              style={{
-                background: '#C4622D',
-                color: 'white',
-                border: 'none',
-                borderRadius: '999px',
-                padding: '12px 28px',
-                fontSize: '14px',
-                cursor: 'pointer',
-                boxShadow: '0 12px 30px rgba(0,0,0,0.15)'
-              }}
-            >
-              Search
-            </button>
-          </div>
         </div>
 
         {/* Scroll indicator */}
@@ -331,32 +246,13 @@ function HomePage() {
 
       {/* Destination Cards Section */}
       <div id="destinations-section" style={{ padding: '60px 32px', background: bgColor }}>
-        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <h2 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '38px', color: textColor, marginBottom: '16px' }}>
             Where Will You Go?
           </h2>
-          <p style={{ color: textMuted, fontSize: '16px', marginBottom: '24px' }}>
+          <p style={{ color: textMuted, fontSize: '16px' }}>
             {destinations.length} breathtaking destinations around the world
           </p>
-          {searchQuery && (
-            <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}>
-              <button
-                onClick={handleSearchClear}
-                style={{
-                  background: 'rgba(255,255,255,0.95)',
-                  color: '#1A1612',
-                  border: '1px solid #C4622D',
-                  borderRadius: '999px',
-                  padding: '12px 28px',
-                  fontSize: '14px',
-                  cursor: 'pointer',
-                  boxShadow: '0 12px 30px rgba(0,0,0,0.1)'
-                }}
-              >
-                Clear
-              </button>
-            </div>
-          )}
         </div>
 
         <div style={{
@@ -366,7 +262,7 @@ function HomePage() {
           maxWidth: '1400px',
           margin: '0 auto'
         }}>
-          {filteredDestinations.length > 0 ? filteredDestinations.map(dest => (
+          {destinations.map(dest => (
             <div
               key={dest.name}
               onClick={() => handleDestinationClick(dest)}
@@ -405,21 +301,7 @@ function HomePage() {
                 <p style={{ fontSize: '13px', color: '#C4622D', fontWeight: 500 }}>{dest.propertyCount} properties</p>
               </div>
             </div>
-          )) : (
-            <div style={{
-              gridColumn: '1 / -1',
-              padding: '40px 20px',
-              textAlign: 'center',
-              borderRadius: '24px',
-              background: darkMode ? '#111827' : '#f8f5f1',
-              color: textColor
-            }}>
-              <h3 style={{ fontSize: '24px', marginBottom: '12px' }}>No destinations found</h3>
-              <p style={{ fontSize: '16px', color: textMuted }}>
-                Try searching for a different town, city, or property tag.
-              </p>
-            </div>
-          )}
+          ))}
         </div>
       </div>
 

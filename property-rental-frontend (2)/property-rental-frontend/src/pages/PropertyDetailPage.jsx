@@ -329,7 +329,7 @@ function PropertyDetailPage({ user, onBooking }) {
                   type="date" 
                   value={checkIn} 
                   onChange={(e) => setCheckIn(e.target.value)} 
-                  style={{ border: `1px solid ${borderColor}`, borderRadius: '12px', outline: 'none', width: '100%', background: cardBg, color: textColor, cursor: 'pointer', padding: '10px 12px' }} 
+                  style={{ border: 'none', outline: 'none', width: '100%', background: 'transparent', color: textColor, cursor: 'pointer' }} 
                 />
               </div>
               <div style={{ background: cardBg, padding: '14px' }}>
@@ -338,7 +338,7 @@ function PropertyDetailPage({ user, onBooking }) {
                   type="date" 
                   value={checkOut} 
                   onChange={(e) => setCheckOut(e.target.value)} 
-                  style={{ border: `1px solid ${borderColor}`, borderRadius: '12px', outline: 'none', width: '100%', background: cardBg, color: textColor, cursor: 'pointer', padding: '10px 12px' }} 
+                  style={{ border: 'none', outline: 'none', width: '100%', background: 'transparent', color: textColor, cursor: 'pointer' }} 
                 />
               </div>
             </div>
@@ -349,7 +349,7 @@ function PropertyDetailPage({ user, onBooking }) {
               <select
                 value={guests}
                 onChange={(e) => setGuests(e.target.value)}
-                style={{ border: `1px solid ${borderColor}`, borderRadius: '12px', outline: 'none', width: '100%', background: cardBg, color: textColor, cursor: 'pointer', padding: '10px 12px' }}
+                style={{ border: 'none', outline: 'none', width: '100%', background: 'transparent', color: textColor, cursor: 'pointer', padding: '2px 0' }}
               >
                 <option value="1">1 guest</option>
                 <option value="2">2 guests</option>
