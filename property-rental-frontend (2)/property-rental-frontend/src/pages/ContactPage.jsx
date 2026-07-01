@@ -5,8 +5,29 @@ import {
   PhoneIcon,
   MapPinIcon,
 } from '../components/Icons';
+import { useTheme } from '../context/ThemeContext';
 
 function ContactPage() {
+  const { darkMode } = useTheme();
+  const cardBg = darkMode ? '#1e293b' : '#fff';
+  const textColor = darkMode ? '#ffffff' : '#1A1612';
+  const textMuted = darkMode ? '#aaaaaa' : '#666';
+  const borderColor = darkMode ? '#2c3e50' : '#ccc';
+  const inputBg = darkMode ? '#0f172a' : '#fff';
+  const cardShadow = darkMode ? '0 5px 20px rgba(0,0,0,0.4)' : '0 5px 20px rgba(0,0,0,0.08)';
+
+  const inputStyle = {
+    width: "100%",
+    padding: "12px",
+    marginBottom: "18px",
+    borderRadius: "8px",
+    border: `1px solid ${borderColor}`,
+    fontSize: "15px",
+    boxSizing: "border-box",
+    background: inputBg,
+    color: textColor,
+  };
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -52,19 +73,19 @@ function ContactPage() {
           maxWidth: "600px",
           margin: "60px auto",
           padding: "50px",
-          background: "#fff",
+          background: cardBg,
           borderRadius: "15px",
           textAlign: "center",
-          boxShadow: "0 5px 20px rgba(0,0,0,0.1)",
+          boxShadow: cardShadow,
         }}
       >
         <CheckCircleIcon size={55} stroke="#2E7D32" />
 
-        <h2 style={{ marginTop: "20px" }}>
+        <h2 style={{ marginTop: "20px", color: textColor }}>
           Message Sent Successfully!
         </h2>
 
-        <p style={{ color: "#666" }}>
+        <p style={{ color: textMuted }}>
           Thank you for contacting Villa Stay.
           <br />
           Our team will contact you within 24 hours.
@@ -97,30 +118,30 @@ function ContactPage() {
         display: "grid",
         gridTemplateColumns: "1fr 2fr",
         gap: "40px",
-        background: "#fff",
+        background: cardBg,
         padding: "40px",
         borderRadius: "15px",
-        boxShadow: "0 5px 20px rgba(0,0,0,0.08)",
+        boxShadow: cardShadow,
       }}
     >
       {/* Left Side */}
 
       <div>
-        <h2 style={{ marginBottom: "20px" }}>
+        <h2 style={{ marginBottom: "20px", color: textColor }}>
           Contact Information
         </h2>
 
-        <p style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+        <p style={{ display: "flex", gap: "10px", marginBottom: "20px", color: textColor }}>
           <MailIcon size={18} />
           support@villastay.com
         </p>
 
-        <p style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+        <p style={{ display: "flex", gap: "10px", marginBottom: "20px", color: textColor }}>
           <PhoneIcon size={18} />
           +94 77 123 4567
         </p>
 
-        <p style={{ display: "flex", gap: "10px" }}>
+        <p style={{ display: "flex", gap: "10px", color: textColor }}>
           <MapPinIcon size={18} />
           Villa Stay,
           <br />
@@ -129,19 +150,19 @@ function ContactPage() {
           Sri Lanka
         </p>
 
-        <hr style={{ margin: "30px 0" }} />
+        <hr style={{ margin: "30px 0", borderColor: borderColor }} />
 
-        <h3>Business Hours</h3>
+        <h3 style={{ color: textColor }}>Business Hours</h3>
 
-        <p>Monday - Friday : 8.00 AM - 6.00 PM</p>
-        <p>Saturday : 9.00 AM - 4.00 PM</p>
-        <p>Sunday : Closed</p>
+        <p style={{ color: textMuted }}>Monday - Friday : 8.00 AM - 6.00 PM</p>
+        <p style={{ color: textMuted }}>Saturday : 9.00 AM - 4.00 PM</p>
+        <p style={{ color: textMuted }}>Sunday : Closed</p>
       </div>
 
       {/* Right Side */}
 
       <div>
-        <h2 style={{ marginBottom: "20px" }}>
+        <h2 style={{ marginBottom: "20px", color: textColor }}>
           Send us a Message
         </h2>
 
@@ -207,15 +228,5 @@ function ContactPage() {
     </div>
   );
 }
-
-const inputStyle = {
-  width: "100%",
-  padding: "12px",
-  marginBottom: "18px",
-  borderRadius: "8px",
-  border: "1px solid #ccc",
-  fontSize: "15px",
-  boxSizing: "border-box",
-};
 
 export default ContactPage;
