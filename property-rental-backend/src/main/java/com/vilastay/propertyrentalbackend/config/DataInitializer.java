@@ -1,14 +1,15 @@
 package com.vilastay.propertyrentalbackend.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+
 import com.vilastay.propertyrentalbackend.entity.Property;
 import com.vilastay.propertyrentalbackend.entity.User;
 import com.vilastay.propertyrentalbackend.repository.BookingRepository;
 import com.vilastay.propertyrentalbackend.repository.PropertyRepository;
 import com.vilastay.propertyrentalbackend.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -73,77 +74,77 @@ public class DataInitializer implements CommandLineRunner {
         // ONLY create properties if none exist (don't delete existing)
         if (propertyRepository.count() == 0 && owner != null) {
 
-            // ========== SANTORINI PROPERTIES (2 properties) ==========
-            Property santorini1 = new Property();
-            santorini1.setTitle("Santorini Cliffside Villa");
-            santorini1.setType("Villa");
-            santorini1.setLocation("Santorini, Greece");
-            santorini1.setPrice(320);
-            santorini1.setRating(4.9);
-            santorini1.setReviews(128);
-            santorini1.setGuests(6);
-            santorini1.setBeds(3);
-            santorini1.setBaths(2);
-            santorini1.setDescription("Perched dramatically on the caldera cliff, this iconic whitewashed villa offers breathtaking views of the Aegean Sea.");
-            santorini1.setImageUrl("https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=400&h=250&fit=crop");
-            santorini1.setAmenities("Private pool, Sea view, Fast WiFi, Parking, Full kitchen, Air conditioning");
-            santorini1.setStatus("APPROVED");
-            santorini1.setOwner(owner);
-            propertyRepository.save(santorini1);
+            // ========== KANDY PROPERTIES (2 properties) ==========
+            Property kandy1 = new Property();
+            kandy1.setTitle("Hotel Suisse Kandy");
+            kandy1.setType("Hotel");
+            kandy1.setLocation("Kandy");
+            kandy1.setPrice(25000);
+            kandy1.setRating(4.9);
+            kandy1.setReviews(128);
+            kandy1.setGuests(3);
+            kandy1.setBeds(1);
+            kandy1.setBaths(1);
+            kandy1.setDescription("Suisse is housed in a colonial building, across Kandy Lake. Offering rooms with views of the tropical garden or Kandy Lake, it has a spa, a restaurant and free parking.");
+            kandy1.setImageUrl("https://cf.bstatic.com/xdata/images/hotel/max1024x768/701829228.jpg?k=4e391a56dfbebce81ee15758f8ae847746296cf08e01de65ee87fd2cfb92483b&o=");
+            kandy1.setAmenities("Outdoor swimming pool,Free WiFi ,Airport shuttle,Free parking,Restaurant,Room service,Tea/coffee maker in all rooms,Bar,Good breakfast");
+            kandy1.setStatus("APPROVED");
+            kandy1.setOwner(owner);
+            propertyRepository.save(kandy1);
 
-            Property santorini2 = new Property();
-            santorini2.setTitle("Caldera View Suite");
-            santorini2.setType("Suite");
-            santorini2.setLocation("Santorini, Greece");
-            santorini2.setPrice(280);
-            santorini2.setRating(4.7);
-            santorini2.setReviews(89);
-            santorini2.setGuests(4);
-            santorini2.setBeds(2);
-            santorini2.setBaths(2);
-            santorini2.setDescription("Beautiful suite with stunning sunset views over the caldera.");
-            santorini2.setImageUrl("https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=250&fit=crop");
-            santorini2.setAmenities("Sea view, Hot tub, Breakfast included, WiFi");
-            santorini2.setStatus("APPROVED");
-            santorini2.setOwner(owner);
-            propertyRepository.save(santorini2);
+            /*Property kandy2 = new Property();
+            kandy2.setTitle("Beachfront Bungalow");
+            kandy2.setType("Bungalow");
+            kandy2.setLocation("Kandy");
+            kandy2.setPrice(42000);
+            kandy2.setRating(4.7);
+            kandy2.setReviews(89);
+            kandy2.setGuests(4);
+            kandy2.setBeds(2);
+            kandy2.setBaths(2);
+            kandy2.setDescription("This Kandy hotel also offers air-conditioned rooms, including private balconies with mountain or valley views. Each room at Amaya Hills Kandy is fitted with a flat-screen TV and tea/coffee making facilities. The attached bathroom has a bathtub and shower.");
+            kandy2.setImageUrl("https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?w=400&h=250&fit=crop");
+            kandy2.setAmenities("Pool, Restaurant, WiFi");
+            kandy2.setStatus("APPROVED");
+            kandy2.setOwner(owner);
+            propertyRepository.save(kandy2);*/
 
-            // ========== MALDIVES PROPERTIES (2 properties) ==========
-            Property maldives1 = new Property();
-            maldives1.setTitle("Maldives Overwater Cabana");
-            maldives1.setType("Cabana");
-            maldives1.setLocation("Maldives");
-            maldives1.setPrice(580);
-            maldives1.setRating(5.0);
-            maldives1.setReviews(64);
-            maldives1.setGuests(2);
-            maldives1.setBeds(1);
-            maldives1.setBaths(1);
-            maldives1.setDescription("Step directly from your private deck into crystal-clear lagoon.");
-            maldives1.setImageUrl("https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=400&h=250&fit=crop");
-            maldives1.setAmenities("Ocean deck, Snorkeling, Welcome drink, Outdoor bath");
-            maldives1.setStatus("APPROVED");
-            maldives1.setOwner(owner);
-            propertyRepository.save(maldives1);
+            // ========== GALLE PROPERTIES (5 properties) ==========
+            Property galle1 = new Property();
+            galle1.setTitle("Refuge Boutique Villa");
+            galle1.setType("Cabana");
+            galle1.setLocation("Galle");
+            galle1.setPrice(45000);
+            galle1.setRating(5.0);
+            galle1.setReviews(64);
+            galle1.setGuests(8);
+            galle1.setBeds(4);
+            galle1.setBaths(3);
+            galle1.setDescription("Step directly from your private deck into crystal-clear lagoon.");
+            galle1.setImageUrl("https://cf.bstatic.com/xdata/images/hotel/max1024x768/863304954.jpg?k=7818e8a071f99c7f3ef4612466e6082e8bd8614266a48083f763ff8b4da2431a&o=");
+            galle1.setAmenities("Beachfront, Free WiFi ,Family rooms, Free parking, Non-smoking rooms, Private beach area ,Breakfast");
+            galle1.setStatus("APPROVED");
+            galle1.setOwner(owner);
+            propertyRepository.save(galle1);
 
-            Property maldives2 = new Property();
-            maldives2.setTitle("Beachfront Bungalow");
-            maldives2.setType("Bungalow");
-            maldives2.setLocation("Maldives");
-            maldives2.setPrice(420);
-            maldives2.setRating(4.8);
-            maldives2.setReviews(112);
-            maldives2.setGuests(4);
-            maldives2.setBeds(2);
-            maldives2.setBaths(2);
-            maldives2.setDescription("Beautiful beachfront bungalow with private beach access.");
-            maldives2.setImageUrl("https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?w=400&h=250&fit=crop");
-            maldives2.setAmenities("Beach access, Pool, Restaurant, WiFi");
-            maldives2.setStatus("APPROVED");
-            maldives2.setOwner(owner);
-            propertyRepository.save(maldives2);
+            Property galle2 = new Property();
+            galle2.setTitle("Beachfront Bungalow");
+            galle2.setType("Bungalow");
+            galle2.setLocation("Maldives");
+            galle2.setPrice(420);
+            galle2.setRating(4.8);
+            galle2.setReviews(112);
+            galle2.setGuests(4);
+            galle2.setBeds(2);
+            galle2.setBaths(2);
+            galle2.setDescription("Beautiful beachfront bungalow with private beach access.");
+            galle2.setImageUrl("https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?w=400&h=250&fit=crop");
+            galle2.setAmenities("Beach access, Pool, Restaurant, WiFi");
+            galle2.setStatus("APPROVED");
+            galle2.setOwner(owner);
+            propertyRepository.save(galle2);
 
-            // ========== SWISS ALPS PROPERTIES (3 properties) ==========
+           /*  // ========== SWISS ALPS PROPERTIES (3 properties) ==========
             Property swiss1 = new Property();
             swiss1.setTitle("Swiss Alps Luxury Chalet");
             swiss1.setType("Chalet");
@@ -193,61 +194,61 @@ public class DataInitializer implements CommandLineRunner {
             swiss3.setAmenities("Hiking trails, Fire pit, Kitchen, WiFi");
             swiss3.setStatus("APPROVED");
             swiss3.setOwner(owner);
-            propertyRepository.save(swiss3);
+            propertyRepository.save(swiss3);*/
 
-            // ========== BALI PROPERTIES (3 properties) ==========
-            Property bali1 = new Property();
-            bali1.setTitle("Bali Jungle Retreat");
-            bali1.setType("Villa");
-            bali1.setLocation("Bali");
-            bali1.setPrice(185);
-            bali1.setRating(4.7);
-            bali1.setReviews(203);
-            bali1.setGuests(4);
-            bali1.setBeds(2);
-            bali1.setBaths(2);
-            bali1.setDescription("Immerse yourself in Bali's lush rainforest canopy.");
-            bali1.setImageUrl("https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop");
-            bali1.setAmenities("Jungle view, Plunge pool, Breakfast, Spa access");
-            bali1.setStatus("APPROVED");
-            bali1.setOwner(owner);
-            propertyRepository.save(bali1);
+            // ========== NUWARA-ELIYA  PROPERTIES (4 properties) ==========
+            Property nwe1 = new Property();
+            nwe1.setTitle("Aspen Mountain Lodge");
+            nwe1.setType("Lodge");
+            nwe1.setLocation("Nuwara-Eliya");
+            nwe1.setPrice(45000);
+            nwe1.setRating(4.7);
+            nwe1.setReviews(203);
+            nwe1.setGuests(4);
+            nwe1.setBeds(2);
+            nwe1.setBaths(2);
+            nwe1.setDescription("Luxury lodge with stunning mountain views and private hot tub.");
+            nwe1.setImageUrl("https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=250&fit=crop");
+            nwe1.setAmenities("Mountain view, Hot tub, Game room, WiFi");
+            nwe1.setStatus("APPROVED");
+            nwe1.setOwner(owner);
+            propertyRepository.save(nwe1);
 
-            Property bali2 = new Property();
-            bali2.setTitle("Ubud Rice Terrace Villa");
-            bali2.setType("Villa");
-            bali2.setLocation("Bali");
-            bali2.setPrice(150);
-            bali2.setRating(4.6);
-            bali2.setReviews(178);
-            bali2.setGuests(3);
-            bali2.setBeds(2);
-            bali2.setBaths(2);
-            bali2.setDescription("Stunning villa overlooking beautiful rice terraces.");
-            bali2.setImageUrl("https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&h=250&fit=crop");
-            bali2.setAmenities("Rice terrace view, Pool, Yoga deck, Breakfast");
-            bali2.setStatus("APPROVED");
-            bali2.setOwner(owner);
-            propertyRepository.save(bali2);
+            Property nwe2 = new Property();
+            nwe2.setTitle("The Bellwood Manor");
+            nwe2.setType("Bangalow");
+            nwe2.setLocation("Nuwara-Eliya");
+            nwe2.setPrice(25000);
+            nwe2.setRating(4.6);
+            nwe2.setReviews(178);
+            nwe2.setGuests(8);
+            nwe2.setBeds(4);
+            nwe2.setBaths(3);
+            nwe2.setDescription("Situated in Nuwara Eliya, 1.8 km from Gregory Lake, The Bellwood Manor features accommodation with a garden, free private parking, a terrace and a bar.");
+            nwe2.setImageUrl("https://cf.bstatic.com/xdata/images/hotel/max1024x768/445051770.jpg?k=a497fdfb5b6ad0211abd31a380729b78e4e11c3ba59330f33a525a86bebe60f2&o=");
+            nwe2.setAmenities("Free WiFi ,Family rooms ,Free parking ,Spa and wellness centre ,Non-smoking rooms, Room service, Bar ,24-hour front desk ,Tea/coffee maker in all rooms,  Very good breakfast");
+            nwe2.setStatus("APPROVED");
+            nwe2.setOwner(owner);
+            propertyRepository.save(nwe2);
 
-            Property bali3 = new Property();
-            bali3.setTitle("Beachfront Villa Seminyak");
-            bali3.setType("Villa");
-            bali3.setLocation("Bali");
-            bali3.setPrice(220);
-            bali3.setRating(4.8);
-            bali3.setReviews(145);
-            bali3.setGuests(5);
-            bali3.setBeds(3);
-            bali3.setBaths(2);
-            bali3.setDescription("Luxury beachfront villa with private pool and staff.");
-            bali3.setImageUrl("https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400&h=250&fit=crop");
-            bali3.setAmenities("Beachfront, Private pool, Staff, WiFi");
-            bali3.setStatus("APPROVED");
-            bali3.setOwner(owner);
-            propertyRepository.save(bali3);
+            Property nwe3 = new Property();
+            nwe3.setTitle("Breckenridge Ski Cabin");
+            nwe3.setType("cabin");
+            nwe3.setLocation("Nuwara-Eliya");
+            nwe3.setPrice(38000);
+            nwe3.setRating(4.8);
+            nwe3.setReviews(145);
+            nwe3.setGuests(6);
+            nwe3.setBeds(3);
+            nwe3.setBaths(2);
+            nwe3.setDescription("Cozy cabin near Breckenridge ski resort.");
+            nwe3.setImageUrl("https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop");
+            nwe3.setAmenities("Fireplace, Hot tub, Ski storage, Parking");
+            nwe3.setStatus("APPROVED");
+            nwe3.setOwner(owner);
+            propertyRepository.save(nwe3);
 
-            // ========== BARCELONA PROPERTIES (2 properties) ==========
+            /*// ========== BARCELONA PROPERTIES (2 properties) ==========
             Property barca1 = new Property();
             barca1.setTitle("Barcelona Boutique Hotel");
             barca1.setType("Hotel");
@@ -280,79 +281,79 @@ public class DataInitializer implements CommandLineRunner {
             barca2.setAmenities("City view, AC, WiFi, Elevator");
             barca2.setStatus("APPROVED");
             barca2.setOwner(owner);
-            propertyRepository.save(barca2);
+            propertyRepository.save(barca2);*/
 
-            // ========== LAKE TAHOE PROPERTIES (3 properties) ==========
-            Property tahoe1 = new Property();
-            tahoe1.setTitle("Lake Tahoe Luxury Cabin");
-            tahoe1.setType("Cabin");
-            tahoe1.setLocation("Lake Tahoe, California");
-            tahoe1.setPrice(320);
-            tahoe1.setRating(4.8);
-            tahoe1.setReviews(178);
-            tahoe1.setGuests(6);
-            tahoe1.setBeds(3);
-            tahoe1.setBaths(2);
-            tahoe1.setDescription("Stunning lakefront cabin with private dock and mountain views.");
-            tahoe1.setImageUrl("https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop");
-            tahoe1.setAmenities("Lake view, Private dock, Fireplace, Hot tub");
-            tahoe1.setStatus("APPROVED");
-            tahoe1.setOwner(owner);
-            propertyRepository.save(tahoe1);
+            // ========== NEGOMBO PROPERTIES (3 properties) ==========
+            Property negombo1 = new Property();
+            negombo1.setTitle("Swanee Grand");
+            negombo1.setType("Hotel");
+            negombo1.setLocation("Negombo,Kibulapitiya");
+            negombo1.setPrice(50000);
+            negombo1.setRating(4.8);
+            negombo1.setReviews(178);
+            negombo1.setGuests(5);
+            negombo1.setBeds(3);
+            negombo1.setBaths(2);
+            negombo1.setDescription("Set in Negombo, less than 1 km from Wellaweediya Beach, Belmont Boutique Hotel Negombo- Free Airport Shuttle Service offers accommodation with an outdoor swimming pool, free private parking and a garden.");
+            negombo1.setImageUrl("https://cf.bstatic.com/xdata/images/hotel/max1024x768/286302393.jpg?k=e1a1cfa273714834e27a18dc2260ddb50754e666a1c6daabf989f92fcc6b8c62&o=");
+            negombo1.setAmenities("Outdoor swimming pool ,Airport shuttle ,Free WiFi, Family rooms, Restaurant ,24-hour front desk , Free parking, Non-smoking rooms, Tea/coffee maker in all rooms , Fabulous breakfast");
+            negombo1.setStatus("APPROVED");
+            negombo1.setOwner(owner);
+            propertyRepository.save(negombo1);
 
-            Property tahoe2 = new Property();
-            tahoe2.setTitle("Ski Chalet at Heavenly");
-            tahoe2.setType("Chalet");
-            tahoe2.setLocation("Lake Tahoe, California");
-            tahoe2.setPrice(280);
-            tahoe2.setRating(4.7);
-            tahoe2.setReviews(134);
-            tahoe2.setGuests(8);
-            tahoe2.setBeds(4);
-            tahoe2.setBaths(3);
-            tahoe2.setDescription("Perfect ski-in/ski-out chalet near Heavenly resort.");
-            tahoe2.setImageUrl("https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400&h=250&fit=crop");
-            tahoe2.setAmenities("Ski-in/out, Fireplace, Hot tub, Parking");
-            tahoe2.setStatus("APPROVED");
-            tahoe2.setOwner(owner);
-            propertyRepository.save(tahoe2);
+            Property negombo2 = new Property();
+            negombo2.setTitle("Lotus Luxury Residencies");
+            negombo2.setType("Apartment");
+            negombo2.setLocation("Negombo");
+            negombo2.setPrice(2800);
+            negombo2.setRating(4.7);
+            negombo2.setReviews(134);
+            negombo2.setGuests(6);
+            negombo2.setBeds(3);
+            negombo2.setBaths(2);
+            negombo2.setDescription("Situated in Negombo, Lotus Luxury Residencies provides accommodation with seating area. This apartment features free private parking, a 24-hour front desk and free WiFi.");
+            negombo2.setImageUrl("https://cf.bstatic.com/xdata/images/hotel/max1024x768/813648706.jpg?k=1cdd2cde01dacb8763209d6abda7c43885040b7f2f1e89157b8dcaa54439e8f4&o=");
+            negombo2.setAmenities("Free WiFi, Family rooms, 24-hour front desk, Free parking ,Non-smoking rooms, Air conditioning");
+            negombo2.setStatus("APPROVED");
+            negombo2.setOwner(owner);
+            propertyRepository.save(negombo2);
 
-            Property tahoe3 = new Property();
-            tahoe3.setTitle("Lakeview Cottage");
-            tahoe3.setType("Cottage");
-            tahoe3.setLocation("Lake Tahoe, California");
-            tahoe3.setPrice(190);
-            tahoe3.setRating(4.6);
-            tahoe3.setReviews(98);
-            tahoe3.setGuests(4);
-            tahoe3.setBeds(2);
-            tahoe3.setBaths(1);
-            tahoe3.setDescription("Cozy cottage with stunning lake views.");
-            tahoe3.setImageUrl("https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=400&h=250&fit=crop");
-            tahoe3.setAmenities("Lake view, Fireplace, Kitchen, WiFi");
-            tahoe3.setStatus("APPROVED");
-            tahoe3.setOwner(owner);
-            propertyRepository.save(tahoe3);
+            Property negombo3 = new Property();
+            negombo3.setTitle("Jetwing Thalahena Villa");
+            negombo3.setType("villa");
+            negombo3.setLocation("Negombo");
+            negombo3.setPrice(10000);
+            negombo3.setRating(4.6);
+            negombo3.setReviews(98);
+            negombo3.setGuests(4);
+            negombo3.setBeds(2);
+            negombo3.setBaths(1);
+            negombo3.setDescription("Facing the seafront in Negombo, Jetwing Thalahena Villa is a villa, featuring an outdoor pool and private parking.");
+            negombo3.setImageUrl("https://cf.bstatic.com/xdata/images/hotel/max1024x768/51909806.jpg?k=287306821691b07bb4cd144f6631d11cf4b69d1cae9abb22d4fcdde030fdef0f&o=");
+            negombo3.setAmenities("Outdoor swimming pool, Free WiFi ,Beachfront ,Free parking ,Non-smoking rooms ,Room service ,Air conditioning, Garden, Breakfast");
+            negombo3.setStatus("APPROVED");
+            negombo3.setOwner(owner);
+            propertyRepository.save(negombo3);
 
-            // ========== COLORADO ROCKIES PROPERTIES (4 properties) ==========
+            // ========== COLOMBO ROCKIES PROPERTIES (1 properties) ==========
             Property colo1 = new Property();
-            colo1.setTitle("Aspen Mountain Lodge");
-            colo1.setType("Lodge");
-            colo1.setLocation("Colorado Rockies");
-            colo1.setPrice(520);
+            colo1.setTitle("Marino Beach Colombo");
+            colo1.setType("Hotel");
+            colo1.setLocation("Colombo");
+            colo1.setPrice(15000);
             colo1.setRating(4.9);
             colo1.setReviews(203);
-            colo1.setGuests(10);
-            colo1.setBeds(5);
-            colo1.setBaths(4);
-            colo1.setDescription("Luxury lodge with stunning mountain views and private hot tub.");
-            colo1.setImageUrl("https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=250&fit=crop");
-            colo1.setAmenities("Mountain view, Hot tub, Game room, WiFi");
+            colo1.setGuests(4);
+            colo1.setBeds(2);
+            colo1.setBaths(2);
+            colo1.setDescription("Situated in Colombo, a few steps from Bambalapitiya Beach, Marino Beach Colombo features accommodation with an outdoor swimming pool, free private parking, a fitness centre and a garden.");
+            colo1.setImageUrl("https://cf.bstatic.com/xdata/images/hotel/max1024x768/156672332.jpg?k=b4f3d04cbc8b0c80193f63046e63e576ba1a50fc9f48289aa152f10a026aab4d&o=");
+            colo1.setAmenities("Outdoor swimming pool, Airport shuttle, Non-smoking rooms, Spa and wellness centre, Fitness centre, Room service ,Facilities for disabled guests, Tea/coffee maker in all rooms, Bar ,Superb breakfast");
             colo1.setStatus("APPROVED");
             colo1.setOwner(owner);
             propertyRepository.save(colo1);
 
-            Property colo2 = new Property();
+            /*Property colo2 = new Property();
             colo2.setTitle("Breckenridge Ski Cabin");
             colo2.setType("Cabin");
             colo2.setLocation("Colorado Rockies");
@@ -401,59 +402,62 @@ public class DataInitializer implements CommandLineRunner {
             colo4.setAmenities("Mountain view, Pool, Gym, WiFi");
             colo4.setStatus("APPROVED");
             colo4.setOwner(owner);
-            propertyRepository.save(colo4);
+            propertyRepository.save(colo4);*/
 
-            // ========== GREAT SMOKY MOUNTAINS PROPERTIES (3 properties) ==========
-            Property smoky1 = new Property();
-            smoky1.setTitle("Smoky Mountain Retreat");
-            smoky1.setType("Cabin");
-            smoky1.setLocation("Great Smoky Mountains");
-            smoky1.setPrice(195);
-            smoky1.setRating(4.7);
-            smoky1.setReviews(312);
-            smoky1.setGuests(5);
-            smoky1.setBeds(3);
-            smoky1.setBaths(2);
-            smoky1.setDescription("Secluded cabin with panoramic mountain views and private hot tub.");
-            smoky1.setImageUrl("https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=400&h=250&fit=crop");
-            smoky1.setAmenities("Mountain view, Hot tub, Fireplace, Pool table");
-            smoky1.setStatus("APPROVED");
-            smoky1.setOwner(owner);
-            propertyRepository.save(smoky1);
+            // ========== GAMPAHA PROPERTIES (1 properties) ==========
+            Property gampaha1 = new Property();
+            gampaha1.setTitle("The Covanro Airport Hotel");
+            gampaha1.setType("Hotel");
+            gampaha1.setLocation("Gampaha,Katunayake");
+            gampaha1.setPrice(30000);
+            gampaha1.setRating(4.7);
+            gampaha1.setReviews(312);
+            gampaha1.setGuests(6);
+            gampaha1.setBeds(3);
+            gampaha1.setBaths(2);
+            gampaha1.setDescription("Situated in Gampaha, 26 km from St Anthony's Church, The Covanro Airport Hotel - Katunayake features accommodation with an outdoor swimming pool, free private parking, a garden and a shared lounge.");
+            gampaha1.setImageUrl("https://cf.bstatic.com/xdata/images/hotel/max1024x768/351246493.jpg?k=31c2cedbe69ffb41853c9557754690814cbd56ff92d80c1a73a0e8b62d99a62c&o=");
+            gampaha1.setAmenities("Free Wi-Fi,Pool,Gym,Facilities for disabled guests, Room service,Tea/coffee maker in all rooms ,Bar, Breakfast,Airport shuttle");
+            gampaha1.setStatus("APPROVED");
+            gampaha1.setOwner(owner);
+            propertyRepository.save(gampaha1);
 
-            Property smoky2 = new Property();
-            smoky2.setTitle("Gatlinburg Log Cabin");
-            smoky2.setType("Cabin");
-            smoky2.setLocation("Great Smoky Mountains");
-            smoky2.setPrice(165);
-            smoky2.setRating(4.6);
-            smoky2.setReviews(245);
-            smoky2.setGuests(4);
-            smoky2.setBeds(2);
-            smoky2.setBaths(2);
-            smoky2.setDescription("Cozy log cabin with fireplace and private deck.");
-            smoky2.setImageUrl("https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=400&h=250&fit=crop");
-            smoky2.setAmenities("Fireplace, Deck, Kitchen, WiFi");
-            smoky2.setStatus("APPROVED");
-            smoky2.setOwner(owner);
-            propertyRepository.save(smoky2);
+           /*Property gampaha2 = new Property();
+            gampaha2.setTitle("Gatlinburg Log Cabin");
+            gampaha2.setType("Cabin");
+            gampaha2.setLocation("Great Smoky Mountains");
+            gampaha2.setPrice(165);
+            gampaha2.setRating(4.6);
+            gampaha2.setReviews(245);
+            gampaha2.setGuests(4);
+            gampaha2.setBeds(2);
+            gampaha2.setBaths(2);
+            gampaha2.setDescription("Cozy log cabin with fireplace and private deck.");
+            gampaha2.setImageUrl("https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=400&h=250&fit=crop");
+            gampaha2.setAmenities("Fireplace, Deck, Kitchen, WiFi");
+            gampaha2.setStatus("APPROVED");
+            gampaha2.setOwner(owner);
+            propertyRepository.save(gampaha2);
 
-            Property smoky3 = new Property();
-            smoky3.setTitle("Mountain View Chalet");
-            smoky3.setType("Chalet");
-            smoky3.setLocation("Great Smoky Mountains");
-            smoky3.setPrice(230);
-            smoky3.setRating(4.8);
-            smoky3.setReviews(167);
-            smoky3.setGuests(6);
-            smoky3.setBeds(3);
-            smoky3.setBaths(2);
-            smoky3.setDescription("Modern chalet with stunning mountain views.");
-            smoky3.setImageUrl("https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400&h=250&fit=crop");
-            smoky3.setAmenities("Mountain view, Fire pit, Game room, WiFi");
-            smoky3.setStatus("APPROVED");
-            smoky3.setOwner(owner);
-            propertyRepository.save(smoky3);
+            Property gampaha3 = new Property();
+            gampaha3.setTitle("Mountain View Chalet");
+            gampaha3.setType("Chalet");
+            gampaha3.setLocation("Great Smoky Mountains");
+            gampaha3.setPrice(230);
+            gampaha3.setRating(4.8);
+            gampaha3.setReviews(167);
+            gampaha3.setGuests(6);
+            gampaha3.setBeds(3);
+            gampaha3.setBaths(2);
+            gampaha3.setDescription("Modern chalet with stunning mountain views.");
+            gampaha3.setImageUrl("https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400&h=250&fit=crop");
+            gampaha3.setAmenities("Mountain view, Fire pit, Game room, WiFi");
+            gampaha3.setStatus("APPROVED");
+            gampaha3.setOwner(owner);
+            propertyRepository.save(gampaha3);
+
+            // ========== ANURADHAPURA PROPERTIES (1 properties) ========== */
+
 
             System.out.println("✅ " + propertyRepository.count() + " Sample properties created!");
         } else {
