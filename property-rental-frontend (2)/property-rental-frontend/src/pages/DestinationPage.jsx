@@ -67,8 +67,8 @@ function DestinationPage() {
     property.location?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const bgColor = darkMode ? '#0f172a' : '#ffffff';
-  const cardBg = darkMode ? '#1e293b' : 'white';
+  const bgColor = darkMode ? '#1a1a2e' : '#FAF8F4';
+  const cardBg = darkMode ? '#16213e' : 'white';
   const textColor = darkMode ? '#ffffff' : '#1A1612';
   const textMuted = darkMode ? '#aaa' : '#9A8F84';
   const borderColor = darkMode ? '#2c3e50' : '#E8D5B7';
@@ -109,39 +109,9 @@ function DestinationPage() {
           <h1 style={{ fontSize: '48px', marginBottom: '16px' }}>{destination?.name}</h1>
           <p style={{ fontSize: '18px' }}>{totalElements} properties available</p>
 
-          <div style={{ background: '#ffffff', borderRadius: '60px', padding: '10px', display: 'flex', gap: '8px', maxWidth: '680px', margin: '40px auto 0', flexWrap: 'wrap', boxShadow: '0 18px 40px rgba(0,0,0,0.18)', alignItems: 'center', position: 'relative', zIndex: 3 }}>
-            <input
-              type="text"
-              placeholder={`Search in ${destination?.name}...`}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              style={{
-                flex: 2,
-                minWidth: '200px',
-                border: '1px solid #E8D5B7',
-                outline: 'none',
-                padding: '14px 24px',
-                borderRadius: '50px',
-                fontSize: '15px',
-                color: '#1A1612',
-                background: '#ffffff',
-                boxShadow: 'inset 0 1px 4px rgba(0,0,0,0.08)'
-              }}
-            />
-            <select
-              value={selectedType}
-              onChange={(e) => { setSelectedType(e.target.value); setCurrentPage(0); }}
-              style={{
-                border: '1px solid #E8D5B7',
-                borderRadius: '50px',
-                padding: '14px 30px',
-                fontSize: '14px',
-                background: '#F5F0E8',
-                color: '#1A1612',
-                outline: 'none',
-                minWidth: '160px'
-              }}
-            >
+          <div style={{ background: 'white', borderRadius: '60px', padding: '8px', display: 'flex', gap: '8px', maxWidth: '650px', margin: '40px auto 0', flexWrap: 'wrap', boxShadow: '0 8px 25px rgba(0,0,0,0.2)' }}>
+            <input type="text" placeholder={`Search in ${destination?.name}...`} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ flex: 2, minWidth: '200px', border: 'none', outline: 'none', padding: '14px 20px', borderRadius: '50px', fontSize: '15px', color: '#333' }} />
+            <select value={selectedType} onChange={(e) => { setSelectedType(e.target.value); setCurrentPage(0); }} style={{ border: 'none', outline: 'none', padding: '14px 20px', background: '#f5f0e8', borderRadius: '50px', cursor: 'pointer', fontSize: '14px', color: '#333' }}>
               <option value="">All Types</option>
               <option>Villa</option><option>Cabin</option><option>Cabana</option><option>Hotel</option><option>Chalet</option><option>Lodge</option><option>Suite</option><option>Bungalow</option><option>Condo</option><option>Cottage</option>
             </select>
@@ -179,7 +149,7 @@ function DestinationPage() {
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}><span style={{ color: '#C4622D', display:'flex', alignItems:'center', gap:'4px' }}><MapPinIcon size={13}/>{property.location?.split(',')[0] || property.location}</span><span style={{display:'flex',alignItems:'center',gap:'4px'}}><StarIcon size={13} filled/> {property.rating} ({property.reviews})</span></div>
                     <h3 style={{ fontSize: '18px', marginBottom: '8px', color: textColor }}>{property.title}</h3>
                     <div style={{ marginBottom: '12px', color: textMuted, display:'flex', alignItems:'center', gap:'12px' }}><span style={{display:'flex',alignItems:'center',gap:'4px'}}><BedIcon size={13}/>{property.beds} beds</span><span style={{display:'flex',alignItems:'center',gap:'4px'}}><BathIcon size={13}/>{property.baths} baths</span><span style={{display:'flex',alignItems:'center',gap:'4px'}}><UsersIcon size={13}/>{property.guests} guests</span></div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: `1px solid ${borderColor}`, paddingTop: '14px' }}><span><span style={{ fontSize: '22px', fontWeight: 700, color: '#C4622D' }}>Rs.{property.price}</span> /night</span><button onClick={(e) => { e.stopPropagation(); handlePropertyClick(property); }} style={{ padding: '8px 20px', background: '#C4622D', color: 'white', border: 'none', borderRadius: '25px', cursor: 'pointer' }}>View Deal →</button></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: `1px solid ${borderColor}`, paddingTop: '14px' }}><span><span style={{ fontSize: '22px', fontWeight: 700, color: '#C4622D' }}>Rs{property.price}</span> /night</span><button onClick={(e) => { e.stopPropagation(); handlePropertyClick(property); }} style={{ padding: '8px 20px', background: '#C4622D', color: 'white', border: 'none', borderRadius: '25px', cursor: 'pointer' }}>View Deal →</button></div>
                   </div>
                 </div>
               ))}
