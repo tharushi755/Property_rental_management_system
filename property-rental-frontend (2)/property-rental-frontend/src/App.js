@@ -21,6 +21,8 @@ import AdminLayout from './pages/admin/AdminLayout';
 import AddPropertyPage from './pages/AddPropertyPage';
 import PaymentSuccessPage from './pages/PaymentSuccessPage';
 import TransactionHistoryPage from './pages/TransactionHistoryPage';
+import ContactPage from './pages/ContactPage';
+
 import './App.css';
 
 function AppContent() {
@@ -88,6 +90,7 @@ function AppContent() {
             <Route path="/payment-success" element={user ? <PaymentSuccessPage /> : <Navigate to="/login" />} />
             <Route path="/transactions" element={user ? <TransactionHistoryPage /> : <Navigate to="/login" />} />
             <Route path="/destination/:slug" element={<DestinationPage />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/add-property" element={user && (user.role === 'OWNER' || user.role === 'ADMIN') ? <AddPropertyPage /> : <Navigate to="/" />} />
             <Route path="/admin" element={isAdmin ? <AdminLayout /> : <Navigate to="/" />}>
               <Route index element={<AdminDashboard />} />
