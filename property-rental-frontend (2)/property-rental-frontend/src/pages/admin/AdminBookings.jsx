@@ -53,7 +53,7 @@ function AdminBookings() {
   const totalRevenue = bookings.filter(b => b.status === 'CONFIRMED').reduce((sum, b) => sum + (b.totalPrice || 0), 0);
 
   if (loading) {
-    return <div style={{ padding: '32px', textAlign: 'center' }}>Loading bookings...</div>;
+    return <div style={{ padding: '32px', textAlign: 'center', background: bgColor, color: textColor }}>Loading bookings...</div>;
   }
 
   return (
@@ -64,7 +64,22 @@ function AdminBookings() {
           <p style={{ color: textMuted }}>Total Revenue: <strong style={{ color: '#C4622D' }}>${totalRevenue.toLocaleString()}</strong></p>
         </div>
         <div style={{ display: 'flex', gap: '10px' }}>
-          <input type="text" placeholder="Search by property or guest..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} style={{ padding: '10px 16px', border: `1px solid ${borderColor}`, borderRadius: '10px', width: '250px', outline: 'none', background: inputBg, color: textColor, boxShadow: darkMode ? 'inset 0 0 0 1px rgba(255,255,255,0.05)' : 'none' }} />
+          <input
+            type="text"
+            placeholder="Search by property or guest..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              padding: '10px 16px',
+              border: `1px solid ${borderColor}`,
+              borderRadius: '10px',
+              width: '250px',
+              outline: 'none',
+              background: inputBg,
+              color: textColor,
+              boxShadow: darkMode ? 'inset 0 0 0 1px rgba(255,255,255,0.05)' : 'none'
+            }}
+          />
         </div>
       </div>
 

@@ -160,7 +160,7 @@ function AdminProperties() {
       {/* Create Property Form */}
       {showForm && (
         <div style={{ background: cardBg, borderRadius: '16px', padding: '24px', marginBottom: '24px', border: `1px solid ${borderColor}` }}>
-          <h3 style={{ marginBottom: '16px', color: '#1A1612', display:'flex', alignItems:'center', gap:'8px' }}>{editingId ? <><EditIcon size={16}/> Update Property</> : <><PlusIcon size={16}/> Create New Property</>}</h3>
+          <h3 style={{ marginBottom: '16px', color: textColor, display:'flex', alignItems:'center', gap:'8px' }}>{editingId ? <><EditIcon size={16}/> Update Property</> : <><PlusIcon size={16}/> Create New Property</>}</h3>
           <form onSubmit={savePropertyHandler} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             
             {/* Title */}

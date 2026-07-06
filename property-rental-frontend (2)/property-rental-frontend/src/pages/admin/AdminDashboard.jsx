@@ -10,7 +10,6 @@ function AdminDashboard() {
   const textColor = darkMode ? '#ffffff' : '#1A1612';
   const textMuted = darkMode ? '#cbd5e1' : '#9A8F84';
   const borderColor = darkMode ? '#2c3e50' : '#E8D5B7';
-
   const [stats, setStats] = useState({
     totalUsers: 0,
     totalProperties: 0,
