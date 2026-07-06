@@ -28,7 +28,7 @@ function AdminPayments() {
   const textColor = darkMode ? '#ffffff' : '#1A1612';
   const textMuted = darkMode ? '#aaa' : '#9A8F84';
   const border = darkMode ? '#2c3e50' : '#E8D5B7';
-  const inputBg = darkMode ? '#0f172a' : '#ffffff';
+  const inputBg = darkMode ? '#17213a' : '#ffffff';
 
   useEffect(() => { fetchPayments(); }, []);
 
@@ -90,7 +90,7 @@ function AdminPayments() {
           placeholder="Search by transaction ID, property, or name..."
           value={search}
           onChange={e => setSearch(e.target.value)}
-          style={{ padding: '10px 16px', border: `1px solid ${border}`, borderRadius: '10px', width: '300px', outline: 'none', background: inputBg, color: textColor, fontSize: '14px' }}
+          style={{ padding: '10px 16px', border: `1px solid ${border}`, borderRadius: '10px', width: '300px', outline: 'none', background: inputBg, color: textColor, fontSize: '14px', boxShadow: darkMode ? 'inset 0 0 0 1px rgba(255,255,255,0.08)' : 'none' }}
         />
       </div>
 
