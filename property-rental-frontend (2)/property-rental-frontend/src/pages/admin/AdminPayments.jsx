@@ -97,7 +97,7 @@ function AdminPayments() {
       {/* Stats */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '28px' }}>
         {[
-          { label: 'Total Revenue', value: `$${totalRevenue.toLocaleString()}`, color: '#C4622D' },
+          { label: 'Total Revenue', value: `Rs${totalRevenue.toLocaleString()}`, color: '#C4622D' },
           { label: 'Successful', value: successCount, color: '#2E7D32' },
           { label: 'Refunded', value: refundedCount, color: '#C4622D' },
           { label: 'Failed', value: failedCount, color: '#C62828' },
@@ -152,7 +152,7 @@ function AdminPayments() {
                   {p.paymentMethod === 'CARD' ? `Card •••• ${p.cardLast4 || '****'}` : 'PayPal'}
                 </td>
                 <td style={{ padding: '14px 16px', fontWeight: 700, color: textColor }}>
-                  ${p.amount}
+                  Rs{p.amount}
                 </td>
                 <td style={{ padding: '14px 16px', fontSize: '13px', color: textMuted }}>
                   {p.createdAt ? fmt(p.createdAt) : '—'}

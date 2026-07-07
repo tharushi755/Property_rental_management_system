@@ -204,7 +204,7 @@ function AdminProperties() {
             
             {/* Price and Guests */}
             <div>
-              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: textColor }}>Price per Night ($) *</label>
+              <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 500, color: textColor }}>Price per Night (Rs) *</label>
               <input 
                 type="number" 
                 placeholder="e.g., 250" 
@@ -308,7 +308,7 @@ function AdminProperties() {
                 </span>
               </div>
               <div style={{ fontSize: '14px', color: textMuted, marginBottom: '8px' }}>
-                {property.type} · ${property.price}/night · <MapPinIcon size={12} style={{marginRight:3, verticalAlign:'middle'}}/>{property.location}
+                {property.type} · Rs{property.price}/night · <MapPinIcon size={12} style={{marginRight:3, verticalAlign:'middle'}}/>{property.location}
               </div>
               <div style={{ fontSize: '13px', color: textMuted }}>
                 Owner: {property.owner?.name || 'Unknown'} · {property.reviews || 0} reviews

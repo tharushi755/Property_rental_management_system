@@ -127,7 +127,7 @@ function WishlistPage() {
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
                       <div>
-                        <span style={{ fontSize: '20px', fontWeight: 700, color: '#C4622D' }}>${property.price}</span>
+                        <span style={{ fontSize: '20px', fontWeight: 700, color: '#C4622D' }}>Rs{property.price}</span>
                         <span style={{ fontSize: '12px', color: textMuted }}> /night</span>
                       </div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>

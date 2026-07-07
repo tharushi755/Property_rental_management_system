@@ -16,7 +16,7 @@ function PropertyDetailPage({ user, onBooking }) {
   const [loading, setLoading] = useState(true);
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
-  const [guests, setGuests] = useState('2');
+  const [guests, setGuests] = useState(2);
   const [showBookingAlert, setShowBookingAlert] = useState(false);
   const [nights, setNights] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
@@ -321,7 +321,7 @@ function PropertyDetailPage({ user, onBooking }) {
               <div style={{ fontSize: '10px', fontWeight: 600, color: textMuted, marginBottom: '4px' }}>GUESTS</div>
               <select 
                 value={guests} 
-                onChange={(e) => setGuests(e.target.value)} 
+                onChange={(e) => setGuests(Number(e.target.value))} 
                 style={{ border: 'none', outline: 'none', width: '100%', background: 'transparent', color: textColor, cursor: 'pointer' }}
               >
                 <option value="1">1 guest</option>

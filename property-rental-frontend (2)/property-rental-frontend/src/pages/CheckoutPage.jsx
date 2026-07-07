@@ -17,15 +17,15 @@ function CheckoutPage() {
   const [error, setError] = useState('');
 
   const property = bookingData.property || { id: null, title: 'Selected Property', price: 320 };
-  const nights   = bookingData.nights  || 3;
-  const guests   = bookingData.guests  || 2;
+  const nights   = bookingData.nights || 3;
+  const guests   = parseInt(bookingData.guests, 10) || 2;
   const checkIn  = bookingData.checkIn;
   const checkOut = bookingData.checkOut;
 
-  const subtotal    = property.price * nights;
   const cleaningFee = 40;
   const serviceFee  = 25;
-  const total       = subtotal + cleaningFee + serviceFee;
+  const subtotal    = bookingData.subtotal ?? property.price * nights * guests;
+  const total       = bookingData.total ?? subtotal + cleaningFee + serviceFee;
 
   const bgColor    = darkMode ? '#0f172a' : '#ffffff';
   const cardBg     = darkMode ? '#1e293b' : 'white';
@@ -93,8 +93,13 @@ function CheckoutPage() {
       const response = await processPayment({
         userId: user.id,
         propertyId: property.id,
-        checkIn, checkOut,
-        guests: parseInt(guests),
+        checkIn,
+        checkOut,
+        nights,
+        guests,
+        subtotal,
+        total,
+        amount: total,
         paymentMethod: paymentMethod.toUpperCase(),
         cardLast4: paymentMethod === 'card' ? cardLast4 : '',
         cardholderName: paymentMethod === 'card' ? cardDetails.name : 'PayPal User',
@@ -104,7 +109,20 @@ function CheckoutPage() {
       await new Promise(r => setTimeout(r, 600));
 
       if (response.data.success) {
-        navigate('/payment-success', { state: response.data });
+        navigate('/payment-success', {
+          state: {
+            ...response.data,
+            propertyTitle: property.title,
+            propertyLocation: property.location || '',
+            checkIn,
+            checkOut,
+            nights,
+            guests,
+            amount: response.data.amount ?? total,
+            paymentMethod: paymentMethod.toUpperCase(),
+            cardLast4: paymentMethod === 'card' ? cardLast4 : '',
+          }
+        });
       } else {
         setError(response.data.error || 'Payment failed');
         setProcessing(false);
@@ -181,7 +199,11 @@ function CheckoutPage() {
 
               <div style={{ fontSize: '14px', color: textColor }}>
                 {[
-                  [`Rs${property.price} × ${nights} night${nights > 1 ? 's' : ''}`, `Rs${subtotal}`],
+<<<<<<< HEAD
+                  [`Rs${property.price} × ${nights} night${nights > 1 ? 's' : ''} × ${guests} guest${guests > 1 ? 's' : ''}`, `Rs${subtotal}`],
+=======
+                  [`Rs${property.price} × ${nights} night${nights > 1 ? 's' : ''} x${guests} guest${guests > 1 ? 's' : ''}`, `Rs${subtotal}`],
+>>>>>>> 31003dd57337e7c1eb0ec8b5a345f83cc3585337
                   ['Cleaning fee', `Rs${cleaningFee}`],
                   ['Service fee', `Rs${serviceFee}`],
                 ].map(([label, val]) => (

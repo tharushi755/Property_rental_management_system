@@ -42,7 +42,7 @@ public class PaymentController {
             Property property = propertyRepository.findById(propertyId).orElseThrow(() -> new RuntimeException("Property not found"));
 
             long nights  = ChronoUnit.DAYS.between(checkIn, checkOut);
-            int subtotal = (int) (property.getPrice() * nights);
+            int subtotal = (int) (property.getPrice() * nights * guests);
             int total    = subtotal + 40 + 25;
             String txnId = "TXN-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
 

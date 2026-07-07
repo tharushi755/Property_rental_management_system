@@ -168,7 +168,7 @@ function AddPropertyPage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px', marginBottom: '20px' }}>
             <div>
-              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 500, color: textColor }}>Price/Night ($) *</label>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: 500, color: textColor }}>Price/Night (Rs) *</label>
               <input
                 type="number"
                 name="price"

@@ -61,7 +61,7 @@ function AdminBookings() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
         <div>
           <h1 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '32px', marginBottom: '8px' }}>Booking Management</h1>
-          <p style={{ color: textMuted }}>Total Revenue: <strong style={{ color: '#C4622D' }}>${totalRevenue.toLocaleString()}</strong></p>
+          <p style={{ color: textMuted }}>Total Revenue: <strong style={{ color: '#C4622D' }}>Rs{totalRevenue.toLocaleString()}</strong></p>
         </div>
         <div style={{ display: 'flex', gap: '10px' }}>
           <input
@@ -101,7 +101,7 @@ function AdminBookings() {
                 <td style={{ padding: '16px', fontWeight: 500, color: textColor }}>{booking.property?.title || 'N/A'}</td>
                 <td style={{ padding: '16px', color: textColor }}>{booking.user?.name || 'N/A'}</td>
                 <td style={{ padding: '16px', fontSize: '13px', color: darkMode ? '#a0aec0' : '#666' }}>{booking.checkIn} → {booking.checkOut}</td>
-                <td style={{ padding: '16px', fontWeight: 600, color: '#C4622D' }}>${booking.totalPrice}</td>
+                <td style={{ padding: '16px', fontWeight: 600, color: '#C4622D' }}>Rs{booking.totalPrice}</td>
                 <td style={{ padding: '16px' }}>
                   <span style={{ padding: '4px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: 500, background: booking.status === 'CONFIRMED' ? (darkMode ? '#164e1a' : '#E8F5E9') : (darkMode ? '#4c1f1f' : '#FFEBEE'), color: booking.status === 'CONFIRMED' ? (darkMode ? '#bef264' : '#2E7D32') : (darkMode ? '#fecaca' : '#C62828') }}>
                     {booking.status}
