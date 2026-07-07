@@ -199,11 +199,7 @@ function CheckoutPage() {
 
               <div style={{ fontSize: '14px', color: textColor }}>
                 {[
-<<<<<<< HEAD
                   [`Rs${property.price} × ${nights} night${nights > 1 ? 's' : ''} × ${guests} guest${guests > 1 ? 's' : ''}`, `Rs${subtotal}`],
-=======
-                  [`Rs${property.price} × ${nights} night${nights > 1 ? 's' : ''} x${guests} guest${guests > 1 ? 's' : ''}`, `Rs${subtotal}`],
->>>>>>> 31003dd57337e7c1eb0ec8b5a345f83cc3585337
                   ['Cleaning fee', `Rs${cleaningFee}`],
                   ['Service fee', `Rs${serviceFee}`],
                 ].map(([label, val]) => (
